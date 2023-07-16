@@ -30,7 +30,7 @@ export default function Footer() {
             <a href="https://www.tiktok.com/en/">
               <FaTiktok size={24} />
             </a>
-            <a href="https://www.facebook.com/en/">
+            <a href="https://www.facebook.com/">
               <FaFacebook size={24} />
             </a>
           </div>
