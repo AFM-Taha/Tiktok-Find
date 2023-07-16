@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.23",
     "@types/node": "20.4.2",
-    "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
@@ -24,7 +24,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "prettier": "^3.0.0",
+    "@types/react": "18.2.15",
     "prettier-plugin-tailwindcss": "^0.4.1"
   }
 }
