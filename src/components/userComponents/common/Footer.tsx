@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="mt-64 bg-[#282828] text-white">
-        <div className="flex justify-between p-8">
+        <div className="flex flex-col justify-between p-8 lg:flex-row">
           <div>
             <div>
               <p className="text-lg font-bold leading-tight">
@@ -18,13 +18,13 @@ export default function Footer() {
               </p>
               <p className="text-sm">Trusted by over 400,000 members.</p>
               <Link href="/login">
-                <button className="mb-32 mt-10 flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#283BE5] to-[#0094FF] px-6 py-3 font-medium">
+                <button className="mb-8 mt-10 flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#283BE5] to-[#0094FF] px-6 py-3 font-medium">
                   Try Thieve Free
                   <FaArrowRight />
                 </button>
               </Link>
             </div>
-            <div className="flex gap-5">
+            <div className="mb-8 flex gap-5">
               <a href="https://www.instagram.com/">
                 <FaInstagram size={24} />
               </a>
@@ -36,7 +36,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div className="flex gap-8">
+          <div className="flex flex-col gap-8 lg:flex-row">
             <div className="flex flex-col">
               <h6 className="mb-2 font-medium">Products</h6>
               <a
