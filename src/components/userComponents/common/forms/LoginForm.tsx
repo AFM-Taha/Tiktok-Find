@@ -19,7 +19,7 @@ export default function LoginForm() {
       <div>
         {/* <label htmlFor="email">Email</label> */}
         <input
-          className="my-2 rounded-2xl bg-[#EFF6FB] px-3 py-4"
+          className="my-2 w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
           id="email"
           type="email"
           placeholder="Email"
@@ -28,7 +28,7 @@ export default function LoginForm() {
       <div>
         {/* <label htmlFor="password">Password</label> */}
         <input
-          className="my-2 rounded-2xl bg-[#EFF6FB] px-3 py-4"
+          className="my-2 w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
           id="password"
           type="password"
           placeholder="Password"
