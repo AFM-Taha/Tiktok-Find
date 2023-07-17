@@ -1,3 +1,4 @@
+import { PiTiktokLogoLight } from 'react-icons/pi';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { CiMenuKebab } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
@@ -17,8 +18,9 @@ export default function NavBar() {
               <AiOutlineMenu size={20} color="black" />
             </button>
           </div>
-          <Link className="text-2xl font-light tracking-wide" href="/">
-            TikTok Find
+          <Link className="text-xl font-light tracking-wide" href="/">
+            <PiTiktokLogoLight className="inline pr-1" size={26} />
+            Find
           </Link>
         </div>
         <div className="lg:hidden">
