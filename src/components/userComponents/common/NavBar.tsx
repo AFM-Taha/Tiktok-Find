@@ -18,8 +18,10 @@ export default function NavBar() {
               <AiOutlineMenu size={20} color="black" />
             </button>
           </div>
-          <Link className="text-xl font-light tracking-wide" href="/">
-            <PiTiktokLogoLight className="inline pr-1" size={26} />
+          <Link
+            className="text-xl font-medium tracking-wide text-gray-400"
+            href="/">
+            <PiTiktokLogoLight className="inline pr-1" size={30} />
             Find
           </Link>
         </div>
