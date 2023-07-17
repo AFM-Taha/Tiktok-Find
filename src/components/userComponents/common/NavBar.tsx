@@ -17,8 +17,8 @@ export default function NavBar() {
               <AiOutlineMenu size={20} color="black" />
             </button>
           </div>
-          <Link className="text-3xl font-bold leading-none" href="/">
-            LOGO
+          <Link className="text-2xl font-light tracking-wide" href="/">
+            TikTok Find
           </Link>
         </div>
         <div className="lg:hidden">
