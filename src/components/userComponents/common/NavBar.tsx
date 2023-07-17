@@ -35,40 +35,40 @@ export default function NavBar() {
         <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform lg:mx-auto lg:flex lg:w-auto lg:items-center lg:space-x-6">
           <li>
             <Link
-              className="text-sm text-gray-400 hover:text-gray-500"
+              className="text-sm font-bold text-gray-400 hover:text-gray-500"
               href="/">
               Home
             </Link>
           </li>
-          <li className="text-gray-300">
-            <CiMenuKebab />
-          </li>
+          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
+            <a
+              className="text-sm font-bold text-gray-400 hover:text-gray-500"
+              href="#">
               Products
             </a>
           </li>
-          <li className="text-gray-300">
-            <CiMenuKebab />
-          </li>
+          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
+            <a
+              className="text-sm font-bold text-gray-400 hover:text-gray-500"
+              href="#">
               About
             </a>
           </li>
-          <li className="text-gray-300">
-            <CiMenuKebab />
-          </li>
+          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
+            <a
+              className="text-sm font-bold text-gray-400 hover:text-gray-500"
+              href="#">
               FAQ
             </a>
           </li>
-          <li className="text-gray-300">
-            <CiMenuKebab />
-          </li>
+          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
+            <a
+              className="text-sm font-bold text-gray-400 hover:text-gray-500"
+              href="#">
               Contact
             </a>
           </li>
