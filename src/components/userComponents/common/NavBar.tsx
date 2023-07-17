@@ -87,9 +87,10 @@ export default function NavBar() {
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav className="fixed bottom-0 left-0 top-0 flex w-5/6 max-w-sm flex-col overflow-y-auto border-r bg-white px-6 py-6">
           <div className="mb-8 flex items-center">
-            <a className="mr-auto text-3xl font-bold leading-none" href="#">
-              LOGO
-            </a>
+            <Link className="mr-auto text-xl font-light tracking-wide" href="/">
+              <PiTiktokLogoLight className="inline pr-1" size={26} />
+              Find
+            </Link>
             <button onClick={() => setIsOpen(false)} className="navbar-close">
               <GrClose />
             </button>
