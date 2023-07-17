@@ -4,7 +4,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>TikTok Find | Login</title>
         <style>
           {`
         body {
