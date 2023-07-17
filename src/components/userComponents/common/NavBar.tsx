@@ -9,15 +9,24 @@ export default function NavBar() {
   return (
     <>
       <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4  py-2 shadow-sm backdrop-blur-sm">
-        <a className="text-3xl font-bold leading-none" href="#">
-          LOGO
-        </a>
+        <div className="flex  items-center gap-2">
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="navbar-burger flex items-center rounded-md bg-slate-100 bg-opacity-50 p-2">
+              <AiOutlineMenu size={20} color="black" />
+            </button>
+          </div>
+          <Link className="text-3xl font-bold leading-none" href="/">
+            LOGO
+          </Link>
+        </div>
         <div className="lg:hidden">
-          <button
-            onClick={() => setIsOpen(true)}
-            className="navbar-burger flex items-center rounded-md bg-slate-100 bg-opacity-50 p-2">
-            <AiOutlineMenu size={20} color="black" />
-          </button>
+          <Link
+            href="login"
+            className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-4 py-2 font-medium text-white">
+            Try Thieve Free
+          </Link>
         </div>
         <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform lg:mx-auto lg:flex lg:w-auto lg:items-center lg:space-x-6">
           <li>
@@ -32,7 +41,7 @@ export default function NavBar() {
           </li>
           <li>
             <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-              About Us
+              Products
             </a>
           </li>
           <li className="text-gray-300">
@@ -40,7 +49,7 @@ export default function NavBar() {
           </li>
           <li>
             <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-              Services
+              About
             </a>
           </li>
           <li className="text-gray-300">
@@ -48,7 +57,7 @@ export default function NavBar() {
           </li>
           <li>
             <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-              Pricing
+              FAQ
             </a>
           </li>
           <li className="text-gray-300">
@@ -60,16 +69,16 @@ export default function NavBar() {
             </a>
           </li>
         </ul>
-        <a
-          className="hidden rounded-xl bg-gray-50 px-6 py-2 text-sm font-bold text-gray-900 transition duration-200 hover:bg-gray-100 lg:ml-auto lg:mr-3 lg:inline-block"
-          href="#">
+        <Link
+          className="hidden rounded-xl bg-gray-50 px-4 py-2 text-sm font-bold text-gray-900 transition duration-200 hover:bg-gray-100 lg:ml-auto lg:mr-3 lg:inline-block"
+          href="/login">
           Sign In
-        </a>
-        <a
-          className="hidden rounded-xl bg-blue-500 px-6 py-2 text-sm font-bold text-white transition duration-200 hover:bg-blue-600 lg:inline-block"
-          href="#">
-          Sign up
-        </a>
+        </Link>
+        <Link
+          className="hidden rounded-xl bg-blue-500 bg-gradient-to-r from-[#283be5] to-[#0093FF] px-4 py-2 text-sm font-bold text-white transition duration-200 hover:bg-blue-600 lg:inline-block"
+          href="/login">
+          Try Thieve Free
+        </Link>
       </nav>
       <div
         className={'navbar-menu relative z-50 ' + (isOpen ? 'grid' : 'hidden')}>
@@ -96,21 +105,21 @@ export default function NavBar() {
                 <a
                   className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
                   href="#">
-                  About Us
+                  Products
                 </a>
               </li>
               <li className="mb-1">
                 <a
                   className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
                   href="#">
-                  Services
+                  About
                 </a>
               </li>
               <li className="mb-1">
                 <a
                   className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
                   href="#">
-                  Pricing
+                  FAQ
                 </a>
               </li>
               <li className="mb-1">
