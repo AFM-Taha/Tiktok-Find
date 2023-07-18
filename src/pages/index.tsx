@@ -23,26 +23,24 @@ export default function Home() {
         </div>
         <div className="quotes mx-auto grid max-w-[60rem] justify-center gap-[4.375rem] px-5 py-20 text-white md:grid-cols-3 lg:py-[6rem] 2xl:max-w-[80rem] 2xl:py-[6rem]">
           <div>
-            <div className="mb-4 max-w-[18.75rem] text-[0.875rem] font-bold leading-[120%] lg:text-[1rem] 2xl:max-w-[20rem] 2xl:text-xl">
-              ProductHunt #1 Top Voted Product of the Day
+            <div className="mx-auto mb-4 max-w-[18.75rem] text-[0.875rem] font-bold leading-[120%] lg:text-[1rem] 2xl:max-w-[20rem] 2xl:text-xl">
+              &quot;This platform redefined shopping for me&quot;
             </div>
             <div className="text-[0.75rem] uppercase leading-none tracking-wider opacity-30">
-              producthunt.com
+              Jane Doe
             </div>
           </div>
           <div>
-            <div className="mb-4 max-w-[18.75rem] text-[0.875rem] font-bold leading-[120%] lg:text-[1rem] 2xl:max-w-[20rem] 2xl:text-xl">
-              &quot;Killer features that are a game changer for
-              dropshipping&quot;
+            <div className="mx-auto mb-4 max-w-[18.75rem] text-[0.875rem] font-bold leading-[120%] lg:text-[1rem] 2xl:max-w-[20rem] 2xl:text-xl">
+              &quot;A true shopping paradise&quot;
             </div>
             <div className="text-[0.75rem] uppercase leading-none tracking-wider opacity-30">
               J. Rich
             </div>
           </div>
           <div>
-            <div className="mb-4 max-w-[18.75rem] text-[0.875rem] font-bold leading-[120%] lg:text-[1rem] 2xl:max-w-[20rem] 2xl:text-xl">
-              &quot;It&apos;s our little hidden gem that we use to run our 7
-              figure business&quot;
+            <div className="mx-auto mb-4 max-w-[18.75rem] text-[0.875rem] font-bold leading-[120%] lg:text-[1rem] 2xl:max-w-[20rem] 2xl:text-xl">
+              &quot;Shopping will never be the same again&quot;
             </div>
             <div className="text-[0.75rem] uppercase leading-none tracking-wider opacity-30">
               D. Zander
