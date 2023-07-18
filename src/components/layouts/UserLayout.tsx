@@ -5,13 +5,9 @@ import Footer from '../userComponents/common/Footer';
 export default function UserLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <nav>
-        <NavBar />
-      </nav>
+      <NavBar />
       <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </>
   );
 }

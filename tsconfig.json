@@ -5,6 +5,14 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "pretty": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -19,5 +27,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/pages/api/hello.ts"]
 }
