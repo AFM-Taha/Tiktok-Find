@@ -10,6 +10,7 @@ export default function Home() {
           content="The best e-commerce store"
           key="desc"
         />
+        <meta name="robots" content="index,follow" />
         <style>
           {`
         body {
