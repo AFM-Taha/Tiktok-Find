@@ -5,6 +5,11 @@ export default function Home() {
     <>
       <Head>
         <title>TikTok Find | Home</title>
+        <meta
+          name="description"
+          content="The best e-commerce store"
+          key="desc"
+        />
         <style>
           {`
         body {
