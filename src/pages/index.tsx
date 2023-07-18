@@ -1,3 +1,4 @@
+import ProductsGridHome from '@/components/userComponents/productsGrid/ProductsGridHome';
 import Head from 'next/head';
 
 export default function Home() {
@@ -53,6 +54,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+      <section>
+        <ProductsGridHome />
       </section>
     </>
   );
