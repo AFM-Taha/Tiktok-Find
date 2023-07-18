@@ -25,13 +25,13 @@ export default function Footer() {
               </Link>
             </div>
             <div className="mb-8 flex gap-5">
-              <a href="https://www.instagram.com/">
+              <a title="Instagram" href="https://www.instagram.com/">
                 <FaInstagram size={24} />
               </a>
-              <a href="https://www.tiktok.com/en/">
+              <a title="TikTok" href="https://www.tiktok.com/en/">
                 <FaTiktok size={24} />
               </a>
-              <a href="https://www.facebook.com/">
+              <a title="Facebook" href="https://www.facebook.com/">
                 <FaFacebook size={24} />
               </a>
             </div>
