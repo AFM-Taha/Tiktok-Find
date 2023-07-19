@@ -13,6 +13,7 @@ export default function NavBar() {
         <div className="flex  items-center gap-2">
           <div className="lg:hidden">
             <button
+              title="Menu"
               onClick={() => setIsOpen(true)}
               className="navbar-burger flex items-center rounded-md bg-slate-100 bg-opacity-50 p-2">
               <AiOutlineMenu size={20} color="black" />
@@ -42,11 +43,11 @@ export default function NavBar() {
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a
+            <Link
               className="text-sm font-bold text-gray-400 hover:text-gray-500"
-              href="#">
+              href="/products">
               Products
-            </a>
+            </Link>
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
