@@ -43,11 +43,11 @@ export default function NavBar() {
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a
+            <Link
               className="text-sm font-bold text-gray-400 hover:text-gray-500"
-              href="#">
+              href="/products">
               Products
-            </a>
+            </Link>
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
