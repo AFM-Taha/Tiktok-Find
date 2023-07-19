@@ -55,7 +55,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gradient-to-tr from-[#130110] to-[#1b2047] p-8 md:p-10">
+      <section className="h-full bg-gradient-to-tr from-[#130110] to-[#1b2047] p-8 md:p-10">
         <ProductsGridHome />
       </section>
     </>
