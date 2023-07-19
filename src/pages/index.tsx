@@ -55,7 +55,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="p-8 md:p-10">
         <ProductsGridHome />
       </section>
     </>
