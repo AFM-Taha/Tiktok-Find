@@ -39,205 +39,205 @@ export default function Footer() {
           <div className="flex flex-col gap-8 lg:flex-row">
             <div className="flex flex-col">
               <h4 className="mb-2 font-medium">Products</h4>
-              <a
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 All Products
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Homeware
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Electronics
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Outdoors
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Men&apos;s
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Women&apos;s
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Kids
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Music
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Sports
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Stationary
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Photography
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Toys
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Pets
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Travels
-              </a>
+              </Link>
             </div>
             <div className="flex flex-col">
               <h4 className="mb-2 font-medium">Tools</h4>
-              <a
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 All Tools
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Thieve AliExpress Extension
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 AliExpress Image Search
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Find AliExpress Suppliers
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Edit AliExpress Images
-              </a>
+              </Link>
             </div>
             <div className="flex flex-col">
               <h4 className="mb-2 font-medium">Niches</h4>
-              <a
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 All Niches
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Fall Trend - Dorm Decor
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Wireless Charge Pads
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Content Creator
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Yoga and Wellness
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Zoom Flex
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Phone Photography
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Work From Home
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Gaming
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Montessori Toys
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Cooking & Baking
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Plants & Garden
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 DIY Learning Projects
-              </a>
+              </Link>
             </div>
             <div className="flex flex-col">
               <h4 className="mb-2 font-medium">Info</h4>
-              <a
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 About
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Blog
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Affiliate
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Terms & Condition
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Privacy Policy
-              </a>
-              <a
+              </Link>
+              <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
                 href="/products">
                 Content License
-              </a>
+              </Link>
             </div>
           </div>
         </div>
