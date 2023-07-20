@@ -12,7 +12,7 @@ export default function Home() {
           key="desc"
         />
         <meta name="robots" content="index,follow" />
-        <style>
+        {/* <style>
           {`
         body {
           background-image: linear-gradient(to top right, var(--tw-gradient-stops));
@@ -21,7 +21,7 @@ export default function Home() {
           --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
           --tw-gradient-to: #1b2047 var(--tw-gradient-to-position);
         }`}
-        </style>
+        </style> */}
       </Head>
       {/* <section className="xs:pt-[8rem] bg-white bg-gradient-to-br from-[#130110] to-[#1b2047] pt-[6.25rem] text-center lg:pt-[10rem] 2xl:pt-[10rem]">
         <div className="text-center">
@@ -59,7 +59,7 @@ export default function Home() {
           </div>
         </div>
       </section> */}
-      <section className="mt-40 bg-gradient-to-tr from-[#000000] to-[#1b2047]">
+      <section className="mt-40">
         <ProductsGridHome />
       </section>
     </>

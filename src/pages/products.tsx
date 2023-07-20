@@ -4,11 +4,11 @@ export default function Products() {
   return (
     <>
       <Head>
-        <style>{`
+        {/* <style>{`
     body {
         background-color: #000;
     }
-    `}</style>
+    `}</style> */}
       </Head>
     </>
   );
