@@ -15,11 +15,15 @@ export default function Home() {
         <style>
           {`
         body {
-          background-color: #000;
+          background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+          --tw-gradient-from: #000000 var(--tw-gradient-from-position);
+          --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+          --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+          --tw-gradient-to: #1b2047 var(--tw-gradient-to-position);
         }`}
         </style>
       </Head>
-      <section className="xs:pt-[8rem] bg-white bg-gradient-to-br from-[#130110] to-[#1b2047] pt-[6.25rem] text-center lg:pt-[10rem] 2xl:pt-[10rem]">
+      {/* <section className="xs:pt-[8rem] bg-white bg-gradient-to-br from-[#130110] to-[#1b2047] pt-[6.25rem] text-center lg:pt-[10rem] 2xl:pt-[10rem]">
         <div className="text-center">
           <h2 className="px-8 text-center text-3xl font-bold text-white md:text-6xl xl:text-7xl 2xl:text-9xl">
             Discover the Ultimate Shopping Experience Online
@@ -54,8 +58,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-      <section className="h-full bg-gradient-to-tr from-[#130110] to-[#1b2047] p-8 md:p-10">
+      </section> */}
+      <section className="mt-40 bg-gradient-to-tr from-[#000000] to-[#1b2047]">
         <ProductsGridHome />
       </section>
     </>
