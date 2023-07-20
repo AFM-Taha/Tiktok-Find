@@ -3,11 +3,11 @@ import Image from 'next/image';
 interface Props {
   imgsrc: string;
   alttext: string;
-  title: string;
+  // title: string;
 }
 export default function ProductsGridHomeCard({
   imgsrc,
-  title,
+  // title,
   alttext,
 }: Props) {
   return (
@@ -20,9 +20,9 @@ export default function ProductsGridHomeCard({
         alt={alttext}
         src={imgsrc}
       />
-      <h3 className="py-2 text-center text-xs font-medium text-neutral-200">
+      {/* <h3 className="py-2 text-center text-xs font-medium text-neutral-200">
         {title}
-      </h3>
+      </h3> */}
     </div>
   );
 }
