@@ -8,3 +8,24 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+/* width */
+.category-scrollbar::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+.category-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.category-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.category-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
