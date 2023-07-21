@@ -1,5 +1,6 @@
 import CategoryBar from '@/components/userComponents/common/CategoryBar';
 import ProductsGridHome from '@/components/userComponents/productsGrid/ProductsGridHome';
+import VideoBar from '@/components/userComponents/video/VideoBar';
 import Head from 'next/head';
 
 export default function Home() {
@@ -17,7 +18,10 @@ export default function Home() {
       <nav>
         <CategoryBar />
       </nav>
-      <section className="mt-40">
+      <section>
+        <VideoBar />
+      </section>
+      <section className=" mt-8">
         <ProductsGridHome />
       </section>
     </>
