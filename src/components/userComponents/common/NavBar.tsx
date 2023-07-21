@@ -9,7 +9,7 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2 backdrop-blur-sm">
+      <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">
         <div className="flex  items-center gap-2">
           <div className="lg:hidden">
             <button
@@ -20,7 +20,7 @@ export default function NavBar() {
             </button>
           </div>
           <Link
-            className="text-xl font-medium tracking-wide text-gray-400"
+            className="text-xl font-medium tracking-wide text-white"
             href="/">
             <PiTiktokLogoLight className="inline pr-1" size={30} />
             Find
@@ -33,43 +33,35 @@ export default function NavBar() {
             Try Thieve Free
           </Link>
         </div>
-        <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform lg:mx-auto lg:flex lg:w-auto lg:items-center lg:space-x-6">
+        <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[rgba(26,42,59,0.68)] px-8 py-2 text-white backdrop-blur-[5px] backdrop-saturate-150 lg:mx-auto lg:flex lg:w-auto lg:items-center lg:space-x-6">
           <li>
-            <Link
-              className="text-sm font-bold text-gray-400 hover:text-gray-500"
-              href="/">
+            <Link className="text-sm font-bold  hover:text-gray-500" href="/">
               Home
             </Link>
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
             <Link
-              className="text-sm font-bold text-gray-400 hover:text-gray-500"
+              className="text-sm font-bold  hover:text-gray-500"
               href="/products">
               Products
             </Link>
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a
-              className="text-sm font-bold text-gray-400 hover:text-gray-500"
-              href="#">
+            <a className="text-sm font-bold  hover:text-gray-500" href="#">
               About
             </a>
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a
-              className="text-sm font-bold text-gray-400 hover:text-gray-500"
-              href="#">
+            <a className="text-sm font-bold  hover:text-gray-500" href="#">
               FAQ
             </a>
           </li>
           <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
           <li>
-            <a
-              className="text-sm font-bold text-gray-400 hover:text-gray-500"
-              href="#">
+            <a className="text-sm font-bold  hover:text-gray-500" href="#">
               Contact
             </a>
           </li>
@@ -88,49 +80,51 @@ export default function NavBar() {
       <div
         className={'navbar-menu relative z-50 ' + (isOpen ? 'grid' : 'hidden')}>
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-        <nav className="fixed bottom-0 left-0 top-0 flex w-5/6 max-w-sm flex-col overflow-y-auto border-r bg-white px-6 py-6">
+        <nav className="fixed bottom-0 left-0 top-0 flex w-5/6 max-w-sm flex-col overflow-y-auto border-r bg-neutral-700 px-6 py-6 text-white">
           <div className="mb-8 flex items-center">
             <Link className="mr-auto text-xl font-light tracking-wide" href="/">
               <PiTiktokLogoLight className="inline pr-1" size={26} />
               Find
             </Link>
-            <button onClick={() => setIsOpen(false)} className="navbar-close">
-              <GrClose />
-            </button>
+            <div className="text-white">
+              <button onClick={() => setIsOpen(false)} className="navbar-close">
+                <GrClose />
+              </button>
+            </div>
           </div>
           <div>
             <ul>
               <li className="mb-1">
                 <a
-                  className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                  className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
                   href="#">
                   Home
                 </a>
               </li>
               <li className="mb-1">
                 <a
-                  className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                  className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
                   href="#">
                   Products
                 </a>
               </li>
               <li className="mb-1">
                 <a
-                  className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                  className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
                   href="#">
                   About
                 </a>
               </li>
               <li className="mb-1">
                 <a
-                  className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                  className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
                   href="#">
                   FAQ
                 </a>
               </li>
               <li className="mb-1">
                 <a
-                  className="block rounded p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                  className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
                   href="#">
                   Contact
                 </a>
