@@ -1,6 +1,6 @@
 export default function VideoCard() {
   return (
-    <div className="flex items-center justify-center rounded-3xl bg-[rgba(26,42,59,0.68)] px-28 py-44 text-white">
+    <div className="flex items-center justify-center rounded-3xl bg-[rgba(26,42,59,0.68)] px-8 py-20 text-white lg:px-28 lg:py-44">
       <div className="text-xl font-bold">Story</div>
     </div>
   );
