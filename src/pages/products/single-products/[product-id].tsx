@@ -2,9 +2,8 @@ import { singleProductsBC } from '@/breadcrumb/single-product';
 import Breadcrumb from '@/components/userComponents/common/Breadcrumb';
 import React from 'react';
 
-type Props = {};
 
-const SingleProduct = (props: Props) => {
+const SingleProduct = () => {
   return (
     <div className="pt-20">
       <div className="mx-auto max-w-6xl">

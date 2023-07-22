@@ -3,9 +3,8 @@ import Breadcrumb from '@/components/userComponents/common/Breadcrumb';
 import Image from 'next/image';
 import React from 'react';
 
-type Props = {};
 
-const CategoryProducts = (props: Props) => {
+const CategoryProducts = () => {
   const p = [1, 2, 3, 4, 5, 6, 7, 8,];
   return (
     <div className="pt-20">
