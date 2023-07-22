@@ -1,5 +1,6 @@
 import { PiTiktokLogoLight } from 'react-icons/pi';
 import { AiOutlineMenu } from 'react-icons/ai';
+// import { HiMenuAlt1 } from 'react-icons/hi';
 // import { CiMenuKebab } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
 import { useState } from 'react';
@@ -11,24 +12,26 @@ export default function NavBar() {
   return (
     <>
       <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">
-        <div className="flex  items-center gap-2">
+        <div className="flex items-center gap-2">
           <div className="lg:hidden">
             <button
               title="Menu"
               onClick={() => setIsOpen(true)}
-              className="navbar-burger flex items-center rounded-md bg-slate-100 bg-opacity-50 p-2">
-              <AiOutlineMenu size={20} color="black" />
+              className="navbar-burger flex items-center rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150">
+              <AiOutlineMenu size={20} color="white" />
             </button>
           </div>
           <Link
-            className="text-xl font-medium tracking-wide text-white"
+            className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
             href="/">
             <PiTiktokLogoLight className="inline pr-1" size={30} />
             Find
           </Link>
         </div>
         <div className="flex items-center gap-2 lg:hidden">
-          <Link href="/cart">
+          <Link
+            className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
+            href="/cart">
             <ProductCart />
           </Link>
           <Link
@@ -72,7 +75,9 @@ export default function NavBar() {
         </ul>
 
         <div className="hidden items-center justify-end gap-4 lg:flex">
-          <Link href="/cart" className="hidden lg:inline-block">
+          <Link
+            href="/cart"
+            className="hidden rounded-xl bg-[rgba(26,42,59,0.68)] p-2 backdrop-blur-[5px] backdrop-saturate-150 lg:inline-block">
             <ProductCart />
           </Link>
           <Link
