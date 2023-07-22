@@ -1,19 +1,13 @@
+import ProductsGridHomeCardProps from '@/types/products';
 import Image from 'next/image';
 
-interface Props {
-  imgsrc: string;
-  alttext: string;
-  title: string;
-  basePrice: number;
-  currentPrice: number;
-}
 export default function ProductsGridHomeCard({
   imgsrc,
   title,
   alttext,
   basePrice,
   currentPrice,
-}: Props) {
+}: ProductsGridHomeCardProps) {
   return (
     <div className="bg-transparent bg-opacity-0 even:translate-y-6 md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
       <div className="bg-transparent bg-opacity-0">
