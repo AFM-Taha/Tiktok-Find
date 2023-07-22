@@ -4,6 +4,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
 import { useState } from 'react';
 import Link from 'next/link';
+import ProductCart from './ProductCart';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,10 @@ export default function NavBar() {
             Find
           </Link>
         </div>
-        <div className="lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <Link href="/cart">
+            <ProductCart />
+          </Link>
           <Link
             href="login"
             className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-4 py-2 font-medium text-white">
@@ -66,16 +70,22 @@ export default function NavBar() {
             </a>
           </li>
         </ul>
-        <Link
-          className="hidden rounded-xl bg-gray-50 px-4 py-2 text-sm font-bold text-gray-900 transition duration-200 hover:bg-gray-100 lg:ml-auto lg:mr-3 lg:inline-block"
-          href="/login">
-          Sign In
-        </Link>
-        <Link
-          className="hidden rounded-xl bg-blue-500 bg-gradient-to-r from-[#283be5] to-[#0093FF] px-4 py-2 text-sm font-bold text-white transition duration-200 hover:bg-blue-600 lg:inline-block"
-          href="/login">
-          Try Thieve Free
-        </Link>
+
+        <div className="hidden items-center justify-end gap-4 lg:flex">
+          <Link href="/cart" className="hidden lg:inline-block">
+            <ProductCart />
+          </Link>
+          <Link
+            className="hidden rounded-xl bg-gray-50 px-4 py-2 text-sm font-bold text-gray-900 transition duration-200 hover:bg-gray-100 lg:ml-auto lg:inline-block"
+            href="/login">
+            Sign In
+          </Link>
+          <Link
+            className="hidden rounded-xl bg-blue-500 bg-gradient-to-r from-[#283be5] to-[#0093FF] px-4 py-2 text-sm font-bold text-white transition duration-200 hover:bg-blue-600 lg:inline-block"
+            href="/login">
+            Try Thieve Free
+          </Link>
+        </div>
       </nav>
       <div
         className={'navbar-menu relative z-50 ' + (isOpen ? 'grid' : 'hidden')}>
