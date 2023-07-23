@@ -3,6 +3,18 @@ import Image from 'next/image';
 
 export default function Products() {
   const { data, error, isLoading } = useProducts();
+  if (isLoading)
+    return (
+      <p className="my-32 text-center text-9xl font-black text-white">
+        Loading...
+      </p>
+    );
+  if (error)
+    return (
+      <p className="my-32 text-center text-xl font-medium text-red-500">
+        {JSON.stringify(error)}
+      </p>
+    );
   return (
     <div className="mx-auto mt-32 grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5 lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
       {data?.data.result.map((item) => {
