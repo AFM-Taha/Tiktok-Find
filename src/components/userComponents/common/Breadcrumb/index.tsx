@@ -8,7 +8,7 @@ const Breadcrumb: React.FC<{ data: BreadcrumbItem[] }> = ({ data }) => {
       {data.map((b) => {
         return (
           <div className="text-gray-100" key={b.id}>
-            <Link className="text-sm hover:underline " href={b.url}>
+            <Link className="text-sm hover:underline hover:text-pink-600 p-4" href={b.url}>
               {b.name}
             </Link>{' '}
             /

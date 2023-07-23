@@ -4,7 +4,7 @@ export default function CategoryBar() {
       <div className="rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium">
         Category
       </div>
-      <div className="rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium">
+      <div className="[rgba(26,42,59,0.68)] rounded-xl px-4 py-2 font-medium">
         Category
       </div>
       <div className="rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium">
