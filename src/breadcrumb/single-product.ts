@@ -14,7 +14,7 @@ export const singleProductsBC: BreadcrumbItem[] = [
     {
         id: 3,
         name: 'Category Product',
-        url: '/',
+        url: '#',
     },
     {
         id: 4,
