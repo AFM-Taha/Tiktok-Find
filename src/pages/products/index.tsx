@@ -1,14 +1,10 @@
+import Spinner from '@/components/userComponents/common/Spinner';
 import useProducts from '@/hooks/useProducts';
 import Image from 'next/image';
 
 export default function Products() {
   const { data, error, isLoading } = useProducts();
-  if (isLoading)
-    return (
-      <p className="my-32 text-center text-9xl font-black text-white">
-        Loading...
-      </p>
-    );
+  if (isLoading) return <Spinner />;
   if (error)
     return (
       <p className="my-32 text-center text-xl font-medium text-red-500">
