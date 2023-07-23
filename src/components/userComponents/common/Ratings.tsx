@@ -1,4 +1,3 @@
-import React from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 type Props = {
@@ -53,26 +52,26 @@ const Ratings = ({ ratings }: Props) => {
       </div>
     );
   }
-//   if (ratings === 5) {
-//     return (
-//       <div className="flex text-red-500">
-//         <AiFillStar />
-//         <AiFillStar />
-//         <AiFillStar />
-//         <AiFillStar />
-//         <AiFillStar />
-//       </div>
-//     );
-//   }
-   return (
-     <div className="flex text-red-500">
-       <AiFillStar />
-       <AiFillStar />
-       <AiFillStar />
-       <AiFillStar />
-       <AiFillStar />
-     </div>
-   );
+  //   if (ratings === 5) {
+  //     return (
+  //       <div className="flex text-red-500">
+  //         <AiFillStar />
+  //         <AiFillStar />
+  //         <AiFillStar />
+  //         <AiFillStar />
+  //         <AiFillStar />
+  //       </div>
+  //     );
+  //   }
+  return (
+    <div className="flex text-red-500">
+      <AiFillStar />
+      <AiFillStar />
+      <AiFillStar />
+      <AiFillStar />
+      <AiFillStar />
+    </div>
+  );
 };
 
 export default Ratings;
