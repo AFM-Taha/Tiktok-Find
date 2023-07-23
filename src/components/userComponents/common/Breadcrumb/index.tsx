@@ -4,11 +4,11 @@ import { BreadcrumbItem } from '@/types/products';
 
 const Breadcrumb: React.FC<{ data: BreadcrumbItem[] }> = ({ data }) => {
   return (
-    <div className="mb-10 mt-8 flex gap-1">
+    <div className="container mb-12 mt-16 flex gap-1 mx-auto">
       {data.map((b) => {
         return (
-          <div key={b.id}>
-            <Link className="text-sm hover:underline" href={b.url}>
+          <div className="text-gray-100" key={b.id}>
+            <Link className="text-sm hover:underline hover:text-pink-600 p-4" href={b.url}>
               {b.name}
             </Link>{' '}
             /
