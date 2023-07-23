@@ -150,10 +150,9 @@ const DetailSection = ({ info }: InfoProps) => {
             className="my-2 block w-full bg-orange-500 py-4 text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
             Add to Cart
           </button>
-          {/* <button className="w-full bg-lime-600  py-4 duration-200 hover:bg-lime-400 md:w-2/5 ">
+          <button className="w-full bg-lime-600  py-4 duration-200 hover:bg-lime-400 md:w-2/5 ">
           Buy it now{' '}
-        </button> */}
-          {/* <PayButton checkoutItems={item} /> */}
+        </button>
         </div>
         <button className="my-4 flex items-center justify-start gap-3 py-4 text-gray-200 duration-300 hover:text-orange-500">
           <BsHeart /> <span>Add to wishlist</span>
