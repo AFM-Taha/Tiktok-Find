@@ -1,7 +1,6 @@
 import { categoryProductsBC } from '@/breadcrumb/category-products';
 import ProductsGridCard from '@/components/userComponents/cards/ProductsGridCard';
 import Breadcrumb from '@/components/userComponents/common/Breadcrumb';
-import React from 'react';
 
 const CategoryProducts = () => {
   const p = [1, 2, 3, 4, 5, 6, 7, 8];
