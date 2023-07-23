@@ -1,13 +1,13 @@
-import ProductsGridHomeCardProps from '@/types/products';
+import ProductsGridCardProps from '@/types/products';
 import Image from 'next/image';
 
-export default function ProductsGridHomeCard({
+export default function ProductsGridCard({
   imgsrc,
   title,
   alttext,
   basePrice,
   currentPrice,
-}: ProductsGridHomeCardProps) {
+}: ProductsGridCardProps) {
   return (
     <div className="group bg-transparent bg-opacity-0 even:translate-y-6 hover:rounded-3xl md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
       <a href="#">
