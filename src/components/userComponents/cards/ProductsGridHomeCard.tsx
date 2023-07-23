@@ -14,6 +14,7 @@ export default function ProductsGridHomeCard({
         <div className="bg-transparent bg-opacity-0">
           <Image
             // layout="intrinsic"
+            priority
             width={350}
             height={350}
             className="rounded-3xl bg-transparent bg-opacity-0"
