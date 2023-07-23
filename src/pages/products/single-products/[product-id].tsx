@@ -19,7 +19,7 @@ const description =
 
   return (
     <div className="py-20">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto">
         <Breadcrumb data={singleProductsBC} />
         <div className=" justify-between gap-20 md:flex">
           {/* left side */}

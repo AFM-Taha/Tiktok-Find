@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { AiFillLock, AiOutlineStar } from 'react-icons/ai';
+import { AiFillLock } from 'react-icons/ai';
 import { BsBoxSeam, BsShieldLock, BsPinterest, BsHeart } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
 import { FaTwitter } from 'react-icons/fa';
@@ -39,6 +39,7 @@ const DetailSection = ({ info }: InfoProps) => {
     sku,
     ratingsCount,
   } = info;
+  console.log(_id,images,description);
 
   // Color
   const colors = ['red', 'green', 'orange', 'blue'];
