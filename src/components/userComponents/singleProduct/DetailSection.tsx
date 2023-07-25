@@ -59,17 +59,19 @@ const DetailSection = ({ info }: InfoProps) => {
 
   return (
     <div>
-      <h1 className=" py-6 text-2xl uppercase text-gray-100">{name}</h1>
+      <h1 className=" py-6 text-2xl font-semibold uppercase text-gray-100">
+        {name}
+      </h1>
 
       <h2>
-        <span className="text-xl font-semibold text-orange-500 ">
+        <span className="text-xl font-semibold text-lime-500 ">
           $ {(price - (price * sale) / 100).toFixed(2)}
         </span>{' '}
         <span className="px-4 text-lg text-gray-400">
           {' '}
           <del>$ {price.toFixed(2)}</del>
         </span>
-        <span className="bg-orange-500 px-2 py-0.5 text-xs text-gray-100">
+        <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
           -{sale}%
         </span>
       </h2>
@@ -114,48 +116,49 @@ const DetailSection = ({ info }: InfoProps) => {
                 key={s}
                 onClick={() => setSelectedSize(s)}
                 className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
-                  selectedSize === s && ' border-red-600'
+                  selectedSize === s && ' border-blue-600'
                 } border-gray-600`}>
                 {s}
               </button>
             ))}
           </div>
         </div>
-        <div className="items-center justify-between gap-5 md:flex">
-          <div className="flex w-1/3  items-center justify-center border-2 border-gray-300   px-0.5 py-1.5 md:w-1/5">
-            {/* Decrease BTN */}
-            <button
-              className="text-3xl text-gray-100"
-              onClick={() => {
-                if (cartCount > 1) {
-                  setCartCount(cartCount - 1);
-                }
-              }}>
-              -
-            </button>
-            <input
-              onChange={handleInputChange}
-              value={cartCount}
-              className="w-full border-0 bg-[#17112C]  text-center text-red-500 font-semibold focus:outline-none focus:ring-0 disabled:border"
-              type="text"
-            />
-            {/* Increase BTN */}
-            <button
-              className="text-3xl text-gray-100"
-              onClick={() => setCartCount(cartCount + 1)}>
-              +
-            </button>
-          </div>
+
+        <div className="mb-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
+          {/* Increase BTN */}
+          <button
+            className="ml-10 text-3xl text-gray-100"
+            onClick={() => setCartCount(cartCount + 1)}>
+            +
+          </button>
+          <input
+            onChange={handleInputChange}
+            value={cartCount}
+            className="w-full border-0 bg-[#17112C]  text-center font-bold text-lime-500 focus:outline-none focus:ring-0 disabled:border"
+            type="text"
+          />
+          {/* Decrease BTN */}
+          <button
+            className="mr-8 text-4xl font-semibold text-gray-100"
+            onClick={() => {
+              if (cartCount > 1) {
+                setCartCount(cartCount - 1);
+              }
+            }}>
+            -
+          </button>
+        </div>
+        <div className="items-center  gap-5 md:flex">
           <button
             // onClick={addToCart}
-            className="my-2 block w-full bg-orange-500 py-4 text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
+            className="my-2 block w-full rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] py-4 font-bold text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
             Add to Cart
           </button>
-          <button className="w-full bg-lime-600  py-4 duration-200 hover:bg-lime-400 md:w-2/5 ">
-          Buy it now{' '}
-        </button>
+          <button className="w-full rounded-xl bg-gradient-to-r from-[#74e528] to-[#265705] py-4 font-semibold  text-gray-100 duration-200 hover:bg-lime-400 md:w-2/5 ">
+            Buy it now{' '}
+          </button>
         </div>
-        <button className="my-4 flex items-center justify-start gap-3 py-4 text-gray-200 duration-300 hover:text-orange-500">
+        <button className="my-4 flex items-center justify-start gap-3 py-4 text-gray-200 duration-300 hover:text-blue-500">
           <BsHeart /> <span>Add to wishlist</span>
         </button>
 
