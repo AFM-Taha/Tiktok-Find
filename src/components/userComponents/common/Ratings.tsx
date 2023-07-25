@@ -8,7 +8,7 @@ const Ratings = ({ ratings }: Props) => {
   // one
   if (ratings === 1) {
     return (
-      <div className="flex text-red-500">
+      <div className="flex text-blue-600">
         <AiFillStar />
         <AiOutlineStar />
         <AiOutlineStar />
@@ -19,7 +19,7 @@ const Ratings = ({ ratings }: Props) => {
   }
   if (ratings === 2) {
     return (
-      <div className="flex text-red-500">
+      <div className="flex text-blue-600">
         <AiFillStar />
         <AiFillStar />
         <AiOutlineStar />
@@ -30,7 +30,7 @@ const Ratings = ({ ratings }: Props) => {
   }
   if (ratings === 3) {
     return (
-      <div className="flex text-red-500">
+      <div className="flex text-blue-600">
         <AiFillStar />
         <AiFillStar />
         <AiFillStar />
@@ -42,7 +42,7 @@ const Ratings = ({ ratings }: Props) => {
   }
   if (ratings === 4) {
     return (
-      <div className="flex text-red-500">
+      <div className="flex text-blue-600">
         <AiFillStar />
         <AiFillStar />
         <AiFillStar />
@@ -52,26 +52,28 @@ const Ratings = ({ ratings }: Props) => {
       </div>
     );
   }
-  //   if (ratings === 5) {
-  //     return (
-  //       <div className="flex text-red-500">
-  //         <AiFillStar />
-  //         <AiFillStar />
-  //         <AiFillStar />
-  //         <AiFillStar />
-  //         <AiFillStar />
-  //       </div>
-  //     );
-  //   }
-  return (
-    <div className="flex text-red-500">
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-    </div>
-  );
+  if (ratings === 5) {
+    return (
+      <div className="flex text-blue-600">
+        <AiFillStar />
+        <AiFillStar />
+        <AiFillStar />
+        <AiFillStar />
+        <AiFillStar />
+
+        
+      </div>
+    );
+  }
+   return (
+     <div className="flex text-blue-600">
+       <AiOutlineStar />
+       <AiOutlineStar />
+       <AiOutlineStar />
+       <AiOutlineStar />
+       <AiOutlineStar />
+     </div>
+   );
 };
 
 export default Ratings;
