@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import React from 'react'
 
-type Props = {}
 
-const orderManage = (props: Props) => {
+const orderManage = () => {
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl  font-semibold">Order Menage</h2>

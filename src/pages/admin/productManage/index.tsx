@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-type Props = {}
-
-const productManage = (props: Props) => {
+const productManage = () => {
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl  font-semibold">Product Menage</h2>

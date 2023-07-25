@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { FaBoxOpen } from "react-icons/fa";
 import{GiWorld}from "react-icons/gi"
-import { RiDashboardLine } from 'react-icons/ri';
-import { BiObjectsHorizontalLeft } from 'react-icons/bi';
 
-type Props = {}
 
 const AdminSidebar = ({children}:any) => {
   return (

@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import React from 'react'
 
-type Props = {}
 
-const Admin = (props: Props) => {
+const Admin = () => {
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl  font-semibold">User Menage</h2>

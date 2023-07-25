@@ -18,7 +18,7 @@ export default function Home() {
       <nav>
         <CategoryBar />
       </nav>
-      <section>
+      <section className="">
         <VideoBar />
       </section>
       <section className=" mt-8">

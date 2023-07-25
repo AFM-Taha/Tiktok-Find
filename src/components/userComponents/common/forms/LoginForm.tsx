@@ -1,12 +1,8 @@
+import FormDataModel from '@/types/formData';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowRight, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-
-interface FormDataModel {
-  email: string;
-  password: string;
-}
 
 export default function LoginForm() {
   const {
