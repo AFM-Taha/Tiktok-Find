@@ -1,15 +1,14 @@
-import Link from 'next/link';
-import React from 'react'
+import Link from "next/link";
 
 type Props = {}
 
-const Admin = (props: Props) => {
+const productManage = (props: Props) => {
   return (
     <div className="text-gray-100">
-      <h2 className="text-center text-3xl  font-semibold">User Menage</h2>
+      <h2 className="text-center text-3xl  font-semibold">Product Menage</h2>
       {/* content here */}
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
+      <div className="relative mt-20 overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -48,7 +47,7 @@ const Admin = (props: Props) => {
                 </Link>
               </td>
             </tr>
-        
+
             <tr className="bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
               <th
                 scope="row"
@@ -73,4 +72,4 @@ const Admin = (props: Props) => {
   );
 }
 
-export default Admin
+export default productManage

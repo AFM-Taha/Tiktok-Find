@@ -16,7 +16,7 @@ const ImageSection = ({ images }: Props) => {
           return (
             <div
               className={`mb-5 cursor-pointer ${
-                i === selectedImage && 'ring-2 ring-red-500 '
+                i === selectedImage && 'ring-2 ring-blue-600 '
               }`}
               onClick={() => setSelectedImage(i)}
               key={index}>
