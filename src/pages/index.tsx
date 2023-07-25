@@ -18,7 +18,7 @@ export default function Home() {
       <nav>
         <CategoryBar />
       </nav>
-      <section className="mx-auto 2xl:max-w-[1480px]">
+      <section className="">
         <VideoBar />
       </section>
       <section className=" mt-8">

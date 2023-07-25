@@ -1,122 +1,84 @@
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import VideoCard from './VideoCard';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-import 'swiper/css/navigation';
-import { Navigation, Scrollbar } from 'swiper/modules';
-export default function VideoBar() {
-  return (
-    // <div className="category-scrollbar flex gap-2 overflow-x-scroll py-4 lg:mx-48 lg:gap-8">
-    <Swiper
-      // install Swiper modules
-      spaceBetween={15}
-      slidesPerView={5}
-      navigation={true}
-      scrollbar={{
-        hide: true,
-        draggable: true,
-      }}
-      modules={[Scrollbar, Navigation]}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <VideoCard />
-      </SwiperSlide>
-    </Swiper>
+import { useRef } from 'react';
 
-    // </div>
+export default function VideoBar() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleSlideLeft = () => {
+    if (containerRef.current) containerRef.current.scrollLeft -= 500;
+  };
+  const handleSlideRight = () => {
+    if (containerRef.current) containerRef.current.scrollLeft += 500;
+  };
+  return (
+    <div className="flex items-center justify-center lg:mx-36">
+      <div>
+        <button
+          className="rounded-full bg-white bg-opacity-20 p-2 hover:bg-opacity-50"
+          onClick={handleSlideLeft}>
+          <FaChevronLeft size={20} color="white" />
+        </button>
+      </div>
+      <div
+        ref={containerRef}
+        className="category-scrollbar mx-4 flex gap-2 overflow-x-scroll scroll-smooth py-4 lg:gap-8">
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+      </div>
+      <div>
+        <button
+          className="rounded-full bg-white bg-opacity-20 p-2 hover:bg-opacity-50"
+          onClick={handleSlideRight}>
+          <FaChevronRight size={20} color="white" />
+        </button>
+      </div>
+    </div>
   );
 }
