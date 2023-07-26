@@ -9,8 +9,7 @@ export default function ProductsGridCard({
   currentPrice,
 }: ProductsGridCardProps) {
   return (
-    <div className="group bg-transparent bg-opacity-0 even:translate-y-6 hover:rounded-3xl md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
-      
+    <div className="group bg-transparent bg-opacity-0  hover:rounded-3xl  lg:rounded-3xl "> 
         <div className="bg-transparent bg-opacity-0">
           <Image
             // layout="intrinsic"
@@ -35,7 +34,6 @@ export default function ProductsGridCard({
             <p className="font-medium">${currentPrice}</p>
           </div>
         </div>
-   
     </div>
   );
 }
