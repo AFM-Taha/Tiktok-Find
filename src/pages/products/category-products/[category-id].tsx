@@ -12,7 +12,10 @@ const CategoryProducts = () => {
         <div className="mx-auto grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5 lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
           {p.map((i) => {
             return (
-              <Link key={i} href={`/products/single-products/${i}`}>
+              <Link
+                className="md:even:translate-y-8"
+                key={i}
+                href={`/products/single-products/${i}`}>
                 <ProductsGridCard
                   basePrice={15.99}
                   currentPrice={9.89}
