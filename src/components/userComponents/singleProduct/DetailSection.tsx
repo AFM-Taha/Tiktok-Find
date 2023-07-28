@@ -34,7 +34,6 @@ const DetailSection = ({ info }: InfoProps) => {
     stock,
     images,
     ratings,
-    description,
     seller,
     category,
     sale,

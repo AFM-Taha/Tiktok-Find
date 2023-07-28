@@ -1,5 +1,5 @@
 import { FaChevronRight } from 'react-icons/fa';
-import { BiLeftArrow, BiSolidCoupon } from 'react-icons/bi';
+import { BiLeftArrow } from 'react-icons/bi';
 import { RootState } from '@/redux/store';
 import { useSelector } from 'react-redux';
 import CartList from '@/components/userComponents/Cart/CartList';
