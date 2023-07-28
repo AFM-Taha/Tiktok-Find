@@ -4,6 +4,8 @@ import { BsBoxSeam, BsShieldLock, BsPinterest, BsHeart } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
 import { FaTwitter } from 'react-icons/fa';
 import Ratings from '../common/Ratings';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '@/redux/features/CartSlice';
 
 type InfoProps = {
   info: {
@@ -39,7 +41,6 @@ const DetailSection = ({ info }: InfoProps) => {
     sku,
     ratingsCount,
   } = info;
-  console.log(_id,images,description);
 
   // Color
   const colors = ['red', 'green', 'orange', 'blue'];
@@ -56,6 +57,20 @@ const DetailSection = ({ info }: InfoProps) => {
       setCartCount(value);
     }
   };
+
+
+ const dispatch = useDispatch();
+ const addCart = () => {
+   dispatch(
+     addToCart({
+       id: _id,
+       name: name,
+       image: images[0],
+       price: price,
+       quantity: cartCount,
+     })
+   );
+ }; 
 
   return (
     <div>
@@ -127,7 +142,7 @@ const DetailSection = ({ info }: InfoProps) => {
         <div className="mb-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
           {/* Increase BTN */}
           <button
-            className="ml-10 text-3xl text-gray-100"
+            className=" px-5 text-3xl text-gray-100"
             onClick={() => setCartCount(cartCount + 1)}>
             +
           </button>
@@ -139,7 +154,7 @@ const DetailSection = ({ info }: InfoProps) => {
           />
           {/* Decrease BTN */}
           <button
-            className="mr-8 text-4xl font-semibold text-gray-100"
+            className="px-5 text-4xl font-semibold text-gray-100"
             onClick={() => {
               if (cartCount > 1) {
                 setCartCount(cartCount - 1);
@@ -150,13 +165,13 @@ const DetailSection = ({ info }: InfoProps) => {
         </div>
         <div className="items-center  gap-5 md:flex">
           <button
-            // onClick={addToCart}
+            onClick={addCart}
             className="my-2 block w-full rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] py-4 font-bold text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
             Add to Cart
           </button>
-          <button className="w-full rounded-xl bg-gradient-to-r from-[#74e528] to-[#265705] py-4 font-semibold  text-gray-100 duration-200 hover:bg-lime-400 md:w-2/5 ">
+          {/* <button className="w-full rounded-xl bg-gradient-to-r from-[#74e528] to-[#265705] py-4 font-semibold  text-gray-100 duration-200 hover:bg-lime-400 md:w-2/5 ">
             Buy it now{' '}
-          </button>
+          </button> */}
         </div>
         <button className="my-4 flex items-center justify-start gap-3 py-4 text-gray-200 duration-300 hover:text-blue-500">
           <BsHeart /> <span>Add to wishlist</span>
