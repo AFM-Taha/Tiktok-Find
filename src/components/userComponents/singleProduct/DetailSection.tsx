@@ -116,8 +116,8 @@ const DetailSection = ({ info }: InfoProps) => {
                 key={s}
                 onClick={() => setSelectedSize(s)}
                 className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
-                  selectedSize === s && ' border-blue-600'
-                } border-gray-600`}>
+                  selectedSize === s ? ' border-blue-600' : 'border-gray-600'
+                } `}>
                 {s}
               </button>
             ))}
