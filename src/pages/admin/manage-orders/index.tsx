@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import React from 'react'
-
 
 const orderManage = () => {
   return (
     <div className="text-gray-100">
-      <h2 className="text-center text-3xl  font-semibold">Order Menage</h2>
+      <h2 className="text-center text-3xl  font-semibold">Manage Orders</h2>
       {/* content here */}
 
       <div className="relative mt-20 overflow-x-auto shadow-md sm:rounded-lg">
@@ -70,6 +68,6 @@ const orderManage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default orderManage
+export default orderManage;
