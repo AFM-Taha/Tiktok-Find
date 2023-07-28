@@ -1,15 +1,37 @@
 import { PiTiktokLogoLight } from 'react-icons/pi';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { GrClose } from 'react-icons/gr';
-import { useState } from 'react';
+// import { AiOutlineMenu } from 'react-icons/ai';
+// import { GrClose } from 'react-icons/gr';
+// import { useState } from 'react';
 import Link from 'next/link';
 import ProductCart from './ProductCart';
 
 export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">
+      <nav className="fixed left-0 right-0 top-0 mx-4 mt-4 flex items-center justify-between">
+        <div>
+          <Link
+            className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
+            href="/">
+            <PiTiktokLogoLight className="inline pr-1" size={30} />
+            Find
+          </Link>
+        </div>
+        <div className="flex items-center justify-evenly gap-2">
+          <Link
+            className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
+            href="/cart">
+            <ProductCart />
+          </Link>
+          <Link
+            href="login"
+            className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
+            Sign In
+          </Link>
+        </div>
+      </nav>
+      {/* <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">
         <div className="flex items-center gap-2">
           <div className="lg:hidden">
             <button
@@ -93,8 +115,8 @@ export default function NavBar() {
             Try Thieve Free
           </Link>
         </div>
-      </nav>
-      <div
+      </nav> */}
+      {/* <div
         className={'navbar-menu relative z-50 ' + (isOpen ? 'grid' : 'hidden')}>
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav className="fixed bottom-0 left-0 top-0 flex w-5/6 max-w-sm flex-col overflow-y-auto border-r bg-neutral-700 px-6 py-6 text-white">
@@ -163,7 +185,7 @@ export default function NavBar() {
             </div>
           </div>
         </nav>
-      </div>
+      </div> */}
     </>
   );
 }

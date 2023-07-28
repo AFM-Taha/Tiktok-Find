@@ -9,21 +9,21 @@ export default function ProductsGridCard({
   currentPrice,
 }: ProductsGridCardProps) {
   return (
-    <div className="group bg-transparent bg-opacity-0">
-      <div className="bg-transparent bg-opacity-0">
+    <div className="group rounded-3xl bg-white shadow-xl">
+      <div className="">
         <Image
           // layout="intrinsic"
           priority
           width={350}
           height={350}
-          className="rounded-3xl bg-transparent bg-opacity-0"
+          className="rounded-t-3xl"
           alt={alttext}
           src={imgsrc}
         />
       </div>
-      <div className="mt-2 flex justify-between bg-transparent bg-opacity-0 px-2 text-white">
+      <div className="mt-2 flex justify-between px-4 pb-2">
         <div>
-          <h3 className="bg-transparent bg-opacity-0 font-semibold underline-offset-4 group-hover:underline">
+          <h3 className=" font-semibold underline-offset-4 group-hover:underline">
             {title}
           </h3>
         </div>
