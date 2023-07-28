@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { FaChevronRight } from 'react-icons/fa';
 import { BiSolidCoupon } from 'react-icons/bi';
 import { RiDeleteBin7Line } from 'react-icons/ri';
+import Link from 'next/link';
 export default function Cart() {
   return (
     <section>
@@ -203,13 +204,13 @@ export default function Cart() {
                   </span>
                 </div>
 
-                <div className="flex justify-end">
-                  <a
-                    href="#"
+                <div className="group flex justify-end">
+                  <Link
+                    href="/checkout"
                     className="inline-block rounded bg-blue-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-blue-800">
                     Checkout
                     <FaChevronRight className="-mt-[2px] ml-1 inline-block" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
