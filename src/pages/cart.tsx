@@ -10,14 +10,20 @@ export default function Cart() {
   const subtotal = useSelector((state: RootState) => state.carts.totalPrice);
   return (
     <section>
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
+      <div className="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <header className="mb-8 text-center">
             <h1 className="text-5xl font-black text-white sm:text-7xl">
               Your Cart
             </h1>
           </header>
-
+          <div className="hidden justify-evenly gap-80 text-lg font-bold text-white sm:flex">
+            <h3>Product</h3>
+            <div className="flex justify-evenly gap-8">
+              <h3>Quantity</h3>
+              <h3>Sum of Products</h3>
+            </div>
+          </div>
           {cart.length > 0 ? (
             <div className="mt-8">
               <ul className="space-y-4">
