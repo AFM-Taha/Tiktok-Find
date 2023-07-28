@@ -39,7 +39,7 @@ const SingleProduct = () => {
                 sale: 5,
                 stock: 40,
                 sku: 'j-50-lk',
-                images: [''],
+                images: ['/balllamp.webp'],
                 ratings: 5,
                 shipping: 55,
                 description: 'Hello, This is most powerful description ',
