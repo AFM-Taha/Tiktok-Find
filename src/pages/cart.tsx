@@ -1,8 +1,11 @@
-import Image from 'next/image';
 import { FaChevronRight } from 'react-icons/fa';
 import { BiSolidCoupon } from 'react-icons/bi';
-import { RiDeleteBin7Line } from 'react-icons/ri';
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
+import CartList from '@/components/userComponents/Cart/CartList';
 export default function Cart() {
+  //  cart Length
+  const cart = useSelector((state: RootState) => state.carts.cart);
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
@@ -15,158 +18,9 @@ export default function Cart() {
 
           <div className="mt-8">
             <ul className="space-y-4">
-              <li className="flex items-center gap-4">
-                <Image
-                  width={100}
-                  height={100}
-                  src="/balllamp.webp"
-                  alt=""
-                  className="h-16 w-16 rounded object-cover"
-                />
-
-                <div>
-                  <h3 className="text-white lg:text-lg xl:text-xl">
-                    Basic Tee 6-Pack
-                  </h3>
-
-                  <dl className="mt-0.5 space-y-px text-[14px] text-white text-opacity-50">
-                    <div>
-                      <dt className="inline">Size:</dt>
-                      <dd className="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt className="inline">Color:</dt>
-                      <dd className="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="flex flex-1 items-center justify-end gap-2">
-                  <form>
-                    <label
-                      htmlFor="Line1Qty"
-                      className="text-sm font-medium text-white">
-                      Quantity
-                    </label>
-
-                    <input
-                      type="number"
-                      min="1"
-                      id="Line1Qty"
-                      className="ml-2 h-8 w-12 rounded border-gray-200 bg-gray-800 bg-opacity-50 p-0 text-center text-xs font-bold text-white [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                    />
-                  </form>
-
-                  <button className="text-white transition hover:text-red-600">
-                    <span className="sr-only">Remove item</span>
-
-                    <RiDeleteBin7Line />
-                  </button>
-                </div>
-              </li>
-
-              <li className="flex items-center gap-4">
-                <Image
-                  width={100}
-                  height={100}
-                  src="/biketailled.webp"
-                  alt=""
-                  className="h-16 w-16 rounded object-cover"
-                />
-
-                <div>
-                  <h3 className="text-white lg:text-lg xl:text-xl">
-                    Basic Tee 6-Pack
-                  </h3>
-
-                  <dl className="mt-0.5 space-y-px text-[14px] text-white text-opacity-50">
-                    <div>
-                      <dt className="inline">Size:</dt>
-                      <dd className="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt className="inline">Color:</dt>
-                      <dd className="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="flex flex-1 items-center justify-end gap-2">
-                  <form>
-                    <label
-                      htmlFor="Line2Qty"
-                      className="text-sm font-medium text-white">
-                      Quantity
-                    </label>
-
-                    <input
-                      type="number"
-                      min="1"
-                      id="Line2Qty"
-                      className="ml-2 h-8 w-12 rounded border-gray-200 bg-gray-800 bg-opacity-50 p-0 text-center text-xs font-bold text-white [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                    />
-                  </form>
-
-                  <button className="text-white transition hover:text-red-600">
-                    <span className="sr-only">Remove item</span>
-
-                    <RiDeleteBin7Line />
-                  </button>
-                </div>
-              </li>
-
-              <li className="flex items-center gap-4">
-                <Image
-                  width={100}
-                  height={100}
-                  src="/canemirror.webp"
-                  alt=""
-                  className="h-16 w-16 rounded object-cover"
-                />
-
-                <div>
-                  <h3 className="text-white lg:text-lg xl:text-xl">
-                    Basic Tee 6-Pack
-                  </h3>
-
-                  <dl className="mt-0.5 space-y-px text-[14px] text-white text-opacity-50">
-                    <div>
-                      <dt className="inline">Size:</dt>
-                      <dd className="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt className="inline">Color:</dt>
-                      <dd className="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="flex flex-1 items-center justify-end gap-2">
-                  <form>
-                    <label
-                      htmlFor="Line3Qty"
-                      className="text-sm font-medium text-white">
-                      Quantity
-                    </label>
-
-                    <input
-                      type="number"
-                      min="1"
-                      id="Line3Qty"
-                      className="ml-2 h-8 w-12 rounded border-gray-200 bg-gray-800 bg-opacity-50 p-0 text-center text-xs font-bold text-white [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                    />
-                  </form>
-
-                  <button className="text-white transition hover:text-red-600">
-                    <span className="sr-only">Remove item</span>
-
-                    <RiDeleteBin7Line />
-                  </button>
-                </div>
-              </li>
+              {cart.map((c) => {
+                return <CartList data={c} key={c.id} />;
+              })}
             </ul>
 
             <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
