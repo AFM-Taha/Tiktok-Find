@@ -38,13 +38,13 @@ export default function NavBar() {
             Try Thieve Free
           </Link>
         </div>
-        <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[rgba(26,42,59,0.68)] px-8 py-2 text-white backdrop-blur-[5px] backdrop-saturate-150 lg:mx-auto lg:flex lg:w-auto lg:items-center lg:space-x-6">
+        <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[rgba(26,42,59,0.68)] px-8 py-2 text-white backdrop-blur-[5px] backdrop-saturate-150 lg:mx-auto lg:flex lg:w-auto lg:items-center lg:space-x-6 xl:gap-4">
           <li>
             <Link className="text-sm font-bold  hover:text-gray-500" href="/">
               Home
             </Link>
           </li>
-          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
+
           <li>
             <Link
               className="text-sm font-bold  hover:text-gray-500"
@@ -52,23 +52,27 @@ export default function NavBar() {
               Products
             </Link>
           </li>
-          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
+
           <li>
-            <a className="text-sm font-bold  hover:text-gray-500" href="#">
+            <Link
+              className="text-sm font-bold  hover:text-gray-500"
+              href="about">
               About
-            </a>
+            </Link>
           </li>
-          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
+
           <li>
-            <a className="text-sm font-bold  hover:text-gray-500" href="#">
+            <Link className="text-sm font-bold  hover:text-gray-500" href="faq">
               FAQ
-            </a>
+            </Link>
           </li>
-          <li className="text-gray-300">{/* <CiMenuKebab /> */}</li>
+
           <li>
-            <a className="text-sm font-bold  hover:text-gray-500" href="#">
+            <Link
+              className="text-sm font-bold  hover:text-gray-500"
+              href="contact">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -108,54 +112,54 @@ export default function NavBar() {
           <div>
             <ul>
               <li className="mb-1">
-                <a
+                <Link
                   className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
-                  href="#">
+                  href="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a
+                <Link
                   className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
-                  href="#">
+                  href="/products">
                   Products
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a
+                <Link
                   className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
-                  href="#">
+                  href="/about">
                   About
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a
+                <Link
                   className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
-                  href="#">
+                  href="/faq">
                   FAQ
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a
+                <Link
                   className="block rounded p-4 text-sm font-semibold  hover:bg-blue-50 hover:text-blue-600"
-                  href="#">
+                  href="/contact">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-              <a
+              <Link
                 className="mb-3 block rounded-xl bg-gray-50 px-4 py-3 text-center text-xs font-semibold leading-loose hover:bg-gray-100"
-                href="#">
+                href="/login">
                 Sign in
-              </a>
-              <a
+              </Link>
+              <Link
                 className="mb-2 block rounded-xl bg-blue-600 px-4 py-3 text-center text-xs font-semibold leading-loose text-white hover:bg-blue-700"
-                href="#">
+                href="/login">
                 Sign Up
-              </a>
+              </Link>
             </div>
           </div>
         </nav>
