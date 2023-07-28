@@ -12,7 +12,7 @@ export default function Products() {
       </p>
     );
   return (
-    <div className="mx-auto mt-32 grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5 lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
+    <div className="mx-auto mb-64 mt-32 grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5 lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
       {data?.data.result.map((item) => {
         return (
           <div
