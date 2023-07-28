@@ -15,7 +15,7 @@ export default function Home() {
         />
         <meta name="robots" content="index,follow" />
       </Head>
-      <nav>
+      <nav className="mt-[70px]">
         <CategoryBar />
       </nav>
       <section className="">
