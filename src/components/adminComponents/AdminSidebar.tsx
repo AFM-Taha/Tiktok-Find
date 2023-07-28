@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { FaBoxOpen } from "react-icons/fa";
-import{GiWorld}from "react-icons/gi"
+import Link from 'next/link';
+import { FaBoxOpen } from 'react-icons/fa';
+import { GiWorld } from 'react-icons/gi';
+import { PiTiktokLogoLight } from 'react-icons/pi';
 
-
-const AdminSidebar = ({children}:any) => {
+const AdminSidebar = ({ children }: any) => {
   return (
     <>
       <button
@@ -31,12 +31,13 @@ const AdminSidebar = ({children}:any) => {
         className="fixed  left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
         aria-label="Sidebar">
         <div className="relative  h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
-       
-       <h3 className="border border-red-500 p-4  mb-8">
-
-        Logo of Admin 
-       </h3>
-          <ul className="space-y-2 font-medium">
+          <Link
+            className="mb-8 rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
+            href="/">
+            <PiTiktokLogoLight className="inline pr-1" size={30} />
+            Find
+          </Link>
+          <ul className="mt-8 space-y-2 font-medium">
             <li>
               <Link
                 href="/admin"
@@ -57,7 +58,7 @@ const AdminSidebar = ({children}:any) => {
             </li>
             <li>
               <Link
-                href="/admin/productManage"
+                href="/admin/manage-products"
                 className="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                 <svg
                   aria-hidden="true"
@@ -75,7 +76,7 @@ const AdminSidebar = ({children}:any) => {
             </li>
             <li>
               <Link
-                href="/admin/orderManage"
+                href="/admin/manage-orders"
                 className=" flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                 <FaBoxOpen className="text-2xl text-gray-500" />
 
@@ -91,7 +92,7 @@ const AdminSidebar = ({children}:any) => {
                 className=" flex items-center rounded-lg p-2 text-gray-900 duration-300 hover:bg-gray-100 hover:underline dark:text-white dark:hover:bg-gray-700">
                 <GiWorld className="text-2xl text-gray-500" />
 
-                <span className="ml-3"> Go to clint site</span>
+                <span className="ml-3"> Go to client site</span>
               </Link>
             </li>
           </ul>
@@ -105,6 +106,6 @@ const AdminSidebar = ({children}:any) => {
       </div>
     </>
   );
-}
+};
 
-export default AdminSidebar
+export default AdminSidebar;

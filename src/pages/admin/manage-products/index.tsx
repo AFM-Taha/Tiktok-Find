@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 const productManage = () => {
   return (
     <div className="text-gray-100">
-      <h2 className="text-center text-3xl  font-semibold">Product Menage</h2>
+      <h2 className="text-center text-3xl  font-semibold">Manage Products</h2>
       {/* content here */}
 
       <div className="relative mt-20 overflow-x-auto shadow-md sm:rounded-lg">
@@ -68,6 +68,6 @@ const productManage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default productManage
+export default productManage;

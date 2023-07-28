@@ -1,7 +1,5 @@
 import { PiTiktokLogoLight } from 'react-icons/pi';
 import { AiOutlineMenu } from 'react-icons/ai';
-// import { HiMenuAlt1 } from 'react-icons/hi';
-// import { CiMenuKebab } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
 import { useState } from 'react';
 import Link from 'next/link';
