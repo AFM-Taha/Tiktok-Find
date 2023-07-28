@@ -21,7 +21,7 @@ export default function Home() {
       <section className="">
         <VideoBar />
       </section>
-      <section className=" mt-8">
+      <section className="mt-8 bg-gradient-to-b from-[rgba(255,255,255,0)] via-[#f5f5f5] to-[#ffffff] pb-[6.25rem]">
         <ProductsGridHome />
       </section>
     </>
