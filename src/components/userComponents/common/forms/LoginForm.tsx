@@ -89,12 +89,13 @@ export default function LoginForm() {
           </button>
         </Link>
       </div>
-      <div className="mx-auto mt-4 flex w-40 items-center justify-center rounded-full bg-[#1469F3] px-4 py-2 font-medium text-white hover:opacity-80">
-        <button className="mr-2" type="submit">
-          Sign In
-        </button>
-        <FaArrowRight />
-      </div>
+
+      <button
+        className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-full bg-[#1469F3] px-4 py-2 font-medium text-white hover:opacity-80"
+        type="submit">
+        Sign In
+        <FaArrowRight className="inline-block" />
+      </button>
       <p className="mt-2 text-center text-gray-700">
         Don&apos;t have an account?{' '}
         <Link

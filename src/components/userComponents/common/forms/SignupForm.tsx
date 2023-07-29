@@ -83,12 +83,12 @@ export default function SignupForm() {
           </button>
         </Link>
       </div> */}
-      <div className="mx-auto mt-4 flex w-40 items-center justify-center rounded-full bg-[#1469F3] px-4 py-2 font-medium text-white hover:opacity-80">
-        <button className="mr-2" type="submit">
-          Sign Up
-        </button>
-        <FaArrowRight />
-      </div>
+      <button
+        className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-full bg-[#1469F3] px-4 py-2 font-medium text-white hover:opacity-80"
+        type="submit">
+        Sign In
+        <FaArrowRight className="inline-block" />
+      </button>
       <p className="mt-2 text-center text-gray-700">
         Already have an account?{' '}
         <Link href="/login" className="font-bold text-blue-500 hover:underline">
