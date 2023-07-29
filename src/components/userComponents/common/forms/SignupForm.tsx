@@ -14,7 +14,7 @@ const schema = z.object({
   username: z
     .string()
     .min(2, 'Username must be at least 2 characters')
-    .max(20, 'Username must be less than 20 characters'),
+    .max(30, 'Username must be less than 30 characters'),
   email: z
     .string()
     .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi, 'Enter a valid email'),
@@ -46,7 +46,7 @@ export default function SignupForm() {
   };
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
-    console.log(data)
+    // console.log(data);
     const displayName = data.username;
     const email = data.email;
     const password = data.password;

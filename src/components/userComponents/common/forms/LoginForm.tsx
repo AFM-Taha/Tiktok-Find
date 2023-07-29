@@ -1,4 +1,5 @@
 // import FormDataModel from '@/types/formData';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowRight, FaRegUserCircle } from 'react-icons/fa';
@@ -6,6 +7,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaFacebook } from 'react-icons/fa';
+import auth from '../../../../../firebase.init';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import Spinner from '../Spinner';
+import UseToken from '@/hooks/useToken';
+import toast from 'react-hot-toast';
 
 // The schema below is the model of the form data
 /* 
@@ -31,12 +37,67 @@ type FormDataModel = z.infer<typeof schema>;
 export default function LoginForm() {
   // Pass the type to the hook and set the resolver to zodResolver
   // and pass the schema to the resolver
+  const [signInWithEmailAndPassword, suser, sloading, serror] = useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const onSubmit: SubmitHandler<FormDataModel> = (data) => console.log(data);
+  const emailRef = useRef();
+
+  let someErrorMessages;
+  const getFirebaseErrorMessages = (firebaseMessage: any) => {
+    const messages = firebaseMessage?.split("/")[1].split(")")[0]
+    someErrorMessages = messages;
+  }
+
+  if (serror || gerror) {
+
+    if (serror) getFirebaseErrorMessages(serror?.message)
+    if (gerror) getFirebaseErrorMessages(gerror?.message)
+  } else {
+    someErrorMessages = null
+  }
+
+
+  // const from = location.state?.from?.pathname || '/';
+
+  const [token] = UseToken(suser || guser);
+
+
+  if (sloading || gloading) {
+    return <Spinner />
+  }
+
+  if (token) {
+    // navigate(from, { replace: true });
+    toast.success("Signin User Successfully");
+  }
+
+  const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
+    // console.log(data);
+    const email = data.email;
+    const password = data.password;
+    await signInWithEmailAndPassword(email, password)
+      .then(() => {
+        reset();
+      })
+  };
+
+
+  const handleGoogleSignin = async () => {
+    await signInWithGoogle()
+  };
+
+  // const handleReset = async () => {
+  //     const email = emailRef.current.value
+  //     await sendPasswordResetEmail(email)
+  //     toast.success(`Email Sent to ${email}!`);
+  // };
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +110,7 @@ export default function LoginForm() {
         </div>
       </div>
       <div className="mb-4 flex justify-evenly">
-        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
+        <button onClick={handleGoogleSignin} className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FcGoogle size={24} />
         </button>
         <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
@@ -57,6 +118,15 @@ export default function LoginForm() {
         </button>
       </div>
       <p className="mb-4 text-center text-[#00000033]">OR</p>
+      {
+        someErrorMessages &&
+        <div className="some-error-message p-4 m-4 w-2/3 mx-auto bg-red-100  text-red-600 border rounded-lg text-sm  flex justify-center items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {someErrorMessages}
+        </div>
+      }
       <div>
         <input
           {...register('email')}
