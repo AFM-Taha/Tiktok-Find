@@ -7,6 +7,16 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 // This is the model of the form data
+/* 
+Syntax: z.object({ 
+  formInput: z.string().min(8, 'my error message') 
+})
+  The schema above tells that formInput must be: 
+  1) a string
+  2) minimum 8 characters
+  3) If inputs aren't following the conditions the error.formInput will be truthy
+  and the error message will be 'my error message'
+*/
 const schema = z.object({
   email: z
     .string()
