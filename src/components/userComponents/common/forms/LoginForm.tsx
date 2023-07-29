@@ -2,9 +2,10 @@
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowRight, FaRegUserCircle } from 'react-icons/fa';
-// import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FaFacebook } from 'react-icons/fa';
 
 // The schema below is the model of the form data
 /* 
@@ -39,15 +40,6 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <div className="mb-4 flex justify-evenly">
-        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
-          <FcGoogle size={24} />
-        </button>
-        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
-          <FaFacebook size={24} color="#1877EA" />
-        </button>
-      </div> */}
-      {/* <p className="mb-4 text-center text-[#00000033]">OR</p> */}
       <div className="mb-2 p-2 text-center text-blue-400">
         <FaRegUserCircle size={50} className="inline-block" />
         <div>
@@ -56,6 +48,15 @@ export default function LoginForm() {
           </p>
         </div>
       </div>
+      <div className="mb-4 flex justify-evenly">
+        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
+          <FcGoogle size={24} />
+        </button>
+        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
+          <FaFacebook size={24} color="#1877EA" />
+        </button>
+      </div>
+      <p className="mb-4 text-center text-[#00000033]">OR</p>
       <div>
         <input
           {...register('email')}
