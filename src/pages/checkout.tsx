@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaDhl, FaFedex } from 'react-icons/fa';
 
 export default function Checkout() {
@@ -251,9 +252,11 @@ export default function Checkout() {
               <p className="text-2xl font-semibold text-gray-900">$408.00</p>
             </div>
           </div>
-          <button className="mb-8 mt-4 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-            Place Order
-          </button>
+          <Link href="/success">
+            <button className="mb-8 mt-4 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+              Place Order
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -210,18 +210,18 @@ export default function Footer() {
               <h4 className="mb-2 font-medium">Info</h4>
               <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
-                href="/products">
+                href="/about">
                 About
               </Link>
               <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
-                href="/products">
-                Blog
+                href="/contact">
+                Contact Us
               </Link>
               <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
-                href="/products">
-                Affiliate
+                href="/faq">
+                FAQ
               </Link>
               <Link
                 className="text-[0.75rem] text-white/50 transition lg:hover:opacity-80"
