@@ -1,6 +1,20 @@
+import { useFetchData } from '@/request/getData';
 import Link from 'next/link';
 
+
+interface MyData {
+  id: number;
+  name: string;
+  price: number;
+}
+
 const Admin = () => {
+//Data fetch
+ const apiUrl =
+   'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products'; 
+ const { data, isLoading, isError } = useFetchData<MyData>(apiUrl);
+ console.log(data);
+
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl  font-semibold">Manage Users</h2>
