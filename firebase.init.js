@@ -7,14 +7,14 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAZpf_dLERSax6F12HIsy9zLwm4B3p_kzs",
-    authDomain: "emotion-products.firebaseapp.com",
-    projectId: "emotion-products",
-    storageBucket: "emotion-products.appspot.com",
-    messagingSenderId: "840322207530",
-    appId: "1:840322207530:web:0ee4a1094f18db8c411853"
+    apiKey: "AIzaSyBPtlD8Q2TzypD5y66RH4KXt7baa_e6MgY",
+    authDomain: "tiktokfind-ecommerce.firebaseapp.com",
+    projectId: "tiktokfind-ecommerce",
+    storageBucket: "tiktokfind-ecommerce.appspot.com",
+    messagingSenderId: "406011488887",
+    appId: "1:406011488887:web:c05c840f56a23a1d35f472"
 };
-    
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
