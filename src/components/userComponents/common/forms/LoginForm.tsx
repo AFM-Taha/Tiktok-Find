@@ -6,7 +6,7 @@ import { FaArrowRight, FaRegUserCircle } from 'react-icons/fa';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-// This is the model of the form data
+// The schema below is the model of the form data
 /* 
 Syntax: z.object({ 
   formInput: z.string().min(8, 'my error message') 
