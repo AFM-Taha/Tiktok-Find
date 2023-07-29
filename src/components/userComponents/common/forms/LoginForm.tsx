@@ -1,15 +1,30 @@
-import FormDataModel from '@/types/formData';
+// import FormDataModel from '@/types/formData';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowRight, FaRegUserCircle } from 'react-icons/fa';
 // import { FcGoogle } from 'react-icons/fc';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+// This is the model of the form data
+const schema = z.object({
+  email: z
+    .string()
+    .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi, 'Enter a valid email'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
+
+// This is a type created from the model above
+type FormDataModel = z.infer<typeof schema>;
 
 export default function LoginForm() {
+  // Pass the type to the hook and set the resolver to zodResolver
+  // and pass the schema to the resolver
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormDataModel>();
+  } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
   const onSubmit: SubmitHandler<FormDataModel> = (data) => console.log(data);
 
   return (
@@ -32,36 +47,29 @@ export default function LoginForm() {
         </div>
       </div>
       <div>
-        {/* <label htmlFor="email">Email</label> */}
         <input
-          {...register('email', {
-            required: true,
-            pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi,
-          })}
-          className="my-2 w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
+          {...register('email')}
+          className="w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
           id="email"
           type="email"
           placeholder="Email"
         />
       </div>
+      {errors.email && (
+        <p className="mt-1 pl-2 text-sm text-red-500">{errors.email.message}</p>
+      )}
       <div>
-        {/* <label htmlFor="password">Password</label> */}
         <input
-          {...register('password', { required: true, minLength: 8 })}
-          className="my-2 w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
+          {...register('password')}
+          className="mt-4 w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
           id="password"
           type="password"
           placeholder="Password"
         />
       </div>
-      {errors.email && (
-        <p className="text-center text-sm text-red-500">
-          Please enter a valid email.
-        </p>
-      )}
       {errors.password && (
-        <p className="text-center text-sm text-red-500">
-          Password must be 8+ characters long.
+        <p className="mt-1 pl-2 text-sm text-red-500">
+          {errors.password.message}
         </p>
       )}
       <div className="text-end ">
