@@ -48,7 +48,7 @@ export default function LoginForm() {
         </button>
       </div> */}
       {/* <p className="mb-4 text-center text-[#00000033]">OR</p> */}
-      <div className="mb-2 inline-block bg-gradient-to-r from-[#46A0E3] to-[#5845DF] bg-clip-text p-2 text-center text-blue-400 text-transparent">
+      <div className="mb-2 p-2 text-center text-blue-400">
         <FaRegUserCircle size={50} className="inline-block" />
         <div>
           <p className="inline-block bg-gradient-to-r from-[#46A0E3] to-[#5845DF] bg-clip-text p-2 text-lg font-bold text-transparent">
@@ -59,7 +59,7 @@ export default function LoginForm() {
       <div>
         <input
           {...register('email')}
-          className="w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
+          className="w-full rounded-2xl border-0 bg-[#EFF6FB] px-3 py-4"
           id="email"
           type="email"
           placeholder="Email"
@@ -71,7 +71,7 @@ export default function LoginForm() {
       <div>
         <input
           {...register('password')}
-          className="mt-4 w-full rounded-2xl bg-[#EFF6FB] px-3 py-4"
+          className="mt-4 w-full rounded-2xl border-0 bg-[#EFF6FB] px-3 py-4"
           id="password"
           type="password"
           placeholder="Password"
