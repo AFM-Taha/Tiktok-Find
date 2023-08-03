@@ -35,7 +35,7 @@ export default function ResetPassWord() {
     <form className="mb-64" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-16 mt-32 text-center">
         <h2 className="inline-block bg-gradient-to-r from-[#46A0E3] to-[#5845DF] bg-clip-text p-2 text-5xl font-bold text-transparent md:text-7xl">
-          Enter you email
+          Enter you Email
         </h2>
       </div>
       <div className="flex flex-col items-center justify-center gap-2 md:flex-row">

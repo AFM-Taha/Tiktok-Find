@@ -86,9 +86,13 @@ export default function LoginForm() {
 
 
   if (token) {
-    router.push(from);
+    if(from){
+      router.push(from);
+    }else{
+      router.push("/");
+    }
     toast.success("Signin User Successfully");
-  }
+  };
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
     // console.log(data);
