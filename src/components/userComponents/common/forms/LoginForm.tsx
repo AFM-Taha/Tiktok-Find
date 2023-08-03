@@ -31,6 +31,7 @@ const schema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters'),
 });
 
+
 // This is a type created from the model above
 type FormDataModel = z.infer<typeof schema>;
 
@@ -71,6 +72,9 @@ export default function LoginForm() {
   if (sloading || gloading || floading) {
     return <Spinner />
   }
+
+
+
 
   if (token) {
     // navigate(from, { replace: true });
