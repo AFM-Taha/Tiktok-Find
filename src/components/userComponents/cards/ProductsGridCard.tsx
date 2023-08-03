@@ -21,7 +21,7 @@ export default function ProductsGridCard({
           src={imgsrc}
         />
       </div>
-      <div className="mt-2 flex justify-between px-4 pb-2">
+      <div className="mt-2 flex flex-col justify-between px-4 pb-2 sm:flex-row">
         <div>
           <h3 className=" font-semibold underline-offset-4 group-hover:underline">
             {title}
