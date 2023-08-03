@@ -1,5 +1,5 @@
 // import FormDataModel from '@/types/formData';
-import React, { useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowRight, FaRegUserCircle } from 'react-icons/fa';
@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaFacebook } from 'react-icons/fa';
 import auth from '../../../../../firebase.init';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Spinner from '../Spinner';
 import UseToken from '@/hooks/useToken';
 import toast from 'react-hot-toast';
@@ -39,14 +39,13 @@ export default function LoginForm() {
   // and pass the schema to the resolver
   const [signInWithEmailAndPassword, suser, sloading, serror] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [signInWithFacebook, fuser, floading, ferror] = useSignInWithFacebook(auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const emailRef = useRef();
 
   let someErrorMessages;
   const getFirebaseErrorMessages = (firebaseMessage: any) => {
@@ -54,10 +53,11 @@ export default function LoginForm() {
     someErrorMessages = messages;
   }
 
-  if (serror || gerror) {
+  if (serror || gerror || ferror) {
 
     if (serror) getFirebaseErrorMessages(serror?.message)
     if (gerror) getFirebaseErrorMessages(gerror?.message)
+    if (ferror) getFirebaseErrorMessages(ferror?.message)
   } else {
     someErrorMessages = null
   }
@@ -65,10 +65,10 @@ export default function LoginForm() {
 
   // const from = location.state?.from?.pathname || '/';
 
-  const [token] = UseToken(suser || guser);
+  const [token] = UseToken(suser || guser || fuser);
 
 
-  if (sloading || gloading) {
+  if (sloading || gloading || floading) {
     return <Spinner />
   }
 
@@ -92,11 +92,9 @@ export default function LoginForm() {
     await signInWithGoogle()
   };
 
-  // const handleReset = async () => {
-  //     const email = emailRef.current.value
-  //     await sendPasswordResetEmail(email)
-  //     toast.success(`Email Sent to ${email}!`);
-  // };
+  const handleFacebookSignin = async () => {
+    await signInWithFacebook()
+  };
 
 
   return (
@@ -113,7 +111,7 @@ export default function LoginForm() {
         <button onClick={handleGoogleSignin} className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FcGoogle size={24} />
         </button>
-        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
+        <button onClick={handleFacebookSignin} className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FaFacebook size={24} color="#1877EA" />
         </button>
       </div>

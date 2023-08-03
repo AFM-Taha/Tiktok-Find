@@ -25,7 +25,7 @@ export default function NavBar() {
             <ProductCart />
           </Link>
           <Link
-            href="login"
+            href="/signin"
             className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
             Sign In
           </Link>

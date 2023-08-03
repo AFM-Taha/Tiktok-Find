@@ -2,6 +2,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { MdLockReset } from 'react-icons/md';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import toast from 'react-hot-toast';
 
 const schema = z.object({
   email: z
@@ -12,12 +15,22 @@ const schema = z.object({
 type FormDataModel = z.infer<typeof schema>;
 
 export default function ResetPassWord() {
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const onSubmit: SubmitHandler<FormDataModel> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormDataModel> = async(data) => {
+    const email = data?.email;
+    // console.log(email);
+    await sendPasswordResetEmail(email);
+    toast.success(`Email Sent to ${email}!`);
+  };
+
+
+
   return (
     <form className="mb-64" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-16 mt-32 text-center">
