@@ -12,6 +12,7 @@ import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoog
 import Spinner from '../Spinner';
 import UseToken from '@/hooks/useToken';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 // The schema below is the model of the form data
 /* 
@@ -47,6 +48,8 @@ export default function LoginForm() {
     formState: { errors },
     reset
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
+  const router = useRouter();
+
 
   let someErrorMessages;
   const getFirebaseErrorMessages = (firebaseMessage: any) => {
@@ -65,6 +68,12 @@ export default function LoginForm() {
 
 
   // const from = location.state?.from?.pathname || '/';
+  // const from = router.query.from || '/';
+  const from = (router.query.from);
+  
+
+  // console.log(router.query.from);
+  // console.log(from);
 
   const [token] = UseToken(suser || guser || fuser);
 
@@ -77,7 +86,7 @@ export default function LoginForm() {
 
 
   if (token) {
-    // navigate(from, { replace: true });
+    router.push(from);
     toast.success("Signin User Successfully");
   }
 

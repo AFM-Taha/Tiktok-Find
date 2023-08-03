@@ -55,7 +55,7 @@ export default function SignupForm() {
     await updateProfile({ displayName: displayName })
       .then(() => {
         reset();
-        router.push("login");
+        router.push("/signin");
       })
   };
 
