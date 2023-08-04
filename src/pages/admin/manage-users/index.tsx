@@ -8,7 +8,7 @@ interface MyData {
   price: number;
 }
 
-const Admin = () => {
+const User = () => {
 //Data fetch
  const apiUrl =
    'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products'; 
@@ -84,4 +84,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default User;

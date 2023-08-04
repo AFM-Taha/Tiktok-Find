@@ -10,7 +10,7 @@ import { PiTiktokLogoLight } from 'react-icons/pi';
      id: 1,
      icon: <FaUsers className="text-2xl text-gray-500" />,
      name: 'User',
-     path: '/admin',
+     path: '/admin/manage-users',
    },
    {
      id: 2,
@@ -28,7 +28,6 @@ import { PiTiktokLogoLight } from 'react-icons/pi';
 
 const AdminSidebar = ({ children }: any) => {
  const router=useRouter()
- console.log(router.pathname);
 
   return (
     <>
@@ -59,7 +58,7 @@ const AdminSidebar = ({ children }: any) => {
               <li key={m.id}>
                 <Link
                   href={m.path}
-                  className={`flex hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 ${router.pathname===m.path?'bg-gray-700 text-gray-100':'text-gray-700'}`}>
+                  className={`flex hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 ${router.pathname.includes(m.path)?'bg-gray-700 text-gray-100':'text-gray-700'}`}>
                   {m.icon}
 
                   <span className="ml-3">{m.name} </span>
