@@ -1,24 +1,21 @@
+import { UrlSection } from '@/components/adminComponents/manageProducts/addProduct';
+import { useState } from 'react';
 
 type Props = {};
 
 const AddProduct = (props: Props) => {
+  const [id, setId] = useState('');
+
+  const url = `https://www.lovbuy.com/1688api/getproductinfo.php?key=d5227a4d75d4e397254e059c2b1bf982&item_id=${id}&lang=en`;
+  console.log(id);
+  
+
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl  font-semibold">Manage Products</h2>
-      {/* content here */}
-
-      <div className=" mt-20 flex justify-center">
-        <div className="flex h-[150px]  w-[800px] items-center justify-center rounded-lg bg-gray-100 px-10 shadow-lg">
-          <input
-            type="text"
-            className="h-10 w-full border-2 border-blue-600 "
-            placeholder="URL"
-          />
-          <button className="ml-1  border-2 border-red-800 px-8 py-1.5 text-red-800 duration-200  hover:bg-red-800 hover:text-gray-100">
-            Click
-          </button>
-        </div>
-      </div>
+      {/* Url  Section */}
+      <UrlSection setId={setId} />
+      
     </div>
   );
 };
