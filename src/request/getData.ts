@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-export function useFetchData<T>(url: string): UseQueryResult<T> {
+export function useGetData<T>(url: string): UseQueryResult<T> {
     return useQuery<T, Error>({
         queryKey: [url],
         queryFn: async () => {

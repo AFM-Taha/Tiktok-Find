@@ -1,6 +1,5 @@
-import { useFetchData } from '@/request/getData';
+import { useGetData } from '@/request/getData';
 import Link from 'next/link';
-
 
 interface MyData {
   id: number;
@@ -9,11 +8,10 @@ interface MyData {
 }
 
 const User = () => {
-//Data fetch
- const apiUrl =
-   'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products'; 
- const { data, isLoading, isError } = useFetchData<MyData>(apiUrl);
- console.log(data);
+  //Data fetch
+  const apiUrl = 'https://tiktokfind-ecommerce-server.vercel.app/api/v1/users';
+  const { data, isLoading, isError } = useGetData<MyData>(apiUrl);
+  console.log(data);
 
   return (
     <div className="text-gray-100">
