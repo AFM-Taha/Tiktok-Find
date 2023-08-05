@@ -10,7 +10,7 @@ interface MyData {
 const User = () => {
   //Data fetch
   const apiUrl = 'https://tiktokfind-ecommerce-server.vercel.app/api/v1/users';
-  const { data, isLoading, isError } = useGetData<MyData>(apiUrl);
+  const { data } = useGetData<MyData>(apiUrl);
   console.log(data);
 
   return (

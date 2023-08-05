@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-const productManage = () => {
+const ProductManage = () => {
   return (
     <div className="text-gray-100">
       <h2 className="mb-20 text-center text-3xl  font-semibold">
-        Manage Users
+        Manage Product
       </h2>
       {/* content here */}
 
@@ -77,4 +77,4 @@ const productManage = () => {
   );
 };
 
-export default productManage;
+export default ProductManage;
