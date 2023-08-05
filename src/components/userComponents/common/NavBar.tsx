@@ -9,7 +9,7 @@ export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 mx-4 mt-4 flex items-center justify-between">
+      <nav className="fixed left-0 right-0 top-0 z-50 mx-4 mt-4 flex items-center justify-between bg-transparent">
         <div>
           <Link
             className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
