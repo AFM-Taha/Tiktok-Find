@@ -17,9 +17,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {pathname.includes('admin/login') ? (
+      {pathname === '/admin/login' ? (
         <AdminLoginLayout>{children}</AdminLoginLayout>
-      ) : pathname.includes('/login') ? (
+      ) : pathname.includes('/admin') ? (
         <AdminLayout>{children}</AdminLayout>
       ) : (
         <ReduxProvider>
