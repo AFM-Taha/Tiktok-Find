@@ -1,19 +1,24 @@
-import Link from "next/link";
+import { useGetData } from '@/request/getData';
+import Link from 'next/link';
 
-const ProductManage = () => {
+interface MyData {
+  id: number;
+  name: string;
+  price: number;
+}
+
+const User = () => {
+  //Data fetch
+  const apiUrl = 'https://tiktokfind-ecommerce-server.vercel.app/api/v1/users';
+  const { data } = useGetData<MyData>(apiUrl);
+  console.log(data);
+
   return (
     <div className="text-gray-100">
-      <h2 className="mb-20 text-center text-3xl  font-semibold">
-        Manage Product
-      </h2>
+      <h2 className="text-center text-3xl  font-semibold">Manage Users</h2>
       {/* content here */}
 
-      <Link
-        href={'/admin/manage-products/add-product'}
-        className="  rounded border-2 border-blue-600 px-5 py-1 font-semibold duration-300  hover:bg-gray-50 hover:text-blue-600">
-        Add Product
-      </Link>
-      <div className="relative  overflow-x-auto shadow-md sm:rounded-lg mt-5">
+      <div className="relative mt-20 overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -77,4 +82,4 @@ const ProductManage = () => {
   );
 };
 
-export default ProductManage;
+export default User;
