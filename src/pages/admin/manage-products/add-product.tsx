@@ -3,15 +3,13 @@ import { useState } from 'react';
 import Spinner from '@/components/userComponents/common/Spinner';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
-
-type Props = {};
+import { Product } from '@/types/products';
 
 type FormData = {
   title: string;
   category: string;
   price: string;
   description: string;
-
   item_imgs: string;
   num_iid: string;
   pic_url: string;
@@ -23,13 +21,13 @@ type FormData = {
   props_list: any;
   skus: string;
   total_sold: any;
-  video:'string';
+  video: 'string';
 };
 
-const AddProduct: React.FC<Props> = () => {
+const AddProduct = () => {
   const [Loading, setLoading] = useState(false);
   const [inputUrl, setInputUrl] = useState('');
-  const [product, setProduct] = useState<any>({});
+  const [product, setProduct] = useState<Product>({} as Product);
 
   const makeId = () => {
     setLoading(true);
@@ -67,12 +65,12 @@ const AddProduct: React.FC<Props> = () => {
       'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products';
     try {
       const response = await axios.post(product_add_url, {
-        title: data.title, 
-        item_imgs: product?.item_imgs, 
+        title: data.title,
+        item_imgs: product?.item_imgs,
         num_iid: product?.num_iid,
         price: data.price,
         pic_url: product?.pic_url,
-        orginal_price: product.orginal_price, 
+        orginal_price: product.orginal_price,
         description: data.description,
         brand: product?.brand,
         item_size: product?.item_size,
