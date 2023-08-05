@@ -1,10 +1,34 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaBoxOpen, FaShoppingBag, FaUsers } from 'react-icons/fa';
 import { GiWorld } from 'react-icons/gi';
 import { PiTiktokLogoLight } from 'react-icons/pi';
 
+ const adminMenu = [
+   {
+     id: 1,
+     icon: <FaUsers className="text-2xl text-gray-500" />,
+     name: 'User',
+     path: '/admin/manage-users',
+   },
+   {
+     id: 2,
+     icon: <FaShoppingBag className="text-2xl text-gray-500" />,
+     name: 'Products',
+     path: '/admin/manage-products',
+   },
+   {
+     id: 3,
+     icon: <FaBoxOpen className="text-2xl text-gray-500" />,
+     name: 'Orders',
+     path: '/admin/manage-orders',
+   },
+ ];
+
 const AdminSidebar = ({ children }: any) => {
+ const router=useRouter()
+
   return (
     <>
       <button
@@ -29,31 +53,19 @@ const AdminSidebar = ({ children }: any) => {
             Find
           </Link>
           <ul className="mt-8 space-y-2 font-medium">
-            <li>
-              <Link
-                href="/admin"
-                className="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                <FaUsers className="text-2xl text-gray-500" />
-                <span className="ml-3 flex-1 whitespace-nowrap">Users</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/admin/manage-products"
-                className="flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                <FaShoppingBag className="text-2xl text-gray-500" />
-                <span className="ml-3 flex-1 whitespace-nowrap">Products</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/admin/manage-orders"
-                className=" flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                <FaBoxOpen className="text-2xl text-gray-500" />
+           { adminMenu.map(m=>{
+            return (
+              <li key={m.id}>
+                <Link
+                  href={m.path}
+                  className={`flex hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 ${router.pathname.includes(m.path)?'bg-gray-700 text-gray-100':'text-gray-700'}`}>
+                  {m.icon}
 
-                <span className="ml-3">Orders </span>
-              </Link>
-            </li>
+                  <span className="ml-3">{m.name} </span>
+                </Link>
+              </li>
+            );
+           })}
           </ul>
           <ul className="absolute bottom-5">
             <li>

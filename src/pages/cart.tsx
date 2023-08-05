@@ -17,66 +17,69 @@ export default function Cart() {
               Your Cart
             </h1>
           </header>
-          <div className="hidden justify-evenly gap-80 text-lg font-bold text-white sm:flex">
-            <h3>Product</h3>
-            <div className="flex justify-evenly gap-8">
-              <h3>Quantity</h3>
-              <h3>Sum of Products</h3>
-            </div>
-          </div>
+
           {cart.length > 0 ? (
-            <div className="mt-8">
-              <ul className="space-y-4">
-                {cart.map((c) => {
-                  return <CartList data={c} key={c.id} />;
-                })}
-              </ul>
+            <>
+              <div className="hidden justify-evenly gap-80 text-lg font-bold text-white sm:flex">
+                <h3>Product</h3>
+                <div className="flex justify-evenly gap-8">
+                  <h3>Quantity</h3>
+                  <h3>Sum of Products</h3>
+                </div>
+              </div>
+              <div className="mt-8">
+                <ul className="space-y-4">
+                  {cart.map((c) => {
+                    return <CartList data={c} key={c.id} />;
+                  })}
+                </ul>
 
-              <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
-                <div className="w-screen max-w-lg space-y-4">
-                  <dl className="space-y-0.5 text-sm text-white">
-                    <div className="flex justify-between">
-                      <dt>Subtotal</dt>
-                      <dd>£ {subtotal}</dd>
-                    </div>
+                <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
+                  <div className="w-screen max-w-lg space-y-4">
+                    <dl className="space-y-0.5 text-sm text-white">
+                      <div className="flex justify-between">
+                        <dt>Subtotal</dt>
+                        <dd>£ {subtotal}</dd>
+                      </div>
 
-                    {/* <div className="flex justify-between">
+                      {/* <div className="flex justify-between">
                       <dt>VAT</dt>
                       <dd>£25</dd>
                     </div> */}
 
-                    <div className="flex justify-between">
-                      <dt>Delivery charges</dt>
-                      <dd>£20</dd>
-                    </div>
+                      <div className="flex justify-between">
+                        <dt>Delivery charges</dt>
+                        <dd>£20</dd>
+                      </div>
 
-                    <div className="flex justify-between !text-base font-medium">
-                      <dt>Total</dt>
-                      <dd>£ {subtotal + 20}</dd>
-                    </div>
-                  </dl>
+                      <div className="flex justify-between !text-base font-medium">
+                        <dt>Total</dt>
+                        <dd>£ {subtotal + 20}</dd>
+                      </div>
+                    </dl>
 
-                  {/* <div className="flex justify-end">
+                    {/* <div className="flex justify-end">
                     <span className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
-                      <BiSolidCoupon className="mr-1" />
-
+                    <BiSolidCoupon className="mr-1" />
+                    
                       <p className="whitespace-nowrap text-xs">
-                        2 Discounts Applied
+                      2 Discounts Applied
                       </p>
                     </span>
                   </div> */}
 
-                  <div className="flex justify-end">
-                    <Link
-                      href="/checkout"
-                      className="inline-block rounded bg-blue-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-blue-800">
-                      Checkout
-                      <FaChevronRight className="-mt-[2px] ml-1 inline-block" />
-                    </Link>
+                    <div className="flex justify-end">
+                      <Link
+                        href="/checkout"
+                        className="inline-block rounded bg-blue-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-blue-800">
+                        Checkout
+                        <FaChevronRight className="-mt-[2px] ml-1 inline-block" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </>
           ) : (
             <div className=" text-gray-100">
               <h2 className="mt-20 text-center text-7xl">Sorry!!</h2>
