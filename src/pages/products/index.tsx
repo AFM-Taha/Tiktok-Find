@@ -1,9 +1,12 @@
 import Spinner from '@/components/userComponents/common/Spinner';
-import useProducts from '@/hooks/useProducts';
+import { useGetData } from '@/request/getData';
+import { FetchedProducts } from '@/types/products';
 import Image from 'next/image';
 
 export default function Products() {
-  const { data, error, isLoading } = useProducts();
+  const { data, error, isLoading } = useGetData<FetchedProducts>(
+    'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products'
+  );
   if (isLoading) return <Spinner />;
   if (error)
     return (
