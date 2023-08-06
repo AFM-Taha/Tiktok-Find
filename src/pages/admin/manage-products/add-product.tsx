@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import Spinner from '@/components/userComponents/common/Spinner';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
-import { Product } from '@/types/products';
+import { Single1688Product } from '@/types/singleProduct';
 
 type UrlFormData = { url: string };
 
@@ -29,7 +29,7 @@ type FormData = {
 const AddProduct = () => {
   const [Loading, setLoading] = useState(false);
   // const [inputUrl, setInputUrl] = useState('');
-  const [product, setProduct] = useState<Product>({} as Product);
+  const [product, setProduct] = useState<Single1688Product | null>(null);
 
   const makeId = (url: string) => {
     setLoading(true);
@@ -44,11 +44,13 @@ const AddProduct = () => {
   async function get1688Product(id: number | string) {
     const apiUrl = `https://www.lovbuy.com/1688api/getproductinfo.php?key=d5227a4d75d4e397254e059c2b1bf982&item_id=${id}&lang=en`;
     try {
-      const response = await axios.get(apiUrl);
-      setProduct(response.data.productinfo);
+      const response = await axios.get<Single1688Product>(apiUrl);
+      setProduct(response.data);
+      console.log(response);
       setLoading(false);
-    } catch (error: any) {
-      console.error('Error fetching data:', error.message);
+    } catch (error) {
+      if (error instanceof AxiosError)
+        console.error('Error fetching data:', error.message);
       setLoading(false);
     }
   }
@@ -80,20 +82,20 @@ const AddProduct = () => {
     try {
       const response = await axios.post(product_add_url, {
         title: data.title,
-        item_imgs: product?.item_imgs,
-        num_iid: product?.num_iid,
+        item_imgs: product?.productinfo.item_imgs,
+        num_iid: product?.productinfo.num_iid,
         price: data.price,
-        pic_url: product?.pic_url,
-        orginal_price: product.orginal_price,
+        pic_url: product?.productinfo.num_iid,
+        orginal_price: product?.productinfo.orginal_price,
         description: data.description,
-        brand: product?.brand,
-        item_size: product?.item_size,
-        item_weight: product?.item_weight,
-        props: product?.props,
-        props_list: product?.props_list,
-        skus: product?.skus,
-        total_sold: product?.total_sold,
-        video: product?.video,
+        brand: product?.productinfo.brand,
+        item_size: product?.productinfo.item_size,
+        item_weight: product?.productinfo.item_size,
+        props: product?.productinfo.props,
+        props_list: product?.productinfo.props_list,
+        skus: product?.productinfo.skus,
+        total_sold: product?.productinfo.total_sold,
+        video: product?.productinfo.video,
         category: data.category,
       });
 
@@ -106,7 +108,7 @@ const AddProduct = () => {
 
   if (Loading) return <Spinner />;
 
-  const { pic_url, title }: any = product;
+  // const { pic_url, title, price }:  = product;
 
   // console.log(product);
   return (
@@ -144,12 +146,16 @@ const AddProduct = () => {
         </p>
       )}
       {/* Product data Change section */}
-      {title && (
+      {product?.status !== '200' ? (
+        <p className="mt-32 text-center text-xl font-bold text-red-600">
+          Product Not Found
+        </p>
+      ) : (
         <section className="mx-auto mt-10 max-w-[1100px] rounded-xl bg-gray-100 p-10">
           <div className="flex justify-center  text-xs text-gray-950">
             <Image
               className="rounded-lg"
-              src={pic_url}
+              src={product.productinfo.pic_url}
               alt="Product  Image"
               height={150}
               width={150}
@@ -158,7 +164,7 @@ const AddProduct = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="group relative z-0  mt-10 w-full">
               <input
-                defaultValue={title}
+                defaultValue={product.productinfo.title}
                 type="text"
                 id="title"
                 {...register('title', {
@@ -200,6 +206,7 @@ const AddProduct = () => {
               </div>
               <div className="group relative z-0  w-1/2">
                 <input
+                  defaultValue={product.productinfo.price}
                   type="text"
                   id="price"
                   {...register('price', {
@@ -247,7 +254,7 @@ const AddProduct = () => {
             <button
               type="submit"
               className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto">
-              Save
+              Add Product
             </button>
           </form>
         </section>
