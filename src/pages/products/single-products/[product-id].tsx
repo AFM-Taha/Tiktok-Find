@@ -3,8 +3,16 @@ import Breadcrumb from '@/components/userComponents/common/Breadcrumb';
 import DetailSection from '@/components/userComponents/singleProduct/DetailSection';
 import ImageSection from '@/components/userComponents/singleProduct/ImageSection';
 import ProductDescription from '@/components/userComponents/singleProduct/ProductDescription';
+import { useGetData } from '@/request/getData';
+import { Product } from '@/types/products';
+import { useRouter } from 'next/router';
 
 const SingleProduct = () => {
+  const router = useRouter();
+  const productID = router.query['product-id'];
+  const { data, error, isLoading } = useGetData<null | Product>(
+    `https://tiktokfind-ecommerce-server.vercel.app/api/v1/products/${productID}`
+  );
   const images: string[] = [
     '/fancyroom.webp',
     '/balllamp.webp',

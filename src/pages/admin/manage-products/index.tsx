@@ -1,6 +1,12 @@
+import { useGetData } from '@/request/getData';
+import { FetchedProducts } from '@/types/products';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const ProductManage = () => {
+  const { data, error, isLoading } = useGetData<FetchedProducts>(
+    'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products'
+  );
   return (
     <div className="text-gray-100">
       <h2 className="mb-20 text-center text-3xl  font-semibold">
@@ -21,7 +27,7 @@ const ProductManage = () => {
                 Product name
               </th>
               <th scope="col" className="px-6 py-3">
-                Color
+                Image
               </th>
               <th scope="col" className="px-6 py-3">
                 Category
@@ -35,23 +41,44 @@ const ProductManage = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                Apple MacBook Pro 17
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4 text-right">
-                <Link
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500">
-                  Edit
-                </Link>
-              </td>
-            </tr>
+            {data?.status === 'success' ? (
+              data.data.result.map((item) => {
+                return (
+                  <tr
+                    key={item.num_iid}
+                    className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
+                    <th
+                      scope="row"
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                      {item.title.length > 23
+                        ? item.title.slice(0, 23) + '...'
+                        : item.title}
+                    </th>
+                    <td className="px-6 py-3">
+                      <Image
+                        src={item.pic_url}
+                        width={40}
+                        height={40}
+                        alt={item.title}
+                      />
+                    </td>
+                    <td className="px-6 py-4">{item.category}</td>
+                    <td className="px-6 py-4">{item.price}</td>
+                    <td className="px-6 py-4 text-right">
+                      <Link
+                        href="#"
+                        className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+                        Edit
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <p className="mt-16 text-center text-xl font-bold text-red-500">
+                Something went wrong
+              </p>
+            )}
           </tbody>
         </table>
       </div>
