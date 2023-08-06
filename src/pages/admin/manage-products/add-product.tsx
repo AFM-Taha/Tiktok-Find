@@ -11,7 +11,6 @@ type FormData = {
   category: string;
   price: string;
   description: string;
-
   item_imgs: string;
   num_iid: string;
   pic_url: string;
