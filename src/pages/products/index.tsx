@@ -26,19 +26,21 @@ export default function Products() {
                   width={350}
                   height={350}
                   className="rounded-3xl bg-transparent bg-opacity-0"
-                  alt={item.name}
-                  src={item.image}
+                  alt={item.title}
+                  src={item.pic_url}
                 />
               </div>
-              <div className="mt-2 flex justify-between bg-transparent bg-opacity-0 px-2 text-white">
+              <div className="mt-2 flex justify-between gap-1 bg-transparent bg-opacity-0 px-2 text-white">
                 <div>
                   <h3 className="bg-transparent bg-opacity-0 font-semibold underline-offset-4 group-hover:underline">
-                    {item.name}
+                    {item.title.length > 23
+                      ? item.title.slice(0, 23) + '...'
+                      : item.title}
                   </h3>
                 </div>
                 <div className="flex gap-1">
                   <del className="">
-                    <p className="font-medium">${item.price}</p>
+                    <p className="font-medium">${item.orginal_price}</p>
                   </del>
                   <p className="font-medium">${item.price}</p>
                 </div>

@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import Spinner from '@/components/userComponents/common/Spinner';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
+import { Single1688Product } from '@/types/singleProduct';
 
-type Props = {};
+type UrlFormData = { url: string };
 
 type FormData = {
   title: string;
@@ -22,18 +23,18 @@ type FormData = {
   props_list: any;
   skus: string;
   total_sold: any;
-  video:'string';
+  video: 'string';
 };
 
-const AddProduct: React.FC<Props> = () => {
+const AddProduct = () => {
   const [Loading, setLoading] = useState(false);
-  const [inputUrl, setInputUrl] = useState('');
-  const [product, setProduct] = useState<any>({});
+  // const [inputUrl, setInputUrl] = useState('');
+  const [product, setProduct] = useState<Single1688Product | null>(null);
 
-  const makeId = () => {
+  const makeId = (url: string) => {
     setLoading(true);
     const regex = /offer\/(\d+)\.html/;
-    const match = inputUrl.match(regex);
+    const match = url.match(regex);
     if (match && match[1]) {
       const id = match[1];
       get1688Product(id);
@@ -43,44 +44,58 @@ const AddProduct: React.FC<Props> = () => {
   async function get1688Product(id: number | string) {
     const apiUrl = `https://www.lovbuy.com/1688api/getproductinfo.php?key=d5227a4d75d4e397254e059c2b1bf982&item_id=${id}&lang=en`;
     try {
-      const response = await axios.get(apiUrl);
-      setProduct(response.data.productinfo);
+      const response = await axios.get<Single1688Product>(apiUrl);
+      setProduct(response.data);
+      console.log(response);
       setLoading(false);
-    } catch (error: any) {
-      console.error('Error fetching data:', error.message);
+    } catch (error) {
+      if (error instanceof AxiosError)
+        console.error('Error fetching data:', error.message);
       setLoading(false);
     }
   }
 
-  // Form Hock
+  // Form Hook for handling product details
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  console.log(product);
+  // console.log(product);
 
-  // Function to handle form submission
+  // Form hook to handle url
+  const {
+    register: register2,
+    formState: { errors: errors2 },
+    handleSubmit: handleSubmit2,
+  } = useForm<UrlFormData>();
+
+  // URL submit handler
+  const onUrlSubmit: SubmitHandler<UrlFormData> = (data) => {
+    makeId(data.url);
+  };
+
+  // Function to handle product details form submission
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const product_add_url =
       'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products';
     try {
       const response = await axios.post(product_add_url, {
-        title: data.title, 
-        item_imgs: product?.item_imgs, 
-        num_iid: product?.num_iid,
+        title: data.title,
+        item_imgs: product?.productinfo.item_imgs,
+        num_iid: product?.productinfo.num_iid,
         price: data.price,
-        pic_url: product?.pic_url,
-        orginal_price: product.orginal_price, 
+        pic_url: product?.productinfo.num_iid,
+        orginal_price: product?.productinfo.orginal_price,
         description: data.description,
-        brand: product?.brand,
-        item_size: product?.item_size,
-        item_weight: product?.item_weight,
-        props: product?.props,
-        props_list: product?.props_list,
-        skus: product?.skus,
-        total_sold: product?.total_sold,
-        video: product?.video,
+        brand: product?.productinfo.brand,
+        item_size: product?.productinfo.item_size,
+        item_weight: product?.productinfo.item_size,
+        props: product?.productinfo.props,
+        props_list: product?.productinfo.props_list,
+        skus: product?.productinfo.skus,
+        total_sold: product?.productinfo.total_sold,
+        video: product?.productinfo.video,
         category: data.category,
       });
 
@@ -93,42 +108,58 @@ const AddProduct: React.FC<Props> = () => {
 
   if (Loading) return <Spinner />;
 
-  const { pic_url, title }: any = product;
+  // const { pic_url, title, price }:  = product;
 
-  console.log(product);
+  // console.log(product);
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl font-semibold">Manage Products</h2>
       {/* Url Section */}
       <div className="mt-20 flex justify-center">
-        <div className="flex h-[150px] w-[800px] items-center justify-center rounded-lg bg-gray-100 px-10 shadow-lg">
+        <form
+          className="flex h-[150px] w-[800px] items-center justify-center rounded-3xl bg-gray-100 px-10 shadow-lg"
+          onSubmit={handleSubmit2(onUrlSubmit)}>
           <input
-            onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              if (e.key === 'Enter') {
-                makeId();
-              }
-            }}
-            onChange={(e) => {
-              setInputUrl(e.target.value);
-            }}
+            {...register2('url', {
+              required: 'Please provide a valid URL',
+              pattern: {
+                value: /https:\/\/[^\/]+\/offer\/\d+\.html/,
+                message:
+                  'URL must start with https:// and end with .html (https://detail.1688.com/offer/<ID>.html)',
+              },
+            })}
             type="text"
-            className="h-10 w-full border-2 border-blue-600 text-gray-800"
-            placeholder="URL"
+            className="h-10 w-full rounded-xl border-2 border-blue-600 text-gray-800"
+            placeholder="for example: https://detail.1688.com/offer/<ID>.html"
           />
           <button
-            onClick={makeId}
-            className="ml-1 border-2 border-red-800 px-8 py-1.5 text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
+            type="submit"
+            // onClick={makeId}
+            className="ml-1 rounded-xl border-2 border-red-800 px-8 py-1.5 font-medium text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
             Click
           </button>
-        </div>
+        </form>
       </div>
+      {errors2.url && (
+        <p className="mt-8 text-center font-semibold text-red-600 [word-spacing:5px]">
+          {errors2.url.message}
+        </p>
+      )}
       {/* Product data Change section */}
-      {title && (
+      {product?.status !== '200' ? (
+        product?.status === 544 ? (
+          <p className="mt-32 text-center text-xl font-bold text-red-600">
+            Product not found
+          </p>
+        ) : (
+          <p></p>
+        )
+      ) : (
         <section className="mx-auto mt-10 max-w-[1100px] rounded-xl bg-gray-100 p-10">
           <div className="flex justify-center  text-xs text-gray-950">
             <Image
               className="rounded-lg"
-              src={pic_url}
+              src={product.productinfo.pic_url}
               alt="Product  Image"
               height={150}
               width={150}
@@ -137,7 +168,7 @@ const AddProduct: React.FC<Props> = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="group relative z-0  mt-10 w-full">
               <input
-                defaultValue={title}
+                defaultValue={product.productinfo.title}
                 type="text"
                 id="title"
                 {...register('title', {
@@ -179,6 +210,7 @@ const AddProduct: React.FC<Props> = () => {
               </div>
               <div className="group relative z-0  w-1/2">
                 <input
+                  defaultValue={product.productinfo.price}
                   type="text"
                   id="price"
                   {...register('price', {
@@ -226,7 +258,7 @@ const AddProduct: React.FC<Props> = () => {
             <button
               type="submit"
               className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto">
-              Save
+              Add Product
             </button>
           </form>
         </section>
