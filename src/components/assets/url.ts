@@ -1,0 +1,1 @@
+export const baseURL ='https://tiktokfind-ecommerce-server.vercel.app/api/v1'
