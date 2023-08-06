@@ -4,6 +4,7 @@ import { PiTiktokLogoLight } from 'react-icons/pi';
 // import { useState } from 'react';
 import Link from 'next/link';
 import ProductCart from './ProductCart';
+import UserProfileImage from '../userProfile/UserProfileImage';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,9 @@ export default function NavBar() {
             className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
             href="/cart">
             <ProductCart />
+          </Link>
+          <Link href="/profile">
+            <UserProfileImage className="h-10 w-10 font-bold text-white" />
           </Link>
           <Link
             href="login"
