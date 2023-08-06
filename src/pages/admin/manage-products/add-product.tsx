@@ -115,7 +115,7 @@ const AddProduct = () => {
       {/* Url Section */}
       <div className="mt-20 flex justify-center">
         <form
-          className="flex h-[150px] w-[800px] items-center justify-center rounded-lg bg-gray-100 px-10 shadow-lg"
+          className="flex h-[150px] w-[800px] items-center justify-center rounded-3xl bg-gray-100 px-10 shadow-lg"
           onSubmit={handleSubmit2(onUrlSubmit)}>
           <input
             {...register2('url', {
@@ -127,13 +127,13 @@ const AddProduct = () => {
               },
             })}
             type="text"
-            className="h-10 w-full border-2 border-blue-600 text-gray-800"
-            placeholder="URL"
+            className="h-10 w-full rounded-xl border-2 border-blue-600 text-gray-800"
+            placeholder="for example: https://detail.1688.com/offer/<ID>.html"
           />
           <button
             type="submit"
             // onClick={makeId}
-            className="ml-1 border-2 border-red-800 px-8 py-1.5 text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
+            className="ml-1 rounded-xl border-2 border-red-800 px-8 py-1.5 font-medium text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
             Click
           </button>
         </form>
