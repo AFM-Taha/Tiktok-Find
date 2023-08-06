@@ -5,6 +5,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
 import { Product } from '@/types/products';
 
+type UrlFormData = { url: string };
+
 type FormData = {
   title: string;
   category: string;
@@ -26,13 +28,13 @@ type FormData = {
 
 const AddProduct = () => {
   const [Loading, setLoading] = useState(false);
-  const [inputUrl, setInputUrl] = useState('');
+  // const [inputUrl, setInputUrl] = useState('');
   const [product, setProduct] = useState<Product>({} as Product);
 
-  const makeId = () => {
+  const makeId = (url: string) => {
     setLoading(true);
     const regex = /offer\/(\d+)\.html/;
-    const match = inputUrl.match(regex);
+    const match = url.match(regex);
     if (match && match[1]) {
       const id = match[1];
       get1688Product(id);
@@ -51,15 +53,27 @@ const AddProduct = () => {
     }
   }
 
-  // Form Hock
+  // Form Hook for handling product details
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  console.log(product);
+  // console.log(product);
 
-  // Function to handle form submission
+  // Form hook to handle url
+  const {
+    register: register2,
+    formState: { errors: errors2 },
+    handleSubmit: handleSubmit2,
+  } = useForm<UrlFormData>();
+
+  // URL submit handler
+  const onUrlSubmit: SubmitHandler<UrlFormData> = (data) => {
+    makeId(data.url);
+  };
+
+  // Function to handle product details form submission
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const product_add_url =
       'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products';
@@ -94,31 +108,41 @@ const AddProduct = () => {
 
   const { pic_url, title }: any = product;
 
-  console.log(product);
+  // console.log(product);
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl font-semibold">Manage Products</h2>
       {/* Url Section */}
       <div className="mt-20 flex justify-center">
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className="flex h-[150px] w-[800px] items-center justify-center rounded-lg bg-gray-100 px-10 shadow-lg">
-            <input
-              value={inputUrl}
-              onChange={(e) => {
-                setInputUrl(e.target.value);
-              }}
-              type="text"
-              className="h-10 w-full border-2 border-blue-600 text-gray-800"
-              placeholder="URL"
-            />
-            <button
-              onClick={makeId}
-              className="ml-1 border-2 border-red-800 px-8 py-1.5 text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
-              Click
-            </button>
-          </div>
+        <form
+          className="flex h-[150px] w-[800px] items-center justify-center rounded-lg bg-gray-100 px-10 shadow-lg"
+          onSubmit={handleSubmit2(onUrlSubmit)}>
+          <input
+            {...register2('url', {
+              required: 'Please provide a valid URL',
+              pattern: {
+                value: /https:\/\/[^\/]+\/offer\/\d+\.html/,
+                message:
+                  'URL must start with https:// and end with .html (https://detail.1688.com/offer/<ID>.html)',
+              },
+            })}
+            type="text"
+            className="h-10 w-full border-2 border-blue-600 text-gray-800"
+            placeholder="URL"
+          />
+          <button
+            type="submit"
+            // onClick={makeId}
+            className="ml-1 border-2 border-red-800 px-8 py-1.5 text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
+            Click
+          </button>
         </form>
       </div>
+      {errors2.url && (
+        <p className="mt-8 text-center font-semibold text-red-600 [word-spacing:5px]">
+          {errors2.url.message}
+        </p>
+      )}
       {/* Product data Change section */}
       {title && (
         <section className="mx-auto mt-10 max-w-[1100px] rounded-xl bg-gray-100 p-10">
