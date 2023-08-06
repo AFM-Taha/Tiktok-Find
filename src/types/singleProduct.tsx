@@ -1,5 +1,5 @@
 export interface Single1688Product {
-  status: string;
+  status: string | number;
   apicount: number;
   productinfo: Productinfo;
 }

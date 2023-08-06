@@ -147,9 +147,13 @@ const AddProduct = () => {
       )}
       {/* Product data Change section */}
       {product?.status !== '200' ? (
-        <p className="mt-32 text-center text-xl font-bold text-red-600">
-          Product Not Found
-        </p>
+        product?.status === 544 ? (
+          <p className="mt-32 text-center text-xl font-bold text-red-600">
+            Product not found
+          </p>
+        ) : (
+          <p></p>
+        )
       ) : (
         <section className="mx-auto mt-10 max-w-[1100px] rounded-xl bg-gray-100 p-10">
           <div className="flex justify-center  text-xs text-gray-950">
