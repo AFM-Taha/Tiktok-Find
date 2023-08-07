@@ -1,17 +1,14 @@
+import UserTR from '@/components/adminComponents/manageUser/UserTR';
+import { baseURL } from '@/components/assets/url';
+import Spinner from '@/components/userComponents/common/Spinner';
 import { useGetData } from '@/request/getData';
-import Link from 'next/link';
-
-interface MyData {
-  id: number;
-  name: string;
-  price: number;
-}
 
 const User = () => {
   //Data fetch
-  const apiUrl = 'https://tiktokfind-ecommerce-server.vercel.app/api/v1/users';
-  const { data } = useGetData<MyData>(apiUrl);
-  console.log(data);
+  const apiUrl = `${baseURL}/users`;
+  const { data: user, isLoading, error,refetch } = useGetData<any>(apiUrl);
+
+  if (isLoading || error) return <Spinner />;
 
   return (
     <div className="text-gray-100">
@@ -23,58 +20,21 @@ const User = () => {
           <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Product name
+                 name
               </th>
               <th scope="col" className="px-6 py-3">
-                Color
+                email
               </th>
-              <th scope="col" className="px-6 py-3">
-                Category
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Edit</span>
+               
+              <th scope="col" className="px-6 py-3 text-right">
+                Action
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                Apple MacBook Pro 17
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4 text-right">
-                <Link
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500">
-                  Edit
-                </Link>
-              </td>
-            </tr>
-
-            <tr className="bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <Link
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500">
-                  Edit
-                </Link>
-              </td>
-            </tr>
+            {user?.map((u: any, i: number) => {
+              return <UserTR refetch={refetch} user={u} key={i} />;
+            })}
           </tbody>
         </table>
       </div>

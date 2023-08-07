@@ -51,8 +51,7 @@ const ProductTR = ({
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    patch(editURL, data);
-    console.log(data);
+    patch(editURL, data, refetch, setEditRow(false));
   };
 
   return (
