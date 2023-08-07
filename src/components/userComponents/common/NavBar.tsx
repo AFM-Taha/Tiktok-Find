@@ -23,7 +23,7 @@ export default function NavBar() {
         toast.success("User SignOut Successfully", { position: "top-left" });
 
       })
-  }
+  };
 
   return (
     <>
