@@ -92,7 +92,7 @@ const AddProduct = () => {
         item_size: product?.productinfo.item_size,
         item_weight: product?.productinfo.item_size,
         props: product?.productinfo.props,
-        props_list: product?.productinfo.props_list,
+        props_name: product?.productinfo.props_list,
         skus: product?.productinfo.skus,
         total_sold: product?.productinfo.total_sold,
         video: product?.productinfo.video,
