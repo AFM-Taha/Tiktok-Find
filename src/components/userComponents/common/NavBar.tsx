@@ -9,6 +9,7 @@ import auth from '../../../../firebase.init';
 import { signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import Router from 'next/router';
+import UserProfileImage from '../userProfile/UserProfileImage';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 mx-4 mt-4 flex items-center justify-between bg-transparent">
+      <nav className="fixed left-0 right-0 top-0 z-50 mx-4 mt-4 flex items-center justify-between bg-transparent">
         <div>
           <Link
             className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
@@ -53,6 +54,9 @@ export default function NavBar() {
                 Sign In
               </Link>
           }
+          <Link href="/profile">
+            <UserProfileImage className="h-10 w-10 font-bold text-white" />
+          </Link>
         </div>
       </nav>
       {/* <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">

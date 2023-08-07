@@ -7,6 +7,7 @@ import UserLayout from './UserLayout';
 import AdminLayout from './AdminLayout';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReduxProvider } from '@/redux/ReduxProvider';
+import AdminLoginLayout from './AdminLoginLayout';
 
 export default function Layout({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -16,7 +17,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {pathname.includes('admin') ? (
+      {pathname === '/admin/login' ? (
+        <AdminLoginLayout>{children}</AdminLoginLayout>
+      ) : pathname.includes('/admin') ? (
         <AdminLayout>{children}</AdminLayout>
       ) : (
         <ReduxProvider>

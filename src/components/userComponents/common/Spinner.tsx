@@ -5,5 +5,5 @@ export default function Spinner() {
     <div className='w-screen h-screen overflow-hidden flex justify-center items-center'>
       <GridLoader color="#00C2FF" />
     </div>
-  );  
+  );
 } 

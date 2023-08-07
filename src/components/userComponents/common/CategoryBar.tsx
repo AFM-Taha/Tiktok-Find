@@ -12,7 +12,7 @@ export default function CategoryBar() {
   };
   return (
     <div className="mt-16 flex justify-center lg:mx-36">
-      <div>
+      <div className="hidden md:inline-block">
         <button
           className="rounded-full bg-white bg-opacity-20 p-2 hover:bg-opacity-50"
           onClick={handleSlideLeft}>
@@ -95,7 +95,7 @@ export default function CategoryBar() {
           Category
         </div>
       </div>
-      <div>
+      <div className="hidden md:inline-block">
         <button
           className="rounded-full bg-white bg-opacity-20 p-2 hover:bg-opacity-50"
           onClick={handleSlideRight}>
