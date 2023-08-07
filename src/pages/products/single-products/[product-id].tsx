@@ -46,7 +46,7 @@ const SingleProduct = () => {
                   stock: data.skus.sku.length,
                   sku: data.skus.sku[0].sku_id,
                   images: ['/balllamp.webp'],
-                  ratings: 5,
+                  // ratings: 5,
                   shipping: 55,
                   description: data.description,
                   seller: '',

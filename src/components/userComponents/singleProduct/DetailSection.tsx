@@ -3,7 +3,7 @@ import { AiFillLock } from 'react-icons/ai';
 import { BsBoxSeam, BsShieldLock, BsPinterest, BsHeart } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
 import { FaTwitter } from 'react-icons/fa';
-import Ratings from '../common/Ratings';
+// import Ratings from '../common/Ratings';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/features/CartSlice';
 
@@ -15,7 +15,7 @@ type InfoProps = {
     price: string;
     stock: number;
     sale: number;
-    ratings: number;
+    // ratings: number;
     shipping: number;
     seller: string;
     category: string | undefined;
@@ -32,12 +32,12 @@ const DetailSection = ({ info }: InfoProps) => {
     price,
     stock,
     images,
-    ratings,
+    // ratings,
     seller,
     category,
     sale,
     sku,
-    ratingsCount,
+    // ratingsCount,
   } = info;
 
   // Color
@@ -91,12 +91,12 @@ const DetailSection = ({ info }: InfoProps) => {
       {/*-------------------------------------------------------------------------------------- 
                                            Rating Section 
       ---------------------------------------------------------------------------------------*/}
-      <div className="mb-8 mt-2 flex items-baseline gap-4">
+      {/* <div className="mb-8 mt-2 flex items-baseline gap-4">
         <Ratings ratings={ratings} />
         <span className="text-sm text-gray-300">{ratingsCount} reviews</span>
       </div>
 
-      <div className="h-0.5 bg-gray-500"></div>
+      <div className="h-0.5 bg-gray-500"></div> */}
 
       {/* ------------------------------------------------------------------------------------
                               Add cart and buy now section 
