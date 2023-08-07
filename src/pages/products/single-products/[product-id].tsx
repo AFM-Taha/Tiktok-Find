@@ -52,6 +52,7 @@ const SingleProduct = () => {
                   seller: '',
                   ratingsCount: 5,
                   category: data.category,
+                  props_list: data.props_list,
                 }}
               />
             </div>

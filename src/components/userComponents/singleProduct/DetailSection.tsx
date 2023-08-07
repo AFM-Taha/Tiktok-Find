@@ -22,6 +22,7 @@ type InfoProps = {
     description: string;
     ratingsCount: number;
     images: [string];
+    props_list:[string];
   };
 };
 
@@ -37,15 +38,35 @@ const DetailSection = ({ info }: InfoProps) => {
     category,
     sale,
     sku,
+    props_list,
     // ratingsCount,
   } = info;
 
+
+  const colors = [];
+  const sizes = [];
+  const Specification = [];
+
+  for (const key in props_list) {
+    const [row, col] = key.split(':').map(Number);
+    const value = props_list[key];
+    console.log(row);
+
+    if (value.startsWith('color:')) {
+      if (!colors[col]) colors[col] = value.split(':')[1];
+    } else if (value.startsWith('size:')) {
+      if (!sizes[col]) sizes[col] = value.split(':')[1];
+    } else if (value.startsWith('Specification:')) {
+      if (!Specification[col]) Specification[col] = value.split(':')[1];
+    } else if (value.startsWith('Specifications:')) {
+      if (!Specification[col]) Specification[col] = value.split(':')[1];
+    }
+  }
+
   // Color
-  const colors = ['red', 'green', 'orange', 'blue'];
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   //   Size
-  const sizes = ['sx', 'm', 'lg', '2xl'];
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
   //   cart count
   const [cartCount, setCartCount] = useState(1);
@@ -105,38 +126,73 @@ const DetailSection = ({ info }: InfoProps) => {
         {/* Color and Size Section*/}
 
         {/* Color */}
-        <div className="mb-4">
-          <h3 className="text-gray-200">Color:</h3>
-          <div className="mt-2 flex gap-4">
-            {colors.map((c) => (
-              <button
-                key={c}
-                onClick={() => setSelectedColor(c)}
-                className={`bg-${c}-600   h-6 w-8 ${
-                  selectedColor === c && 'ring-4'
-                } ring-gray-400`}></button>
-            ))}
+        {colors?.length > 0 && (
+          <div className="mb-4">
+            <h3 className="text-gray-200">Color:</h3>
+            <div className="mt-2 flex gap-4">
+              {colors.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => {
+                    setSelectedColor(c);
+                    console.log(c);
+                  }}
+                  className={`bg-${c}-600   h-6 w-8 ${
+                    selectedColor === c && 'ring-4'
+                  } ring-gray-400`}></button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Size */}
-        <div className="mb-10">
-          <h3 className="text-gray-200">Size:</h3>
-          <div className="mt-2 flex gap-4">
-            {sizes.map((s) => (
-              <button
-                key={s}
-                onClick={() => setSelectedSize(s)}
-                className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
-                  selectedSize === s ? ' border-blue-600' : 'border-gray-600'
-                } `}>
-                {s}
-              </button>
-            ))}
+        {sizes?.length > 0 && (
+          <div className="mb-10">
+            <h3 className="text-gray-200">Size:</h3>
+            <div className="mt-2 flex gap-4">
+              {sizes.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSelectedSize(s)}
+                  className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
+                    selectedSize === s ? ' border-blue-600' : 'border-gray-600'
+                  } `}>
+                  {s}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+        {/* specifications */}
+        {Specification?.length > 0 && (
+          <div className="mb-10">
+            <h3 className="text-gray-200">Specifications:</h3>
+            <div className="mt-2">
+              <select>
+                {Specification?.map((s, i) => {
+                  return (
+                    <option key={i} value={s}>
+                      {s}
+                    </option>
+                  );
+                })}
+              </select>
 
-        <div className="mb-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
+              {/* {sizes.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSelectedSize(s)}
+                  className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
+                    selectedSize === s ? ' border-blue-600' : 'border-gray-600'
+                  } `}>
+                  {s}
+                </button>
+              ))} */}
+            </div>
+          </div>
+        )}
+
+        <div className="my-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
           {/* Increase BTN */}
           <button
             className=" px-5 text-3xl text-gray-100"
