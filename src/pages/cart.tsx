@@ -1,13 +1,21 @@
 import { FaChevronRight } from 'react-icons/fa';
 import { BiLeftArrow } from 'react-icons/bi';
 import { RootState } from '@/redux/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartList from '@/components/userComponents/Cart/CartList';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { countTotalPrice } from '@/redux/features/CartSlice';
 export default function Cart() {
   //  cart Length
   const cart = useSelector((state: RootState) => state.carts.cart);
-  const subtotal = useSelector((state: RootState) => state.carts.totalPrice);
+  let subtotal = useSelector((state: RootState) => state.carts.totalPrice);
+  const dispatch = useDispatch();
+  console.log(cart);
+  useEffect(() => {
+    dispatch(countTotalPrice());
+  }, [subtotal, dispatch]);
+
   return (
     <section>
       <div className="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
@@ -39,7 +47,7 @@ export default function Cart() {
                     <dl className="space-y-0.5 text-sm text-white">
                       <div className="flex justify-between">
                         <dt>Subtotal</dt>
-                        <dd>£ {subtotal}</dd>
+                        <dd>£ {subtotal.toFixed(2)}</dd>
                       </div>
 
                       {/* <div className="flex justify-between">
@@ -54,7 +62,7 @@ export default function Cart() {
 
                       <div className="flex justify-between !text-base font-medium">
                         <dt>Total</dt>
-                        <dd>£ {subtotal + 20}</dd>
+                        <dd>£ {(subtotal + 20).toFixed(2)}</dd>
                       </div>
                     </dl>
 

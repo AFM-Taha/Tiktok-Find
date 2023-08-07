@@ -14,12 +14,13 @@ type Props = {
     name: string;
     image: string;
     quantity: number;
+    price: string;
   };
 };
 
 const CartList = ({ data }: Props) => {
   const dispatch = useDispatch();
-  const { id, name, image, quantity } = data;
+  const { id, name, image, quantity, price } = data;
   return (
     <li className="flex w-full flex-col items-start sm:flex-row sm:items-center sm:gap-4">
       <div className="flex items-center gap-4">
