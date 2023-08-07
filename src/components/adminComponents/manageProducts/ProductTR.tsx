@@ -2,7 +2,6 @@ import { baseURL } from '@/components/assets/url';
 import { remove } from '@/request/delete';
 import { patch } from '@/request/patch';
 import { Product } from '@/types/products';
-import axios from 'axios';
 import Image from 'next/image';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -44,7 +43,7 @@ const ProductTR = ({
   const deleteURL = `${baseURL}/products/${_id}`;
   const editURL = `${baseURL}/products/${_id}`;
 
-// __________Edit Product___________________
+  // __________Edit Product___________________
   const {
     register,
     handleSubmit,
@@ -52,7 +51,7 @@ const ProductTR = ({
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    patch(editURL,data);
+    patch(editURL, data);
     console.log(data);
   };
 

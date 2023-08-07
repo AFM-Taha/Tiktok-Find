@@ -27,7 +27,7 @@ export default function Products() {
                   height={350}
                   className="rounded-3xl bg-transparent bg-opacity-0"
                   alt={item.title}
-                  src={item.pic_url}
+                  src={item.item_imgs[0].url}
                 />
               </div>
               <div className="mt-2 flex justify-between gap-1 bg-transparent bg-opacity-0 px-2 text-white">
