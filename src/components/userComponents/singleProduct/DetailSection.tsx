@@ -21,7 +21,7 @@ type InfoProps = {
     category: string | undefined;
     description: string;
     ratingsCount: number;
-    images: [string];
+    images: string;
   };
 };
 
@@ -62,7 +62,7 @@ const DetailSection = ({ info }: InfoProps) => {
       addToCart({
         id: _id,
         name: name,
-        image: images[0],
+        image: images,
         price: price,
         quantity: cartCount,
       })
