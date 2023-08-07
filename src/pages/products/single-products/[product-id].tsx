@@ -1,4 +1,5 @@
 import { singleProductsBC } from '@/breadcrumb/single-product';
+import { baseURL } from '@/components/assets/url';
 import Breadcrumb from '@/components/userComponents/common/Breadcrumb';
 import DetailSection from '@/components/userComponents/singleProduct/DetailSection';
 import ImageSection from '@/components/userComponents/singleProduct/ImageSection';
@@ -10,10 +11,10 @@ import { useRouter } from 'next/router';
 const SingleProduct = () => {
   const router = useRouter();
   const productID = router.query['product-id'];
-  const { data, error, isLoading } = useGetData<null | Product>(
-    `https://tiktokfind-ecommerce-server.vercel.app/api/v1/products/${productID}`
+  const { data, error, isLoading } = useGetData<Product>(
+    `${baseURL}/products/${productID}`
   );
-  const images: string[] = [
+  const images = [
     '/fancyroom.webp',
     '/balllamp.webp',
     '/biketailled.webp',
@@ -25,6 +26,10 @@ const SingleProduct = () => {
 
   return (
     <div className="py-20">
+      {/* THESE 3 LINES NEEDS TO BE DELETED */}
+      <p>{JSON.stringify(data)}</p>
+      <p>{JSON.stringify(isLoading)}</p>
+      <p>{JSON.stringify(error)}</p>
       <div className="container mx-auto">
         <Breadcrumb data={singleProductsBC} />
         <div className=" justify-between gap-20 md:flex">
