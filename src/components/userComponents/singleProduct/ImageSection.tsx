@@ -1,34 +1,60 @@
-
+import { ItemImgs } from '@/types/products';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 type Props = {
-  images: Array<string>;
+  itemImgs: ItemImgs[];
 };
 
-const ImageSection = ({ images }: Props) => {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+const ImageSection = ({ itemImgs }: Props) => {
+  const [selectedImage, setSelectedImage] = useState(itemImgs[0]);
   return (
-    <div className="flex gap-5 justify-start items-start">
+    <div className="flex items-start justify-start gap-5">
       {/* Small Images */}
       <div className="mt-10 ">
-        {images.map((i, index) => {
-          return (
-            <div
-              className={`mb-5 cursor-pointer ${
-                i === selectedImage && 'ring-2 ring-blue-600 '
-              }`}
-              onClick={() => setSelectedImage(i)}
-              key={index}>
-              <Image src={i} alt="Product Image" height={100} width={100} />
-            </div>
-          );
-        })}
+        {/* Check if images are more than 6 or not */}
+        {itemImgs.length > 6
+          ? itemImgs.slice(6).map((obj) => {
+              // if more than 6 images are fetched, then slice them to 6
+              return (
+                <div
+                  className={`mb-5 cursor-pointer ${
+                    obj._id === selectedImage._id && 'ring-2 ring-blue-600 '
+                  }`}
+                  onClick={() => setSelectedImage(obj)}
+                  key={obj._id}>
+                  <Image
+                    src={obj.url}
+                    alt="Product Image"
+                    height={60}
+                    width={60}
+                  />
+                </div>
+              );
+            })
+          : // If only 6 images are fetcthed then do nothing
+            itemImgs.map((obj) => {
+              return (
+                <div
+                  className={`mb-5 cursor-pointer ${
+                    obj._id === selectedImage._id && 'ring-2 ring-blue-600 '
+                  }`}
+                  onClick={() => setSelectedImage(obj)}
+                  key={obj._id}>
+                  <Image
+                    src={obj.url}
+                    alt="Product Image"
+                    height={60}
+                    width={60}
+                  />
+                </div>
+              );
+            })}
       </div>
       {/* Large Image */}
       <div>
         <Image
-          src={selectedImage}
+          src={selectedImage.url}
           alt="Product Image"
           height={600}
           width={550}

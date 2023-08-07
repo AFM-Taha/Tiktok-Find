@@ -3,7 +3,7 @@ import { AiFillLock } from 'react-icons/ai';
 import { BsBoxSeam, BsShieldLock, BsPinterest, BsHeart } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
 import { FaTwitter } from 'react-icons/fa';
-import Ratings from '../common/Ratings';
+// import Ratings from '../common/Ratings';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/features/CartSlice';
 
@@ -12,16 +12,15 @@ type InfoProps = {
     _id: string;
     sku: string;
     name: string;
-    price: number;
+    price: string;
     stock: number;
     sale: number;
-    ratings: number;
+    // ratings: number;
     shipping: number;
     seller: string;
-    category: string;
+    category: string | undefined;
     description: string;
     ratingsCount: number;
-    quantity: number;
     images: [string];
   };
 };
@@ -33,12 +32,12 @@ const DetailSection = ({ info }: InfoProps) => {
     price,
     stock,
     images,
-    ratings,
+    // ratings,
     seller,
     category,
     sale,
     sku,
-    ratingsCount,
+    // ratingsCount,
   } = info;
 
   // Color
@@ -57,19 +56,18 @@ const DetailSection = ({ info }: InfoProps) => {
     }
   };
 
-
- const dispatch = useDispatch();
- const addCart = () => {
-   dispatch(
-     addToCart({
-       id: _id,
-       name: name,
-       image: images[0],
-       price: price,
-       quantity: cartCount,
-     })
-   );
- }; 
+  const dispatch = useDispatch();
+  const addCart = () => {
+    dispatch(
+      addToCart({
+        id: _id,
+        name: name,
+        image: images[0],
+        price: price,
+        quantity: cartCount,
+      })
+    );
+  };
 
   return (
     <div>
@@ -79,11 +77,11 @@ const DetailSection = ({ info }: InfoProps) => {
 
       <h2>
         <span className="text-xl font-semibold text-lime-500 ">
-          $ {(price - (price * sale) / 100).toFixed(2)}
+          $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)}
         </span>{' '}
         <span className="px-4 text-lg text-gray-400">
           {' '}
-          <del>$ {price.toFixed(2)}</del>
+          <del>$ {Number(price).toFixed(2)}</del>
         </span>
         <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
           -{sale}%
@@ -93,12 +91,12 @@ const DetailSection = ({ info }: InfoProps) => {
       {/*-------------------------------------------------------------------------------------- 
                                            Rating Section 
       ---------------------------------------------------------------------------------------*/}
-      <div className="mb-8 mt-2 flex items-baseline gap-4">
+      {/* <div className="mb-8 mt-2 flex items-baseline gap-4">
         <Ratings ratings={ratings} />
         <span className="text-sm text-gray-300">{ratingsCount} reviews</span>
       </div>
 
-      <div className="h-0.5 bg-gray-500"></div>
+      <div className="h-0.5 bg-gray-500"></div> */}
 
       {/* ------------------------------------------------------------------------------------
                               Add cart and buy now section 
@@ -217,7 +215,8 @@ const DetailSection = ({ info }: InfoProps) => {
       </div>
       <div className="mb-2 mt-6 flex items-center justify-start gap-4 text-gray-100">
         {' '}
-        <BsBoxSeam /> Spend ${(price + (price * 10) / 100).toFixed(2)} for Free
+        <BsBoxSeam /> Spend $
+        {(Number(price) + (Number(price) * 10) / 100).toFixed(2)} for Free
         Shipping
       </div>
 

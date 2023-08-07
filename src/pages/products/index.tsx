@@ -22,7 +22,7 @@ export default function Products() {
           <div
             key={item._id}
             className="group bg-transparent bg-opacity-0 even:translate-y-6 hover:rounded-3xl md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
-            <Link href={`/products/single-products/${item.num_iid}`}>
+            <Link href={`/products/single-products/${item._id}`}>
               <div className="bg-transparent bg-opacity-0">
                 <Image
                   // layout="intrinsic"
