@@ -1,14 +1,18 @@
 import Spinner from '@/components/userComponents/common/Spinner';
-import useProducts from '@/hooks/useProducts';
+import { useGetData } from '@/request/getData';
+import { FetchedProducts } from '@/types/products';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Products() {
-  const { data, error, isLoading } = useProducts();
+  const { data, error, isLoading } = useGetData<FetchedProducts>(
+    'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products'
+  );
   if (isLoading) return <Spinner />;
   if (error)
     return (
       <p className="my-32 text-center text-xl font-medium text-red-500">
-        {JSON.stringify(error)}
+        Something went wrong. Please try again.
       </p>
     );
   return (
@@ -18,7 +22,7 @@ export default function Products() {
           <div
             key={item._id}
             className="group bg-transparent bg-opacity-0 even:translate-y-6 hover:rounded-3xl md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
-            <a href="#">
+            <Link href={`/products/single-products/${item.num_iid}`}>
               <div className="bg-transparent bg-opacity-0">
                 <Image
                   // layout="intrinsic"
@@ -27,7 +31,7 @@ export default function Products() {
                   height={350}
                   className="rounded-3xl bg-transparent bg-opacity-0"
                   alt={item.title}
-                  src={item.pic_url}
+                  src={item.item_imgs[0].url}
                 />
               </div>
               <div className="mt-2 flex justify-between gap-1 bg-transparent bg-opacity-0 px-2 text-white">
@@ -45,7 +49,7 @@ export default function Products() {
                   <p className="font-medium">${item.price}</p>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         );
       })}
