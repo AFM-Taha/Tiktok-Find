@@ -1,11 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
-import { BsBoxSeam, BsShieldLock, BsPinterest, BsHeart } from 'react-icons/bs';
+import { BsBoxSeam, BsPinterest } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
-import { FaTwitter } from 'react-icons/fa';
+import { FaCartPlus, FaTwitter } from 'react-icons/fa';
 // import Ratings from '../common/Ratings';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/features/CartSlice';
+import { FcLike } from 'react-icons/fc';
+import { addToWishlist } from '@/redux/features/WishlistSlice';
 
 type InfoProps = {
   info: {
@@ -69,6 +71,18 @@ const DetailSection = ({ info }: InfoProps) => {
     );
   };
 
+  const addWishList = () => {
+    dispatch(
+      addToWishlist({
+        id: _id,
+        name: name,
+        image: images,
+        price: price,
+        quantity: cartCount,
+      })
+    );
+  };
+
   return (
     <div>
       <h1 className=" py-6 text-2xl font-semibold uppercase text-gray-100">
@@ -112,7 +126,7 @@ const DetailSection = ({ info }: InfoProps) => {
               <button
                 key={c}
                 onClick={() => setSelectedColor(c)}
-                className={`bg-${c}-600   h-6 w-8 ${
+                className={`bg-${c}-600 h-6 w-6 rounded-full ${
                   selectedColor === c && 'ring-4'
                 } ring-gray-400`}></button>
             ))}
@@ -127,7 +141,7 @@ const DetailSection = ({ info }: InfoProps) => {
               <button
                 key={s}
                 onClick={() => setSelectedSize(s)}
-                className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
+                className={` rounded-full border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
                   selectedSize === s ? ' border-blue-600' : 'border-gray-600'
                 } `}>
                 {s}
@@ -136,7 +150,7 @@ const DetailSection = ({ info }: InfoProps) => {
           </div>
         </div>
 
-        <div className="mb-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
+        <div className="mb-10 flex  w-full items-center justify-center rounded-full border px-0.5 py-1.5 md:w-1/2">
           {/* Increase BTN */}
           <button
             className=" px-5 text-3xl text-gray-100"
@@ -163,15 +177,18 @@ const DetailSection = ({ info }: InfoProps) => {
         <div className="items-center  gap-5 md:flex">
           <button
             onClick={addCart}
-            className="my-2 block w-full rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] py-4 font-bold text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
+            className="my-2  flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] py-4 font-bold text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
+            <FaCartPlus size={20} />
             Add to Cart
           </button>
           {/* <button className="w-full rounded-xl bg-gradient-to-r from-[#74e528] to-[#265705] py-4 font-semibold  text-gray-100 duration-200 hover:bg-lime-400 md:w-2/5 ">
             Buy it now{' '}
           </button> */}
         </div>
-        <button className="my-4 flex items-center justify-start gap-3 py-4 text-gray-200 duration-300 hover:text-blue-500">
-          <BsHeart /> <span>Add to wishlist</span>
+        <button
+          onClick={addWishList}
+          className="my-4 flex items-center justify-start gap-1 py-4 text-gray-200 duration-300 hover:text-blue-500">
+          <FcLike size={20} /> <span>Add to wishlist</span>
         </button>
 
         <p className="text-gray-200">Available Stock: {stock}</p>
@@ -203,7 +220,7 @@ const DetailSection = ({ info }: InfoProps) => {
         <div className="mb-2 flex items-center justify-start gap-4 ">
           <AiFillLock /> Secure payment
         </div>
-        <div className="mb-2 flex items-center justify-start gap-4">
+        {/* <div className="mb-2 flex items-center justify-start gap-4">
           {' '}
           <BsShieldLock /> 2 Year Warranty
         </div>
@@ -211,7 +228,7 @@ const DetailSection = ({ info }: InfoProps) => {
           {' '}
           <span className="mr-3">🔥</span>
           30 sold in last 18 hours
-        </div>
+        </div> */}
       </div>
       <div className="mb-2 mt-6 flex items-center justify-start gap-4 text-gray-100">
         {' '}

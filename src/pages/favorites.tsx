@@ -1,7 +1,12 @@
-import Image from 'next/image';
-import { BsHeartFill } from 'react-icons/bs';
+import WishListItem from '@/components/userComponents/common/WishlistItem';
+import { RootState } from '@/redux/store';
+import Link from 'next/link';
+import { BiLeftArrow } from 'react-icons/bi';
+import { useSelector } from 'react-redux';
 
 export default function Favorites() {
+  const wishlist = useSelector((state: RootState) => state.wishlists.wishlist);
+
   return (
     <section className="my-32">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -12,108 +17,28 @@ export default function Favorites() {
             </h1>
           </header>
 
-          <div className="mt-8">
-            <ul className="space-y-4">
-              <li className="flex items-center gap-4">
-                <Image
-                  height={100}
-                  width={100}
-                  src="/balllamp.webp"
-                  alt=""
-                  className="h-16 w-16 rounded object-cover"
-                />
-
-                <div>
-                  <h3 className="text-sm text-white">Basic Tee 6-Pack</h3>
-
-                  <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                    <div>
-                      <dt className="inline">Size:</dt>
-                      <dd className="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt className="inline">Color:</dt>
-                      <dd className="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="flex flex-1 items-center justify-end gap-2">
-                  <button className="text-gray-600 transition hover:text-red-600">
-                    <BsHeartFill color="red" />
-                    <span className="sr-only">Remove item</span>
-                  </button>
-                </div>
-              </li>
-
-              <li className="flex items-center gap-4">
-                <Image
-                  height={100}
-                  width={100}
-                  src="/balllamp.webp"
-                  alt=""
-                  className="h-16 w-16 rounded object-cover"
-                />
-
-                <div>
-                  <h3 className="text-sm text-white">Basic Tee 6-Pack</h3>
-
-                  <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                    <div>
-                      <dt className="inline">Size:</dt>
-                      <dd className="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt className="inline">Color:</dt>
-                      <dd className="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="flex flex-1 items-center justify-end gap-2">
-                  <button className="text-gray-600 transition hover:text-red-600">
-                    <BsHeartFill color="red" />
-                    <span className="sr-only">Remove item</span>
-                  </button>
-                </div>
-              </li>
-
-              <li className="flex items-center gap-4">
-                <Image
-                  height={100}
-                  width={100}
-                  src="/balllamp.webp"
-                  alt=""
-                  className="h-16 w-16 rounded object-cover"
-                />
-
-                <div>
-                  <h3 className="text-sm text-white">Basic Tee 6-Pack</h3>
-
-                  <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                    <div>
-                      <dt className="inline">Size:</dt>
-                      <dd className="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt className="inline">Color:</dt>
-                      <dd className="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="flex flex-1 items-center justify-end gap-2">
-                  <button className="text-gray-600 transition hover:text-red-600">
-                    <BsHeartFill color="red" />
-                    <span className="sr-only">Remove item</span>
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </div>
+          {wishlist.length > 0 ? (
+            <div className="mt-8">
+              <ul className="space-y-4">
+                {wishlist.map((w) => {
+                  return <WishListItem data={w} key={w.id} />;
+                })}
+              </ul>
+            </div>
+          ) : (
+            <div className=" text-gray-100">
+              <h2 className="mt-20 text-center text-7xl">Sorry!!</h2>
+              <h3 className="mt-3 text-center text-lg font-semibold text-gray-400">
+                Your Wishlist is Empty
+              </h3>
+              <Link
+                href={'/'}
+                className="mt-20 flex items-center justify-center gap-5 p-5 text-center duration-300 hover:-translate-x-4 hover:text-blue-500">
+                <BiLeftArrow />
+                Go Shopping
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>

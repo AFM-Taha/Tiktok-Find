@@ -9,7 +9,7 @@ import { countTotalPrice } from '@/redux/features/CartSlice';
 export default function Cart() {
   //  cart Length
   const cart = useSelector((state: RootState) => state.carts.cart);
-  let subtotal = useSelector((state: RootState) => state.carts.totalPrice);
+  const subtotal = useSelector((state: RootState) => state.carts.totalPrice);
   const dispatch = useDispatch();
   console.log(cart);
   useEffect(() => {
