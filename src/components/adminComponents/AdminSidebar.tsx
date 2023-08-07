@@ -1,33 +1,47 @@
+import { signOut } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaBoxOpen, FaShoppingBag, FaUsers } from 'react-icons/fa';
+import { FaBoxOpen, FaShoppingBag, FaSignOutAlt, FaUsers } from 'react-icons/fa';
 import { GiWorld } from 'react-icons/gi';
 import { PiTiktokLogoLight } from 'react-icons/pi';
+import auth from '../../../firebase.init';
+import { toast } from 'react-hot-toast';
+import Router from 'next/router';
 
- const adminMenu = [
-   {
-     id: 1,
-     icon: <FaUsers className="text-2xl text-gray-500" />,
-     name: 'User',
-     path: '/admin/manage-users',
-   },
-   {
-     id: 2,
-     icon: <FaShoppingBag className="text-2xl text-gray-500" />,
-     name: 'Products',
-     path: '/admin/manage-products',
-   },
-   {
-     id: 3,
-     icon: <FaBoxOpen className="text-2xl text-gray-500" />,
-     name: 'Orders',
-     path: '/admin/manage-orders',
-   },
- ];
+const adminMenu = [
+  {
+    id: 1,
+    icon: <FaUsers className="text-2xl text-gray-500" />,
+    name: 'Users',
+    path: '/admin/manage-users',
+  },
+  {
+    id: 2,
+    icon: <FaShoppingBag className="text-2xl text-gray-500" />,
+    name: 'Products',
+    path: '/admin/manage-products',
+  },
+  {
+    id: 3,
+    icon: <FaBoxOpen className="text-2xl text-gray-500" />,
+    name: 'Orders',
+    path: '/admin/manage-orders',
+  },
+];
 
 const AdminSidebar = ({ children }: any) => {
- const router=useRouter()
+  const router = useRouter()
+
+  const handleSignOut = async () => {
+    await signOut(auth)
+      .then(() => {
+        Router.push('/admin/login');
+        localStorage.removeItem('accessToken');
+        toast.success("Admin SignOut Successfully", { position: "top-left" });
+
+      })
+  };
 
   return (
     <>
@@ -53,19 +67,26 @@ const AdminSidebar = ({ children }: any) => {
             Find
           </Link>
           <ul className="mt-8 space-y-2 font-medium">
-           { adminMenu.map(m=>{
-            return (
-              <li key={m.id}>
-                <Link
-                  href={m.path}
-                  className={`flex hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 ${router.pathname.includes(m.path)?'bg-gray-700 text-gray-100':'text-gray-700'}`}>
-                  {m.icon}
+            {adminMenu.map(m => {
+              return (
+                <li key={m.id}>
+                  <Link
+                    href={m.path}
+                    className={`flex hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 ${router.pathname.includes(m.path) ? 'bg-gray-700 text-gray-100' : 'text-gray-700'}`}>
+                    {m.icon}
 
-                  <span className="ml-3">{m.name} </span>
-                </Link>
-              </li>
-            );
-           })}
+                    <span className="ml-3">{m.name} </span>
+                  </Link>
+                </li>
+              );
+            })}
+            <li className="">
+              <button onClick={handleSignOut} className={`flex w-full hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 text-gray-700`}>
+                <FaSignOutAlt className='' />
+
+                <span className="ml-3">Sign Out </span>
+              </button>
+            </li>
           </ul>
           <ul className="absolute bottom-5">
             <li>

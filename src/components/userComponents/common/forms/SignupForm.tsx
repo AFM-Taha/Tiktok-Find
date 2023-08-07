@@ -11,10 +11,10 @@ import { useRouter } from 'next/router';
 
 // go to ./LoginForm.tsx to know how the syntax works
 const schema = z.object({
-  username: z
+  displayName: z
     .string()
-    .min(2, 'Username must be at least 2 characters')
-    .max(30, 'Username must be less than 30 characters'),
+    .min(2, 'displayName must be at least 2 characters')
+    .max(40, 'displayName must be less than 30 characters'),
   email: z
     .string()
     .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi, 'Enter a valid email'),
@@ -47,7 +47,7 @@ export default function SignupForm() {
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
     // console.log(data);
-    const displayName = data.username;
+    const displayName = data.displayName;
     const email = data.email;
     const password = data.password;
     await createUserWithEmailAndPassword(email, password)
@@ -72,16 +72,16 @@ export default function SignupForm() {
       </div>
       <div>
         <input
-          {...register('username')}
+          {...register('displayName')}
           className="w-full rounded-2xl border-0 bg-[#EFF6FB] px-3 py-4"
-          id="username"
-          type="username"
-          placeholder="Username"
+          id="displayName"
+          type="displayName"
+          placeholder="Name"
         />
       </div>
-      {errors.username && (
+      {errors.displayName && (
         <p className="mt-1 pl-2 text-sm text-red-500">
-          {errors.username.message}
+          {errors.displayName.message}
         </p>
       )}
       <div>

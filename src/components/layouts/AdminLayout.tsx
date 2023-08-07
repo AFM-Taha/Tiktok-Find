@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import AdminSidebar from '../adminComponents/AdminSidebar';
+import withAdmin from '../Others/WithAdmin';
 
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -7,7 +8,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen ">
       <AdminSidebar>
 
-      {children}
+        {children}
       </AdminSidebar>
     </div>
   );

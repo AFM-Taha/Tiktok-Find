@@ -1,3 +1,4 @@
+import withAdmin from '@/components/Others/WithAdmin';
 import UserTR from '@/components/adminComponents/manageUser/UserTR';
 import { baseURL } from '@/components/assets/url';
 import Spinner from '@/components/userComponents/common/Spinner';
@@ -42,4 +43,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default withAdmin(User);
