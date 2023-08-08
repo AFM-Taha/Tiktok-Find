@@ -5,8 +5,7 @@ import auth from '../../../firebase.init';
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 import Spinner from '@/components/userComponents/common/Spinner';
-import UseAdmin from '@/hooks/useAdmin';
-import { boolean } from 'zod';
+import UseToken from '@/hooks/useToken';
 
 interface Admin {
   email: string;
@@ -38,8 +37,9 @@ export default function Login() {
   const from = (router.query.from);
 
 
+  const [token] = UseToken(suser);
 
-  const [admin]= UseAdmin(suser);
+
 
 
   if (sloading) {
@@ -48,8 +48,7 @@ export default function Login() {
 
 
 
-
-  if (admin) {
+  if (token) {
     if (from) {
       router.push(from);
     } else {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const UseToken = (user:any) => {
+const UseToken = (user: any) => {
     // const [user] = useAuthState(auth);
     const [token, setToken] = useState('');
     // console.log(user);

@@ -3,13 +3,12 @@ import AdminSidebar from '../adminComponents/AdminSidebar';
 import withAdmin from '../Others/WithAdmin';
 
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default withAdmin(function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen ">
       <AdminSidebar>
-
         {children}
       </AdminSidebar>
     </div>
   );
-}
+})

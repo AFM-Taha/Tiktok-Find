@@ -67,13 +67,8 @@ export default function LoginForm() {
   }
 
 
-  // const from = location.state?.from?.pathname || '/';
-  // const from = router.query.from || '/';
   const from = (router.query.from);
   
-
-  // console.log(router.query.from);
-  // console.log(from);
 
   const [token] = UseToken(suser || guser || fuser);
 

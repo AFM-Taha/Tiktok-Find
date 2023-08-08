@@ -6,4 +6,4 @@ export default function Spinner() {
       <GridLoader color="#00C2FF" />
     </div>
   );
-} 
+}  
