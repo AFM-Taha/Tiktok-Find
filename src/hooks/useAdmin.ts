@@ -15,7 +15,7 @@ const UseAdmin = () => {
     useEffect(() => {
 
         if (email) {
-            fetch(`http://localhost:5000/api/v1/users/isAdmin/${email}`, {
+            fetch(`https://tiktokfind-ecommerce-server.vercel.app/api/v1/users/isAdmin/${email}`, {
                 method: 'GET'
             })
                 .then(res => res.json())
