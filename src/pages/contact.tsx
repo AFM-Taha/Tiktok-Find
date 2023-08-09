@@ -2,7 +2,7 @@ import { FaMapMarkedAlt, FaPhone } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 export default function Contact() {
   return (
-    <div className=" my-32">
+    <div className=" py-32">
       <h2 className="mb-32 text-center text-5xl font-bold text-white lg:text-7xl">
         Contact Us
       </h2>

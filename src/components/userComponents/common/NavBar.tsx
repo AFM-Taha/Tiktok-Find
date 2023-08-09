@@ -4,13 +4,28 @@ import { PiTiktokLogoLight } from 'react-icons/pi';
 // import { useState } from 'react';
 import Link from 'next/link';
 import ProductCart from './ProductCart';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../../firebase.init';
+import { signOut } from 'firebase/auth';
+import { toast } from 'react-hot-toast';
+import Router from 'next/router';
 import UserProfileImage from '../userProfile/UserProfileImage';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
+  const [user] = useAuthState(auth);
+
+  const handleSignOut = async () => {
+    await signOut(auth).then(() => {
+      Router.push('/signin');
+      localStorage.removeItem('accessToken');
+      toast.success('User SignOut Successfully', { position: 'top-left' });
+    });
+  };
+
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 mx-4 mt-4 flex items-center justify-between bg-transparent">
+      <nav className="fixed left-0 right-0 top-0 z-50 mx-4 flex items-center justify-between pt-2">
         <div>
           <Link
             className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
@@ -25,13 +40,21 @@ export default function NavBar() {
             href="/cart">
             <ProductCart />
           </Link>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              href="/signin"
+              className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
+              Sign In
+            </Link>
+          )}
           <Link href="/profile">
             <UserProfileImage className="h-10 w-10 font-bold text-white" />
-          </Link>
-          <Link
-            href="login"
-            className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
-            Sign In
           </Link>
         </div>
       </nav>

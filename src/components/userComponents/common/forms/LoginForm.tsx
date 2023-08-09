@@ -1,4 +1,5 @@
 // import FormDataModel from '@/types/formData';
+import React from 'react';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowRight, FaRegUserCircle } from 'react-icons/fa';
@@ -6,6 +7,16 @@ import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaFacebook } from 'react-icons/fa';
+import auth from '../../../../../firebase.init';
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithFacebook,
+  useSignInWithGoogle,
+} from 'react-firebase-hooks/auth';
+import Spinner from '../Spinner';
+import UseToken from '@/hooks/useToken';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 // The schema below is the model of the form data
 /* 
@@ -31,12 +42,66 @@ type FormDataModel = z.infer<typeof schema>;
 export default function LoginForm() {
   // Pass the type to the hook and set the resolver to zodResolver
   // and pass the schema to the resolver
+  const [signInWithEmailAndPassword, suser, sloading, serror] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, fuser, floading, ferror] =
+    useSignInWithFacebook(auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const onSubmit: SubmitHandler<FormDataModel> = (data) => console.log(data);
+  const router = useRouter();
+
+  let someErrorMessages;
+  const getFirebaseErrorMessages = (firebaseMessage: any) => {
+    const messages = firebaseMessage?.split('/')[1].split(')')[0];
+    someErrorMessages = messages;
+  };
+
+  if (serror || gerror || ferror) {
+    if (serror) getFirebaseErrorMessages(serror?.message);
+    if (gerror) getFirebaseErrorMessages(gerror?.message);
+    if (ferror) getFirebaseErrorMessages(ferror?.message);
+  } else {
+    someErrorMessages = null;
+  }
+
+  const from: any = router.query.from;
+
+  const [token] = UseToken(suser || guser || fuser);
+
+  if (sloading || gloading || floading) {
+    return <Spinner />;
+  }
+
+  if (token) {
+    if (from) {
+      router.push(from);
+    } else {
+      router.push('/');
+    }
+    toast.success('Signin User Successfully');
+  }
+
+  const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
+    // console.log(data);
+    const email = data.email;
+    const password = data.password;
+    await signInWithEmailAndPassword(email, password).then(() => {
+      reset();
+    });
+  };
+
+  const handleGoogleSignin = async () => {
+    await signInWithGoogle();
+  };
+
+  const handleFacebookSignin = async () => {
+    await signInWithFacebook();
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,14 +114,36 @@ export default function LoginForm() {
         </div>
       </div>
       <div className="mb-4 flex justify-evenly">
-        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
+        <button
+          onClick={handleGoogleSignin}
+          className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FcGoogle size={24} />
         </button>
-        <button className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
+        <button
+          onClick={handleFacebookSignin}
+          className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FaFacebook size={24} color="#1877EA" />
         </button>
       </div>
       <p className="mb-4 text-center text-[#00000033]">OR</p>
+      {someErrorMessages && (
+        <div className="some-error-message m-4 mx-auto flex w-2/3 items-center  justify-center rounded-lg border bg-red-100  p-4 text-sm text-red-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="mr-2 h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          {someErrorMessages}
+        </div>
+      )}
       <div>
         <input
           {...register('email')}
