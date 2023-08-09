@@ -23,8 +23,8 @@ type InfoProps = {
     category: string | undefined;
     description: string;
     ratingsCount: number;
-    images: [string];
-    props_list:[string];
+    images: string;
+    props_list: [string];
   };
 };
 
@@ -43,7 +43,6 @@ const DetailSection = ({ info }: InfoProps) => {
     props_list,
     // ratingsCount,
   } = info;
-
 
   const colors = [];
   const sizes = [];
@@ -152,9 +151,9 @@ const DetailSection = ({ info }: InfoProps) => {
                     setSelectedColor(c);
                     console.log(c);
                   }}
-                  className={`bg-${c}-600   h-6 w-8 ${
+                  className={`bg-${c}-600 h-6 w-6 ${
                     selectedColor === c && 'ring-4'
-                  } ring-gray-400`}></button>
+                  } rounded-full ring-white`}></button>
               ))}
             </div>
           </div>
@@ -169,7 +168,7 @@ const DetailSection = ({ info }: InfoProps) => {
                 <button
                   key={s}
                   onClick={() => setSelectedSize(s)}
-                  className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
+                  className={` rounded-xl border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
                     selectedSize === s ? ' border-blue-600' : 'border-gray-600'
                   } `}>
                   {s}
@@ -183,7 +182,7 @@ const DetailSection = ({ info }: InfoProps) => {
           <div className="mb-10">
             <h3 className="text-gray-200">Specifications:</h3>
             <div className="mt-2">
-              <select>
+              <select className="rounded-xl">
                 {Specification?.map((s, i) => {
                   return (
                     <option key={i} value={s}>
@@ -207,8 +206,7 @@ const DetailSection = ({ info }: InfoProps) => {
           </div>
         )}
 
-        <div className="my-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
-
+        <div className="my-10 flex max-w-[290px] items-center justify-center rounded-xl border-2 border-gray-300 px-0.5 py-1.5">
           {/* Increase BTN */}
           <button
             className=" px-5 text-3xl text-gray-100"

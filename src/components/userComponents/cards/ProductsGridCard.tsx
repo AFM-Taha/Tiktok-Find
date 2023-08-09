@@ -23,8 +23,10 @@ export default function ProductsGridCard({
       </div>
       <div className="mt-2 flex flex-col justify-between px-4 pb-2 sm:flex-row">
         <div>
-          <h3 className=" font-semibold underline-offset-4 group-hover:underline">
-            {title}
+          <h3
+            title={title}
+            className=" font-semibold underline-offset-4 group-hover:underline">
+            {title.length > 23 ? title.slice(0, 23) + '...' : title}
           </h3>
         </div>
         <div className="flex gap-1">
