@@ -6,22 +6,16 @@ import Link from 'next/link';
 import ProductCart from './ProductCart';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
-import { signOut } from 'firebase/auth';
-import { toast } from 'react-hot-toast';
-import Router from 'next/router';
+// import { signOut } from 'firebase/auth';
+// import { toast } from 'react-hot-toast';
+// import Router from 'next/router';
 import UserProfileImage from '../userProfile/UserProfileImage';
+import { useState } from 'react';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const [user] = useAuthState(auth);
-
-  const handleSignOut = async () => {
-    await signOut(auth).then(() => {
-      Router.push('/signin');
-      localStorage.removeItem('accessToken');
-      toast.success('User SignOut Successfully', { position: 'top-left' });
-    });
-  };
 
   return (
     <>
@@ -34,26 +28,29 @@ export default function NavBar() {
             Find
           </Link>
         </div>
+        <div className="mx-4 flex-grow">
+          <input
+            type="text"
+            className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
+            value={searchText}
+            placeholder="Search products..."
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
         <div className="flex items-center justify-evenly gap-2">
           <Link
             className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
             href="/cart">
             <ProductCart />
           </Link>
-          {user ? (
-            <button
-              onClick={handleSignOut}
-              className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
-              Sign Out
-            </button>
-          ) : (
-            <Link
-              href="/signin"
-              className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
-              Sign In
-            </Link>
-          )}
-          <Link href="/profile">
+          <Link
+            href="/signin"
+            className={`rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white ${
+              user ? 'hidden' : ''
+            }`}>
+            Sign In
+          </Link>
+          <Link className={user ? '' : 'hidden'} href="/profile">
             <UserProfileImage className="h-10 w-10 font-bold text-white" />
           </Link>
         </div>
