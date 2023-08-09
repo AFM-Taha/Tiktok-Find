@@ -5,7 +5,10 @@ import { FaArrowRight } from 'react-icons/fa';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { z } from 'zod';
 import auth from '../../../../../firebase.init';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from 'react-firebase-hooks/auth';
 import Spinner from '../Spinner';
 import { useRouter } from 'next/router';
 
@@ -28,37 +31,36 @@ export default function SignupForm() {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const [createUserWithEmailAndPassword, cuser, cloading, cerror] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [createUserWithEmailAndPassword, cuser, cloading, cerror] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile] = useUpdateProfile(auth);
   const router = useRouter();
-
+  console.log(cuser);
 
   let signupError;
 
   if (cloading) {
-    return <Spinner />
-  };
+    return <Spinner />;
+  }
 
   if (cerror) {
-    signupError = <p className="text-red-700">{cerror?.message}</p>
-  };
+    signupError = <p className="text-red-700">{cerror?.message}</p>;
+  }
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
     // console.log(data);
     const displayName = data.displayName;
     const email = data.email;
     const password = data.password;
-    await createUserWithEmailAndPassword(email, password)
+    await createUserWithEmailAndPassword(email, password);
     // verifyEmail()
-    await updateProfile({ displayName: displayName })
-      .then(() => {
-        reset();
-        router.push("/signin");
-      })
+    await updateProfile({ displayName: displayName }).then(() => {
+      reset();
+      router.push('/signin');
+    });
   };
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +128,9 @@ export default function SignupForm() {
       </button>
       <p className="mt-2 text-center text-gray-700">
         Already have an account?{' '}
-        <Link href="/signin" className="font-bold text-blue-500 hover:underline">
+        <Link
+          href="/signin"
+          className="font-bold text-blue-500 hover:underline">
           Sign In
         </Link>
       </p>
