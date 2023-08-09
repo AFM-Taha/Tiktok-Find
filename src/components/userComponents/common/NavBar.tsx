@@ -36,7 +36,7 @@ export default function NavBar() {
             Find
           </Link>
         </div>
-        <div>
+        <div className="mx-4 flex-grow">
           <input
             type="text"
             className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
@@ -51,20 +51,14 @@ export default function NavBar() {
             href="/cart">
             <ProductCart />
           </Link>
-          {user ? (
-            <button
-              onClick={handleSignOut}
-              className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
-              Sign Out
-            </button>
-          ) : (
-            <Link
-              href="/signin"
-              className="rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white">
-              Sign In
-            </Link>
-          )}
-          <Link href="/profile">
+          <Link
+            href="/signin"
+            className={`rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white ${
+              user ? 'hidden' : ''
+            }`}>
+            Sign In
+          </Link>
+          <Link className={user ? '' : 'hidden'} href="/profile">
             <UserProfileImage className="h-10 w-10 font-bold text-white" />
           </Link>
         </div>
