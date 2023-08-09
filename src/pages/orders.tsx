@@ -36,22 +36,22 @@ export default function Orders() {
                   <dl className="space-y-0.5 text-sm text-white">
                     <div className="flex justify-between">
                       <dt>Subtotal</dt>
-                      <dd>£ {subtotal}</dd>
+                      <dd>$ {subtotal}</dd>
                     </div>
 
                     {/* <div className="flex justify-between">
                   <dt>VAT</dt>
-                  <dd>£25</dd>
+                  <dd>$25</dd>
                 </div> */}
 
                     <div className="flex justify-between">
                       <dt>Delivery charges</dt>
-                      <dd>£20</dd>
+                      <dd>$20</dd>
                     </div>
 
                     <div className="flex justify-between !text-base font-medium">
                       <dt>Total</dt>
-                      <dd>£ {subtotal + 20}</dd>
+                      <dd>$ {subtotal + 20}</dd>
                     </div>
                   </dl>
 

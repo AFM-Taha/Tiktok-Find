@@ -6,12 +6,12 @@ import CartList from '@/components/userComponents/Cart/CartList';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { countTotalPrice } from '@/redux/features/CartSlice';
+import PayButton from '@/components/Others/PayButton/PayButton';
 export default function Cart() {
   //  cart Length
   const cart = useSelector((state: RootState) => state.carts.cart);
   const subtotal = useSelector((state: RootState) => state.carts.totalPrice);
   const dispatch = useDispatch();
-  console.log(cart);
   useEffect(() => {
     dispatch(countTotalPrice());
   }, [subtotal, dispatch]);
@@ -47,22 +47,22 @@ export default function Cart() {
                     <dl className="space-y-0.5 text-sm text-white">
                       <div className="flex justify-between">
                         <dt>Subtotal</dt>
-                        <dd>£ {subtotal.toFixed(2)}</dd>
+                        <dd>$ {subtotal.toFixed(2)}</dd>
                       </div>
 
                       {/* <div className="flex justify-between">
                       <dt>VAT</dt>
-                      <dd>£25</dd>
+                      <dd>$25</dd>
                     </div> */}
 
                       <div className="flex justify-between">
                         <dt>Delivery charges</dt>
-                        <dd>£20</dd>
+                        <dd>$20</dd>
                       </div>
 
                       <div className="flex justify-between !text-base font-medium">
                         <dt>Total</dt>
-                        <dd>£ {(subtotal + 20).toFixed(2)}</dd>
+                        <dd>$ {(subtotal + 20).toFixed(2)}</dd>
                       </div>
                     </dl>
 
@@ -77,12 +77,13 @@ export default function Cart() {
                   </div> */}
 
                     <div className="flex justify-end">
-                      <Link
+                      {/* <Link
                         href="/checkout"
                         className="inline-block rounded bg-blue-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-blue-800">
                         Checkout
                         <FaChevronRight className="-mt-[2px] ml-1 inline-block" />
-                      </Link>
+                      </Link> */}
+                      <PayButton checkoutItems={cart} />
                     </div>
                   </div>
                 </div>
