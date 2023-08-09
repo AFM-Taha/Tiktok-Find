@@ -1,8 +1,6 @@
 import PayButton from '@/components/Others/PayButton/PayButton';
 import { RootState } from '@/redux/store';
 import Image from 'next/image';
-import Link from 'next/link';
-import { FaDhl, FaFedex } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
 export default function Checkout() {

@@ -1,4 +1,3 @@
-import { FaChevronRight } from 'react-icons/fa';
 import { BiLeftArrow } from 'react-icons/bi';
 import { RootState } from '@/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
