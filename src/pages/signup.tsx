@@ -1,6 +1,8 @@
 import SignupForm from '@/components/userComponents/common/forms/SignupForm';
 
 export default function Signup() {
+
+
   return (
     <div className="mb-16 flex flex-col justify-evenly lg:flex-row">
       <div className="ml-4">

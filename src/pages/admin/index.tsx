@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import withAdmin from '@/components/Others/WithAdmin';
 const DashBoard = () => {
   const { push } = useRouter();
 
@@ -10,4 +11,4 @@ const DashBoard = () => {
   //   return;
 };
 
-export default DashBoard;
+export default withAdmin(DashBoard);

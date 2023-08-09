@@ -1,4 +1,7 @@
-export default function About() {
+import withAuth from '@/components/Others/WithAuth';
+import React from 'react';
+
+const About = () => {
   return (
     <div className="mx-auto my-32 max-w-7xl text-center text-white">
       <h2 className="mb-8 text-9xl font-bold">About Us</h2>
@@ -31,4 +34,6 @@ export default function About() {
       </p>
     </div>
   );
-}
+};
+
+export default withAuth(About);
