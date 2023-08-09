@@ -22,18 +22,16 @@ export default function ResetPassWord() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const onSubmit: SubmitHandler<FormDataModel> = async(data) => {
+  const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
     const email = data?.email;
     // console.log(email);
     await sendPasswordResetEmail(email);
     toast.success(`Email Sent to ${email}!`);
   };
 
-
-
   return (
     <form className="mb-64" onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-16 mt-32 text-center">
+      <div className="mb-16 pt-32 text-center">
         <h2 className="inline-block bg-gradient-to-r from-[#46A0E3] to-[#5845DF] bg-clip-text p-2 text-5xl font-bold text-transparent md:text-7xl">
           Enter you Email
         </h2>

@@ -1,10 +1,9 @@
-import withAuth from '@/components/Others/WithAuth';
-import React from 'react';
-
 const About = () => {
   return (
-    <div className="mx-auto my-32 max-w-7xl text-center text-white">
-      <h2 className="mb-8 text-9xl font-bold">About Us</h2>
+    <div className="mx-auto max-w-7xl px-8 py-32 text-center text-white">
+      <h2 className="mb-8 text-5xl font-bold md:text-8xl lg:text-9xl">
+        About Us
+      </h2>
       <p className="mb-6 text-left text-xl font-medium">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, modi.
         Quasi ipsa cum laudantium voluptatum aut corporis quibusdam, numquam
@@ -36,4 +35,4 @@ const About = () => {
   );
 };
 
-export default withAuth(About);
+export default About;

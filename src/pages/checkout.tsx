@@ -1,10 +1,14 @@
+import PayButton from '@/components/Others/PayButton/PayButton';
+import { RootState } from '@/redux/store';
 import Image from 'next/image';
-import Link from 'next/link';
-import { FaDhl, FaFedex } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 export default function Checkout() {
+  //  cart Length
+  const cart = useSelector((state: RootState) => state.carts.cart);
+
   return (
-    <div className="mb-32 mt-32 text-white">
+    <div className="mb-32 pt-32 text-white">
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <div className="px-4 pt-8">
           <p className="mb-1 text-5xl font-extrabold lg:text-7xl">
@@ -14,42 +18,63 @@ export default function Checkout() {
             Check your items. And select a suitable shipping method.
           </p>
           <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-            <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-              <Image
-                height={96}
-                width={112}
-                className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                alt="white shoes"
-              />
-              <div className="flex w-full flex-col px-4 py-4">
-                <span className="font-semibold text-black">
-                  Nike Air Max Pro 8888 - Super Light
-                </span>
-                <span className="float-right text-gray-400">42EU - 8.5US</span>
-                <p className="text-lg font-bold text-black">$138.99</p>
-              </div>
-            </div>
-            <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-              <Image
-                height={96}
-                width={112}
-                className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                alt=""
-              />
-              <div className="flex w-full flex-col px-4 py-4">
-                <span className="font-semibold text-black">
-                  Nike Air Max Pro 8888 - Super Light
-                </span>
-                <span className="float-right text-gray-400">42EU - 8.5US</span>
-                <p className="mt-auto text-lg font-bold text-black">$238.99</p>
-              </div>
-            </div>
+            {cart.length > 0 && (
+              <>
+                {cart.map((c) => {
+                  const {
+                    id,
+                    name,
+                    image,
+                    quantity,
+                    price,
+                    color,
+                    size,
+                    specification,
+                  } = c;
+
+                  return (
+                    <div
+                      key={id}
+                      className="flex flex-col rounded-lg bg-white sm:flex-row">
+                      <Image
+                        height={96}
+                        width={112}
+                        alt={name}
+                        className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                        src={image}
+                      />
+                      <div className="flex w-full flex-col px-4 py-4">
+                        <span className="font-semibold text-black ">
+                          {name}
+                        </span>
+                        {color?.length > 1 && (
+                          <span className="float-right capitalize text-gray-400">
+                            Color - {color}
+                          </span>
+                        )}
+                        {size?.length > 1 && (
+                          <span className="float-right capitalize text-gray-400">
+                            Size - {size}
+                          </span>
+                        )}
+                        {specification?.length > 1 && (
+                          <span className="float-right capitalize text-gray-400">
+                            Specification - {specification}
+                          </span>
+                        )}
+                        <p className="text-lg font-bold text-black">
+                          $ {price * quantity}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </div>
 
-          <p className="mt-8 text-lg font-medium">Shipping Methods</p>
-          <form className="mt-5 grid gap-6">
+          {/* <p className="mt-8 text-lg font-medium">Shipping Methods</p> */}
+          {/* <form className="mt-5 grid gap-6">
             <div className="relative">
               <input
                 className="peer hidden"
@@ -92,9 +117,9 @@ export default function Checkout() {
                 </div>
               </label>
             </div>
-          </form>
+          </form> */}
         </div>
-        <div className="mt-10 rounded-xl bg-gray-50 px-4 pt-8 lg:mt-0">
+        {/* <div className="mt-10 rounded-xl bg-gray-50 px-4 pt-8 lg:mt-0">
           <p className="text-5xl font-extrabold text-black lg:text-7xl">
             Payment Details
           </p>
@@ -122,7 +147,7 @@ export default function Checkout() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2">
+                  strokeWidth="2">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -151,7 +176,7 @@ export default function Checkout() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2">
+                  strokeWidth="2">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -257,6 +282,9 @@ export default function Checkout() {
               Place Order
             </button>
           </Link>
+        </div> */}
+        <div>
+          <PayButton checkoutItems={cart} />
         </div>
       </div>
     </div>

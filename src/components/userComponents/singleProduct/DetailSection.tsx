@@ -46,7 +46,7 @@ const DetailSection = ({ info }: InfoProps) => {
 
   const colors = [];
   const sizes = [];
-  const Specification = [];
+  const specification = [];
 
   for (const key in props_list) {
     const [row, col] = key.split(':').map(Number);
@@ -58,17 +58,21 @@ const DetailSection = ({ info }: InfoProps) => {
     } else if (value.startsWith('size:')) {
       if (!sizes[col]) sizes[col] = value.split(':')[1];
     } else if (value.startsWith('Specification:')) {
-      if (!Specification[col]) Specification[col] = value.split(':')[1];
+      if (!specification[col]) specification[col] = value.split(':')[1];
     } else if (value.startsWith('Specifications:')) {
-      if (!Specification[col]) Specification[col] = value.split(':')[1];
+      if (!specification[col]) specification[col] = value.split(':')[1];
     }
   }
 
   // Color
   const [selectedColor, setSelectedColor] = useState(colors[0]);
-
   //   Size
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
+  // Specifications
+  const [selectedSpecifications, setSelectedSpecifications] = useState(
+    specification[0]
+  );
+
   //   cart count
   const [cartCount, setCartCount] = useState(1);
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +91,9 @@ const DetailSection = ({ info }: InfoProps) => {
         image: images,
         price: price,
         quantity: cartCount,
+        color: selectedColor,
+        size: setSelectedSize,
+        specification: selectedSpecifications,
       })
     );
   };
@@ -99,6 +106,9 @@ const DetailSection = ({ info }: InfoProps) => {
         image: images,
         price: price,
         quantity: cartCount,
+        color: selectedColor,
+        size: setSelectedSize,
+        specification: selectedSpecifications,
       })
     );
   };
@@ -178,12 +188,15 @@ const DetailSection = ({ info }: InfoProps) => {
           </div>
         )}
         {/* specifications */}
-        {Specification?.length > 0 && (
+        {specification?.length > 0 && (
           <div className="mb-10">
             <h3 className="text-gray-200">Specifications:</h3>
             <div className="mt-2">
-              <select className="rounded-xl">
-                {Specification?.map((s, i) => {
+              <select
+                value={selectedSpecifications}
+                onChange={(e) => setSelectedSpecifications(e.target.value)}
+                className="rounded-xl">
+                {specification?.map((s, i) => {
                   return (
                     <option key={i} value={s}>
                       {s}
