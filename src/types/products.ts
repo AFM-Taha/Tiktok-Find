@@ -38,13 +38,13 @@ export interface Product {
   item_size: string;
   item_weight: string;
   props: Prop[];
-  props_list: PropsList;
   total_sold: any;
   video: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
   category?: string;
+  props_list:[string]
 }
 
 export interface Skus {
