@@ -6,9 +6,9 @@ import Link from 'next/link';
 import ProductCart from './ProductCart';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
-import { signOut } from 'firebase/auth';
-import { toast } from 'react-hot-toast';
-import Router from 'next/router';
+// import { signOut } from 'firebase/auth';
+// import { toast } from 'react-hot-toast';
+// import Router from 'next/router';
 import UserProfileImage from '../userProfile/UserProfileImage';
 import { useState } from 'react';
 
@@ -16,14 +16,6 @@ export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [user] = useAuthState(auth);
-
-  const handleSignOut = async () => {
-    await signOut(auth).then(() => {
-      Router.push('/signin');
-      localStorage.removeItem('accessToken');
-      toast.success('User SignOut Successfully', { position: 'top-left' });
-    });
-  };
 
   return (
     <>
