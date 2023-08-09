@@ -2,7 +2,7 @@ import { FaQuestion } from 'react-icons/fa';
 
 export default function FAQ() {
   return (
-    <div className="mx-auto my-32 max-w-7xl px-8 text-white">
+    <div className="mx-auto max-w-7xl px-8 py-32 text-white">
       <h2 className="mb-16 text-center text-3xl font-bold sm:text-5xl lg:text-7xl">
         Frequently Asked Questions
       </h2>

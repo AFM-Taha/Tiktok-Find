@@ -5,7 +5,7 @@ import { BsFillCartCheckFill, BsHeart } from 'react-icons/bs';
 
 export default function Profile() {
   return (
-    <div className="mx-auto mt-32 max-w-md text-white">
+    <div className="mx-auto max-w-md pt-32 text-white">
       <h1 className="mb-8 text-center text-3xl font-black md:text-7xl">
         Your Profile
       </h1>

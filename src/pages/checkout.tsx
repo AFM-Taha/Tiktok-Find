@@ -4,7 +4,7 @@ import { FaDhl, FaFedex } from 'react-icons/fa';
 
 export default function Checkout() {
   return (
-    <div className="mb-32 mt-32 text-white">
+    <div className="mb-32 pt-32 text-white">
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <div className="px-4 pt-8">
           <p className="mb-1 text-5xl font-extrabold lg:text-7xl">
