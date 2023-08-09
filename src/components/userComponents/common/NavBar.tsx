@@ -10,9 +10,11 @@ import { signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import Router from 'next/router';
 import UserProfileImage from '../userProfile/UserProfileImage';
+import { useState } from 'react';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const [user] = useAuthState(auth);
 
   const handleSignOut = async () => {
@@ -33,6 +35,15 @@ export default function NavBar() {
             <PiTiktokLogoLight className="inline pr-1" size={30} />
             Find
           </Link>
+        </div>
+        <div>
+          <input
+            type="text"
+            className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
+            value={searchText}
+            placeholder="Search products..."
+            onChange={(e) => setSearchText(e.target.value)}
+          />
         </div>
         <div className="flex items-center justify-evenly gap-2">
           <Link
