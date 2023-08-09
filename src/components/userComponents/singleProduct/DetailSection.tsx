@@ -1,28 +1,30 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
-import { BsBoxSeam, BsShieldLock, BsPinterest, BsHeart } from 'react-icons/bs';
+import { BsBoxSeam, BsPinterest } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
-import { FaTwitter } from 'react-icons/fa';
-import Ratings from '../common/Ratings';
+import { FaCartPlus, FaTwitter } from 'react-icons/fa';
+// import Ratings from '../common/Ratings';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/features/CartSlice';
+import { FcLike } from 'react-icons/fc';
+import { addToWishlist } from '@/redux/features/WishlistSlice';
 
 type InfoProps = {
   info: {
     _id: string;
     sku: string;
     name: string;
-    price: number;
+    price: string;
     stock: number;
     sale: number;
-    ratings: number;
+    // ratings: number;
     shipping: number;
     seller: string;
-    category: string;
+    category: string | undefined;
     description: string;
     ratingsCount: number;
-    quantity: number;
-    images: [string];
+    images: string;
+    props_list: [string];
   };
 };
 
@@ -33,20 +35,39 @@ const DetailSection = ({ info }: InfoProps) => {
     price,
     stock,
     images,
-    ratings,
+    // ratings,
     seller,
     category,
     sale,
     sku,
-    ratingsCount,
+    props_list,
+    // ratingsCount,
   } = info;
 
+  const colors = [];
+  const sizes = [];
+  const Specification = [];
+
+  for (const key in props_list) {
+    const [row, col] = key.split(':').map(Number);
+    const value = props_list[key];
+    console.log(row);
+
+    if (value.startsWith('color:')) {
+      if (!colors[col]) colors[col] = value.split(':')[1];
+    } else if (value.startsWith('size:')) {
+      if (!sizes[col]) sizes[col] = value.split(':')[1];
+    } else if (value.startsWith('Specification:')) {
+      if (!Specification[col]) Specification[col] = value.split(':')[1];
+    } else if (value.startsWith('Specifications:')) {
+      if (!Specification[col]) Specification[col] = value.split(':')[1];
+    }
+  }
+
   // Color
-  const colors = ['red', 'green', 'orange', 'blue'];
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   //   Size
-  const sizes = ['sx', 'm', 'lg', '2xl'];
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
   //   cart count
   const [cartCount, setCartCount] = useState(1);
@@ -57,19 +78,30 @@ const DetailSection = ({ info }: InfoProps) => {
     }
   };
 
+  const dispatch = useDispatch();
+  const addCart = () => {
+    dispatch(
+      addToCart({
+        id: _id,
+        name: name,
+        image: images,
+        price: price,
+        quantity: cartCount,
+      })
+    );
+  };
 
- const dispatch = useDispatch();
- const addCart = () => {
-   dispatch(
-     addToCart({
-       id: _id,
-       name: name,
-       image: images[0],
-       price: price,
-       quantity: cartCount,
-     })
-   );
- }; 
+  const addWishList = () => {
+    dispatch(
+      addToWishlist({
+        id: _id,
+        name: name,
+        image: images,
+        price: price,
+        quantity: cartCount,
+      })
+    );
+  };
 
   return (
     <div>
@@ -79,11 +111,11 @@ const DetailSection = ({ info }: InfoProps) => {
 
       <h2>
         <span className="text-xl font-semibold text-lime-500 ">
-          $ {(price - (price * sale) / 100).toFixed(2)}
+          $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)}
         </span>{' '}
         <span className="px-4 text-lg text-gray-400">
           {' '}
-          <del>$ {price.toFixed(2)}</del>
+          <del>$ {Number(price).toFixed(2)}</del>
         </span>
         <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
           -{sale}%
@@ -93,12 +125,12 @@ const DetailSection = ({ info }: InfoProps) => {
       {/*-------------------------------------------------------------------------------------- 
                                            Rating Section 
       ---------------------------------------------------------------------------------------*/}
-      <div className="mb-8 mt-2 flex items-baseline gap-4">
+      {/* <div className="mb-8 mt-2 flex items-baseline gap-4">
         <Ratings ratings={ratings} />
         <span className="text-sm text-gray-300">{ratingsCount} reviews</span>
       </div>
 
-      <div className="h-0.5 bg-gray-500"></div>
+      <div className="h-0.5 bg-gray-500"></div> */}
 
       {/* ------------------------------------------------------------------------------------
                               Add cart and buy now section 
@@ -107,38 +139,74 @@ const DetailSection = ({ info }: InfoProps) => {
         {/* Color and Size Section*/}
 
         {/* Color */}
-        <div className="mb-4">
-          <h3 className="text-gray-200">Color:</h3>
-          <div className="mt-2 flex gap-4">
-            {colors.map((c) => (
-              <button
-                key={c}
-                onClick={() => setSelectedColor(c)}
-                className={`bg-${c}-600   h-6 w-8 ${
-                  selectedColor === c && 'ring-4'
-                } ring-gray-400`}></button>
-            ))}
+
+        {colors?.length > 0 && (
+          <div className="mb-4">
+            <h3 className="text-gray-200">Color:</h3>
+            <div className="mt-2 flex gap-4">
+              {colors.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => {
+                    setSelectedColor(c);
+                    console.log(c);
+                  }}
+                  className={`bg-${c}-600 h-6 w-6 ${
+                    selectedColor === c && 'ring-4'
+                  } rounded-full ring-white`}></button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Size */}
-        <div className="mb-10">
-          <h3 className="text-gray-200">Size:</h3>
-          <div className="mt-2 flex gap-4">
-            {sizes.map((s) => (
-              <button
-                key={s}
-                onClick={() => setSelectedSize(s)}
-                className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
-                  selectedSize === s ? ' border-blue-600' : 'border-gray-600'
-                } `}>
-                {s}
-              </button>
-            ))}
+        {sizes?.length > 0 && (
+          <div className="mb-10">
+            <h3 className="text-gray-200">Size:</h3>
+            <div className="mt-2 flex gap-4">
+              {sizes.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSelectedSize(s)}
+                  className={` rounded-xl border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
+                    selectedSize === s ? ' border-blue-600' : 'border-gray-600'
+                  } `}>
+                  {s}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+        {/* specifications */}
+        {Specification?.length > 0 && (
+          <div className="mb-10">
+            <h3 className="text-gray-200">Specifications:</h3>
+            <div className="mt-2">
+              <select className="rounded-xl">
+                {Specification?.map((s, i) => {
+                  return (
+                    <option key={i} value={s}>
+                      {s}
+                    </option>
+                  );
+                })}
+              </select>
 
-        <div className="mb-10 flex  w-full items-center justify-center border-2   border-gray-300 px-0.5 py-1.5 md:w-1/2">
+              {/* {sizes.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSelectedSize(s)}
+                  className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
+                    selectedSize === s ? ' border-blue-600' : 'border-gray-600'
+                  } `}>
+                  {s}
+                </button>
+              ))} */}
+            </div>
+          </div>
+        )}
+
+        <div className="my-10 flex max-w-[290px] items-center justify-center rounded-xl border-2 border-gray-300 px-0.5 py-1.5">
           {/* Increase BTN */}
           <button
             className=" px-5 text-3xl text-gray-100"
@@ -165,15 +233,18 @@ const DetailSection = ({ info }: InfoProps) => {
         <div className="items-center  gap-5 md:flex">
           <button
             onClick={addCart}
-            className="my-2 block w-full rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] py-4 font-bold text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
+            className="my-2  flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] py-4 font-bold text-gray-100 duration-200 hover:bg-orange-400 md:w-2/5">
+            <FaCartPlus size={20} />
             Add to Cart
           </button>
           {/* <button className="w-full rounded-xl bg-gradient-to-r from-[#74e528] to-[#265705] py-4 font-semibold  text-gray-100 duration-200 hover:bg-lime-400 md:w-2/5 ">
             Buy it now{' '}
           </button> */}
         </div>
-        <button className="my-4 flex items-center justify-start gap-3 py-4 text-gray-200 duration-300 hover:text-blue-500">
-          <BsHeart /> <span>Add to wishlist</span>
+        <button
+          onClick={addWishList}
+          className="my-4 flex items-center justify-start gap-1 py-4 text-gray-200 duration-300 hover:text-blue-500">
+          <FcLike size={20} /> <span>Add to wishlist</span>
         </button>
 
         <p className="text-gray-200">Available Stock: {stock}</p>
@@ -205,7 +276,7 @@ const DetailSection = ({ info }: InfoProps) => {
         <div className="mb-2 flex items-center justify-start gap-4 ">
           <AiFillLock /> Secure payment
         </div>
-        <div className="mb-2 flex items-center justify-start gap-4">
+        {/* <div className="mb-2 flex items-center justify-start gap-4">
           {' '}
           <BsShieldLock /> 2 Year Warranty
         </div>
@@ -213,11 +284,12 @@ const DetailSection = ({ info }: InfoProps) => {
           {' '}
           <span className="mr-3">🔥</span>
           30 sold in last 18 hours
-        </div>
+        </div> */}
       </div>
       <div className="mb-2 mt-6 flex items-center justify-start gap-4 text-gray-100">
         {' '}
-        <BsBoxSeam /> Spend ${(price + (price * 10) / 100).toFixed(2)} for Free
+        <BsBoxSeam /> Spend $
+        {(Number(price) + (Number(price) * 10) / 100).toFixed(2)} for Free
         Shipping
       </div>
 

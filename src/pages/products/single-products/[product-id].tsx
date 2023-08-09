@@ -1,6 +1,7 @@
 import { singleProductsBC } from '@/breadcrumb/single-product';
 import { baseURL } from '@/components/assets/url';
 import Breadcrumb from '@/components/userComponents/common/Breadcrumb';
+import Spinner from '@/components/userComponents/common/Spinner';
 import DetailSection from '@/components/userComponents/singleProduct/DetailSection';
 import ImageSection from '@/components/userComponents/singleProduct/ImageSection';
 import ProductDescription from '@/components/userComponents/singleProduct/ProductDescription';
@@ -14,59 +15,52 @@ const SingleProduct = () => {
   const { data, error, isLoading } = useGetData<Product>(
     `${baseURL}/products/${productID}`
   );
-  const images = [
-    '/fancyroom.webp',
-    '/balllamp.webp',
-    '/biketailled.webp',
-    '/carts.webp',
-  ];
+  if (error)
+    return (
+      <div className="text-center text-red-500">{JSON.stringify(error)}</div>
+    );
+  if (isLoading) return <Spinner />;
+  if (data)
+    return (
+      <div className="py-20">
+        <div className="container mx-auto">
+          <Breadcrumb data={singleProductsBC} />
+          <div className=" justify-between gap-20 md:flex">
+            {/* left side */}
+            <div className="md:w-1/2">
+              {/* Img section  */}
+              <ImageSection itemImgs={data.item_imgs} />
 
-  const description =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis repellendus velit possimus, reiciendis recusandae libero dolorem ipsum hic facere animi sequi est corporis voluptate sunt quos deleniti. Modi, officiis dolorem. lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis repellendus velit possimus, reiciendis recusandae libero dolorem ipsum hic facere animi sequi est corporis voluptate sunt quos deleniti. Modi, officiis dolorem. lorem';
+              {/* Description section */}
+              <ProductDescription description={data.description} />
+            </div>
 
-  return (
-    <div className="py-20">
-      {/* THESE 3 LINES NEEDS TO BE DELETED */}
-      <p>{JSON.stringify(data)}</p>
-      <p>{JSON.stringify(isLoading)}</p>
-      <p>{JSON.stringify(error)}</p>
-      <div className="container mx-auto">
-        <Breadcrumb data={singleProductsBC} />
-        <div className=" justify-between gap-20 md:flex">
-          {/* left side */}
-          <div className="md:w-1/2">
-            {/* Img section  */}
-            <ImageSection images={images} />
-
-            {/* Description section */}
-            <ProductDescription description={description} />
-          </div>
-
-          {/* Right side or detail section */}
-          <div className="md:w-1/2">
-            <DetailSection
-              info={{
-                _id: '5',
-                name: 'this ia Product',
-                price: 50,
-                sale: 5,
-                stock: 40,
-                sku: 'j-50-lk',
-                images: ['/balllamp.webp'],
-                ratings: 5,
-                shipping: 55,
-                description: 'Hello, This is most powerful description ',
-                seller: 'Akib Al Hasan',
-                quantity: 12,
-                ratingsCount: 5,
-                category: 'new category',
-              }}
-            />
+            {/* Right side or detail section */}
+            <div className="md:w-1/2">
+              <DetailSection
+                info={{
+                  _id: data._id,
+                  name: data.title,
+                  price: data.price,
+                  sale: data.total_sold,
+                  stock: data.skus.sku.length,
+                  sku: data.skus.sku[0].sku_id,
+                  images: data.item_imgs[0].url,
+                  // ratings: 5,
+                  shipping: 55,
+                  description: data.description,
+                  seller: '',
+                  ratingsCount: 5,
+                  category: data.category,
+                  props_list: data.props_list,
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  return <p>Something went wrong, try again later.</p>;
 };
 
 export default SingleProduct;

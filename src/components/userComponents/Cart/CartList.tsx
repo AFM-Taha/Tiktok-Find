@@ -1,4 +1,5 @@
 import {
+  countTotalPrice,
   quantityDecreaseByOne,
   quantityIncreaseByOne,
   removeOne,
@@ -14,12 +15,13 @@ type Props = {
     name: string;
     image: string;
     quantity: number;
+    price: string;
   };
 };
 
 const CartList = ({ data }: Props) => {
   const dispatch = useDispatch();
-  const { id, name, image, quantity } = data;
+  const { id, name, image, quantity, price } = data;
   return (
     <li className="flex w-full flex-col items-start sm:flex-row sm:items-center sm:gap-4">
       <div className="flex items-center gap-4">
@@ -54,7 +56,10 @@ const CartList = ({ data }: Props) => {
               Quantity
             </label> */}
             <button
-              onClick={() => dispatch(quantityIncreaseByOne(id))}
+              onClick={() => {
+                dispatch(quantityIncreaseByOne(id));
+                dispatch(countTotalPrice());
+              }}
               className="p-1 text-xl font-semibold text-gray-100 duration-200 hover:text-red-500">
               +
             </button>
@@ -67,13 +72,16 @@ const CartList = ({ data }: Props) => {
               className="h-6 w-10 rounded border-gray-200 bg-gray-800 bg-opacity-50 text-center text-xs font-bold text-white [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
             />
             <button
-              onClick={() => dispatch(quantityDecreaseByOne(id))}
+              onClick={() => {
+                dispatch(quantityDecreaseByOne(id));
+                dispatch(countTotalPrice());
+              }}
               className="p-1 text-xl font-semibold text-gray-100 duration-200 hover:text-red-500">
               -
             </button>
             <p className="text-center text-xs font-bold text-white">
               {quantity} <span className="font-semibold text-gray-500">x</span>{' '}
-              ${45.99} = {(quantity * 45.99).toFixed(2)}
+              ${price} = {(quantity * Number(price)).toFixed(2)}
             </p>
           </div>
         </div>
