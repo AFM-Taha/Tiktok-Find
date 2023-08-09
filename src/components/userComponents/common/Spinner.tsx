@@ -1,9 +1,9 @@
-import { GridLoader } from "react-spinners";
+import { GridLoader } from 'react-spinners';
 
 export default function Spinner() {
   return (
-    <div className='w-screen h-screen overflow-hidden flex justify-center items-center'>
+    <div className="flex h-screen w-screen items-center justify-center overflow-hidden">
       <GridLoader color="#00C2FF" />
     </div>
   );
-}  
+}
