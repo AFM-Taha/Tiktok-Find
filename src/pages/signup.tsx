@@ -1,8 +1,6 @@
 import SignupForm from '@/components/userComponents/common/forms/SignupForm';
 
 export default function Signup() {
-
-
   return (
     <div className="mb-16 flex flex-col justify-evenly lg:flex-row">
       <div className="ml-4">
@@ -15,7 +13,7 @@ export default function Signup() {
           Sign up. It&apos;s free and only takes a minute.
         </p>
       </div>
-      <div className="mx-8 mt-8 rounded-3xl bg-white p-8 lg:mt-52">
+      <div className="mx-8 mt-8 min-h-[550px] min-w-[354px] rounded-3xl bg-white p-8 lg:mt-52">
         <SignupForm />
       </div>
     </div>
