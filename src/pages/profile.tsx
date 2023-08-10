@@ -1,5 +1,4 @@
 import UserProfileImage from '@/components/userComponents/userProfile/UserProfileImage';
-import { username } from '@/components/userComponents/userProfile/userData';
 import Link from 'next/link';
 import Router from 'next/router';
 import { BsFillCartCheckFill, BsHeart } from 'react-icons/bs';
