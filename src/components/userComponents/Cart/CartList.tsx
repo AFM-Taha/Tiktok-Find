@@ -16,12 +16,15 @@ type Props = {
     image: string;
     quantity: number;
     price: string;
+    color: string;
+    size: string;
+    specification:string
   };
 };
 
 const CartList = ({ data }: Props) => {
   const dispatch = useDispatch();
-  const { id, name, image, quantity, price } = data;
+  const { id, name, image, quantity, price, color, size, specification } = data;
   return (
     <li className="flex w-full flex-col items-start sm:flex-row sm:items-center sm:gap-4">
       <div className="flex items-center gap-4">
@@ -35,14 +38,24 @@ const CartList = ({ data }: Props) => {
         <div>
           <h3 className="text-white lg:text-lg xl:text-xl ">{name}</h3>
           <dl className="mt-0.5 space-y-px text-[14px] text-white text-opacity-50">
-            <div>
-              <dt className="inline">Size:</dt>
-              <dd className="inline">XXS</dd>
-            </div>
-            <div>
-              <dt className="inline">Color:</dt>
-              <dd className="inline">White</dd>
-            </div>
+            {size?.length > 1 && (
+              <div>
+                <dt className="inline">Size:</dt>
+                <dd className="inline"> {size}</dd>
+              </div>
+            )}
+            {color?.length > 1 && (
+              <div>
+                <dt className="inline">Color:</dt>
+                <dd className="inline capitalize"> {color}</dd>
+              </div>
+            )}
+            {specification?.length > 1 && (
+              <div>
+                <dt className="inline">Specification:</dt>
+                <dd className="inline capitalize"> {specification}</dd>
+              </div>
+            )}
           </dl>
         </div>
       </div>
