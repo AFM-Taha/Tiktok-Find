@@ -1,6 +1,8 @@
-import PayButton from '@/components/Others/PayButton/PayButton';
+// import PayButton from '@/components/Others/PayButton/PayButton';
 import { RootState } from '@/redux/store';
 import Image from 'next/image';
+import Link from 'next/link';
+import { FaDhl, FaFedex } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
 export default function Checkout() {
@@ -73,8 +75,8 @@ export default function Checkout() {
             )}
           </div>
 
-          {/* <p className="mt-8 text-lg font-medium">Shipping Methods</p> */}
-          {/* <form className="mt-5 grid gap-6">
+          <p className="mt-8 text-lg font-medium">Shipping Methods</p>
+          <form className="mt-5 grid gap-6">
             <div className="relative">
               <input
                 className="peer hidden"
@@ -117,9 +119,9 @@ export default function Checkout() {
                 </div>
               </label>
             </div>
-          </form> */}
+          </form>
         </div>
-        {/* <div className="mt-10 rounded-xl bg-gray-50 px-4 pt-8 lg:mt-0">
+        <div className="mt-10 rounded-xl bg-gray-50 px-4 pt-8 lg:mt-0">
           <p className="text-5xl font-extrabold text-black lg:text-7xl">
             Payment Details
           </p>
@@ -282,10 +284,10 @@ export default function Checkout() {
               Place Order
             </button>
           </Link>
-        </div> */}
-        <div>
-          <PayButton checkoutItems={cart} />
         </div>
+        {/* <div>
+          <PayButton checkoutItems={cart} />
+        </div> */}
       </div>
     </div>
   );

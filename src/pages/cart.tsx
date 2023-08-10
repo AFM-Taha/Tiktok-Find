@@ -5,7 +5,8 @@ import CartList from '@/components/userComponents/Cart/CartList';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { countTotalPrice } from '@/redux/features/CartSlice';
-import PayButton from '@/components/Others/PayButton/PayButton';
+// import PayButton from '@/components/Others/PayButton/PayButton';
+import { FaChevronRight } from 'react-icons/fa';
 export default function Cart() {
   //  cart Length
   const cart = useSelector((state: RootState) => state.carts.cart);
@@ -76,13 +77,13 @@ export default function Cart() {
                   </div> */}
 
                     <div className="flex justify-end">
-                      {/* <Link
+                      <Link
                         href="/checkout"
                         className="inline-block rounded bg-blue-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-blue-800">
                         Checkout
                         <FaChevronRight className="-mt-[2px] ml-1 inline-block" />
-                      </Link> */}
-                      <PayButton checkoutItems={cart} />
+                      </Link>
+                      {/* <PayButton checkoutItems={cart} /> */}
                     </div>
                   </div>
                 </div>
