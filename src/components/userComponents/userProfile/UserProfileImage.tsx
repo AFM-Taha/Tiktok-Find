@@ -1,8 +1,10 @@
 // import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { firstCharacterOfUsername } from './userData';
 
 interface Props {
   className: string;
+  username: string | null | undefined;
 }
 
 // const profileColors = [
@@ -25,16 +27,33 @@ interface Props {
 // const randomIndex = Math.floor(Math.random() * profileColors.length);
 // const randomColor = profileColors[randomIndex];
 
-export default function UserProfileImage({ className }: Props) {
+export default function UserProfileImage({ className, username }: Props) {
   // const [profileColor, setProfileColor] = useState();
 
   // const circleBackground = {
   //   backgroundColor: randomColor,
   // };
+  const [initials, setInitials] = useState('');
+  function userNameInitials(username: string) {
+    const names = username.split(' ');
+    let initials = '';
+    for (const name of names) {
+      initials += name.charAt(0);
+    }
+    return initials;
+  }
+
+  // const initials = userNameInitials(username);
+  useEffect(() => {
+    if (username) {
+      setInitials(userNameInitials(username));
+    }
+  }, [username]);
+  console.log(username);
   return (
     <div
       className={`flex items-center justify-center rounded-full bg-orange-500 ${className}`}>
-      {firstCharacterOfUsername}
+      {initials}
     </div>
   );
 }
