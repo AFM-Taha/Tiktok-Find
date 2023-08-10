@@ -1,6 +1,5 @@
 // import { useEffect, useState } from 'react';
 import { useEffect, useState } from 'react';
-import { firstCharacterOfUsername } from './userData';
 
 interface Props {
   className: string;
