@@ -12,7 +12,7 @@ export default function VideoBar() {
     if (containerRef.current) containerRef.current.scrollLeft += 500;
   };
   return (
-    <div className="flex items-center justify-center lg:mx-36">
+    <div className="mx-auto flex max-w-[71.25rem] items-center justify-center xl:max-w-[93.75rem]">
       <div className="hidden md:inline-block">
         <button
           className="rounded-full bg-white bg-opacity-20 p-2 hover:bg-opacity-50"
