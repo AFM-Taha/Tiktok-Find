@@ -5,7 +5,15 @@ interface Props {
 export default function VideoCard({ shorts_link }: Props) {
   // extract the shorts_id from the link
 
-  const shorts_id = shorts_link.split('shorts/')[1];
+  // Regular expression to match the video ID after /shorts/
+  const regex = /\/shorts\/([a-zA-Z0-9_-]+)/;
+
+  // Extract the video ID using the regex
+  const match = shorts_link.match(regex);
+
+  let shorts_id;
+
+  if (match && match[1]) shorts_id = match[1];
 
   return (
     <div className="rounded-3xl bg-[rgba(26,42,59,0.68)]">
