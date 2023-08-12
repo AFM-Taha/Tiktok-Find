@@ -7,13 +7,12 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyB7OtOS6ezu4_TFV5XKjNB24vGvkJmdvlc',
-  authDomain: 'tiktokfind-dfd92.firebaseapp.com',
-  projectId: 'tiktokfind-dfd92',
-  storageBucket: 'tiktokfind-dfd92.appspot.com',
-  messagingSenderId: '495701768786',
-  appId: '1:495701768786:web:f14193b5facce8ad1a7d8b',
-  measurementId: 'G-R4X6SRK0XK',
+    apiKey: "AIzaSyB7OtOS6ezu4_TFV5XKjNB24vGvkJmdvlc",
+    authDomain: "tiktokfind-dfd92.firebaseapp.com",
+    projectId: "tiktokfind-dfd92",
+    storageBucket: "tiktokfind-dfd92.appspot.com",
+    messagingSenderId: "495701768786",
+    appId: "1:495701768786:web:f14193b5facce8ad1a7d8b",
 };
 
 // Initialize Firebase
