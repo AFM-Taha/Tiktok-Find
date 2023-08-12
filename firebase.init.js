@@ -13,7 +13,6 @@ const firebaseConfig = {
     storageBucket: "tiktokfind-dfd92.appspot.com",
     messagingSenderId: "495701768786",
     appId: "1:495701768786:web:f14193b5facce8ad1a7d8b",
-    measurementId: "G-R4X6SRK0XK"
 };
 
 // Initialize Firebase
