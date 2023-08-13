@@ -24,7 +24,21 @@ const SingleProduct = () => {
     return (
       <div className="py-20">
         <div className="container mx-auto">
-          <Breadcrumb data={singleProductsBC} />
+          <Breadcrumb
+            data={[
+              ...singleProductsBC,
+              {
+                id: 3,
+                name: data.category ? data.category : 'Product Name',
+                url: '#',
+              },
+              {
+                id: 4,
+                name: data.title,
+                url: '#',
+              },
+            ]}
+          />
           <div className=" justify-between gap-20 md:flex">
             {/* left side */}
             <div className="md:w-1/2">
