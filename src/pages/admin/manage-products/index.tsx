@@ -16,7 +16,6 @@ const ProductManage = () => {
   if (error) return;
   if (isLoading) return <Spinner />;
 
-  console.log(data);
   if (data?.data)
     return (
       <div className="text-gray-100">

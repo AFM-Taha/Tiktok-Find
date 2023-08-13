@@ -19,17 +19,18 @@ export default function ProductsGridHome() {
     );
   if (data?.status === 'success')
     return (
-      <div className=" py-20">
+      <div className="py-20">
         <div className="mx-auto grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5  lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
           {data?.data.result.map((product) => (
             <div
               key={product._id}
               className="even:translate-y-6 md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
-              <Link href={`/products/single-products/${product._id}`}>
+              {/*       */}
+              <Link href={'/products/category-products/' + product.category}>
                 <ProductsGridCard
                   basePrice={Number(product.orginal_price)}
                   currentPrice={Number(product?.price)}
-                  imgsrc={product.item_imgs[0].url}
+                  imgsrc={product.item_imgs[0]?.url}
                   alttext={product?.title}
                   title={product?.title}
                 />

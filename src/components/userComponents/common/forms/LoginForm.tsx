@@ -83,11 +83,10 @@ export default function LoginForm() {
     } else {
       router.push('/');
     }
-    toast.success('Signin User Successfully');
+    toast.success('Signed in Successfully');
   }
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
-    // console.log(data);
     const email = data.email;
     const password = data.password;
     await signInWithEmailAndPassword(email, password).then(() => {
@@ -115,11 +114,13 @@ export default function LoginForm() {
       </div>
       <div className="mb-4 flex justify-evenly">
         <button
+          type="button"
           onClick={handleGoogleSignin}
           className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FcGoogle size={24} />
         </button>
         <button
+          type="button"
           onClick={handleFacebookSignin}
           className="rounded-xl bg-[#EFF6FB] px-6 py-2 hover:opacity-60">
           <FaFacebook size={24} color="#1877EA" />
@@ -172,15 +173,17 @@ export default function LoginForm() {
       )}
       <div className="text-end ">
         <Link href="/reset-password">
-          <button className="text-sm font-medium text-gray-600 hover:underline">
+          <button
+            type="button"
+            className="text-sm font-medium text-gray-600 hover:underline">
             Forgot Password?
           </button>
         </Link>
       </div>
 
       <button
-        className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-full bg-[#1469F3] px-4 py-2 font-medium text-white hover:opacity-80"
-        type="submit">
+        type="submit"
+        className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-full bg-[#1469F3] px-4 py-2 font-medium text-white hover:opacity-80">
         Sign In
         <FaArrowRight className="inline-block" />
       </button>

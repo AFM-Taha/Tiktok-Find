@@ -34,7 +34,6 @@ const ProductTR = ({
   product: Product;
   refetch: any;
 }) => {
-  // console.log(product);
   const [editRow, setEditRow] = useState(false);
 
   const { price, title, category, item_imgs, _id, description } = product;
@@ -77,7 +76,7 @@ const ProductTR = ({
           </div>
         </th>
         <td className="px-6 py-4 ">
-          {title.length > 30 ? title.slice(0, 30) + ' ...' : title}{' '}
+          {title?.length > 30 ? title.slice(0, 30) + ' ...' : title}{' '}
         </td>
         <td className="px-6 py-4">{category ? category : 'N/A'}</td>
         <td className="px-6 py-4">$ {price}</td>

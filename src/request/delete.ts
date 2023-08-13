@@ -11,7 +11,6 @@ export const remove = (url: string | '', refetch: RefetchFunction): void => {
         axios
             .delete(url)
             .then((res) => {
-                console.log(res);
                 if (res?.status === 200) {
                     refetch();
                     toast.error("Deleted !!");

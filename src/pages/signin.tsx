@@ -17,7 +17,7 @@ export default function Login() {
             Sign in to access your account.
           </p>
         </div>
-        <div className="mx-8 mt-8 rounded-3xl bg-white p-8 lg:mt-52">
+        <div className="mx-8 mt-8 min-h-[550px] min-w-[354px] rounded-3xl bg-white p-8 lg:mt-52">
           <LoginForm />
         </div>
       </div>

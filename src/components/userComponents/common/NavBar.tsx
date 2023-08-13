@@ -52,7 +52,10 @@ export default function NavBar() {
               Sign In
             </Link>
             <Link className={user ? '' : 'hidden'} href="/profile">
-              <UserProfileImage className="h-10 w-10 font-bold text-white" />
+              <UserProfileImage
+                username={user?.displayName}
+                className="h-10 w-10 font-bold text-white"
+              />
             </Link>
           </div>
         </div>

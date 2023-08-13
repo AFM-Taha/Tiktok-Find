@@ -37,8 +37,8 @@ export default function SignupForm() {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile] = useUpdateProfile(auth);
   const router = useRouter();
-  console.log(cuser);
 
+  console.log(cuser);
   let signupError;
 
   if (cloading) {
@@ -50,7 +50,6 @@ export default function SignupForm() {
   }
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
-    // console.log(data);
     const displayName = data.displayName;
     const email = data.email;
     const password = data.password;

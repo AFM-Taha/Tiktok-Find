@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
+import toast from 'react-hot-toast';
 
 
 const PayButton = ({ checkoutItems }:any) => {
     const [user] = useAuthState(auth);
-    console.log(checkoutItems);
     const handleCheckout = () => {
         axios.post(`https://tiktokfind-ecommerce-server.vercel.app/api/v1/stripe/create-checkout-session`, {
             checkoutItems,
@@ -14,7 +14,7 @@ const PayButton = ({ checkoutItems }:any) => {
             if (res.data.url) {
                 window.location.href = res.data.url
             }
-        }).catch((err) => console.log(err.message))
+        }).catch((err) => toast.error(err.message))
     }
     return (
         <>

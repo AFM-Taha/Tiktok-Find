@@ -51,8 +51,7 @@ const DetailSection = ({ info }: InfoProps) => {
   for (const key in props_list) {
     const [row, col] = key.split(':').map(Number);
     const value = props_list[key];
-    console.log(row);
-
+console.log(row);
     if (value.startsWith('color:')) {
       if (!colors[col]) colors[col] = value.split(':')[1];
     } else if (value.startsWith('size:')) {
@@ -159,7 +158,6 @@ const DetailSection = ({ info }: InfoProps) => {
                   key={c}
                   onClick={() => {
                     setSelectedColor(c);
-                    console.log(c);
                   }}
                   className={`bg-${c}-600 h-6 w-6 ${
                     selectedColor === c && 'ring-4'
@@ -205,16 +203,6 @@ const DetailSection = ({ info }: InfoProps) => {
                 })}
               </select>
 
-              {/* {sizes.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setSelectedSize(s)}
-                  className={` border-2 px-2.5 py-0.5 uppercase text-gray-200 ${
-                    selectedSize === s ? ' border-blue-600' : 'border-gray-600'
-                  } `}>
-                  {s}
-                </button>
-              ))} */}
             </div>
           </div>
         )}
@@ -250,9 +238,7 @@ const DetailSection = ({ info }: InfoProps) => {
             <FaCartPlus size={20} />
             Add to Cart
           </button>
-          {/* <button className="w-full rounded-xl bg-gradient-to-r from-[#74e528] to-[#265705] py-4 font-semibold  text-gray-100 duration-200 hover:bg-lime-400 md:w-2/5 ">
-            Buy it now{' '}
-          </button> */}
+   
         </div>
         <button
           onClick={addWishList}
