@@ -25,7 +25,6 @@ export default function ProductsGridHome() {
             <div
               key={product._id}
               className="even:translate-y-6 md:even:translate-y-0 lg:rounded-3xl xl:even:translate-y-10">
-              {/*       */}
               <Link href={'/products/category-products/' + product.category}>
                 <ProductsGridCard
                   basePrice={Number(product.orginal_price)}
