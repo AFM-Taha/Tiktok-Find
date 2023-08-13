@@ -1,10 +1,9 @@
-import { baseURL } from '@/components/assets/url';
+// import { baseURL } from '@/components/assets/url';
 import { remove } from '@/request/delete';
-import { patch } from '@/request/patch';
-import { Product } from '@/types/products';
-import Image from 'next/image';
+// import { patch } from '@/request/patch';
+// import { Product } from '@/types/products';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import {  useForm } from 'react-hook-form';
 import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
 
@@ -34,15 +33,15 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
   const {
     _id,
     delivery_status,
-    paymentIntentId,
+    // paymentIntentId,
     payment_status,
-    subtotal,
+    // subtotal,
     total,
-    customerId,
-    products,
-    shipping,
-    createdAt,
-    updatedAt,
+    // customerId,
+    // products,
+    // shipping,
+    // createdAt,
+    // updatedAt,
   } = order;
 
   // Delete && Edit URL
@@ -52,7 +51,7 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
   // __________Edit Product___________________
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 

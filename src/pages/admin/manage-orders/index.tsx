@@ -9,7 +9,7 @@ const OrderManage = () => {
 
   // Product fetch
   const { data, isLoading, error, refetch } =
-    useGetData<FetchedProducts>(productGetURL);
+    useGetData<FetchedProducts|any>(productGetURL);
 
   // Error and Loading
   if (error) return;
@@ -51,7 +51,7 @@ Delivery Status                </th>
               </tr>
             </thead>
             <tbody>
-              {data.map((o,i) => (
+              {data?.map((o:any,i:number) => (
                 
                 <OrderTR
                   key={i}
