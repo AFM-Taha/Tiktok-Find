@@ -19,40 +19,54 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 mx-4 flex items-center justify-between pt-2">
-        <div>
-          <Link
-            className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
-            href="/">
-            <PiTiktokLogoLight className="inline pr-1" size={30} />
-            Find
-          </Link>
+      <nav className="fixed left-0 right-0 top-0 z-50">
+        <div className="mx-4 flex items-center justify-between pt-2">
+          <div className="min-w-fit">
+            <Link
+              className="rounded-xl bg-[rgba(26,42,59,0.68)] p-2 text-xl font-medium tracking-wide text-white backdrop-blur-[5px] backdrop-saturate-150"
+              href="/">
+              <PiTiktokLogoLight className="inline pr-1" size={30} />
+              Find
+            </Link>
+          </div>
+          <div className="mx-4 hidden flex-grow sm:block">
+            <input
+              type="text"
+              className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
+              value={searchText}
+              placeholder="Search products..."
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </div>
+          <div className="flex items-center justify-evenly gap-2">
+            <Link
+              className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
+              href="/cart">
+              <ProductCart />
+            </Link>
+            <Link
+              href="/signin"
+              className={`rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white ${
+                user ? 'hidden' : ''
+              }`}>
+              Sign In
+            </Link>
+            <Link className={user ? '' : 'hidden'} href="/profile">
+              <UserProfileImage
+                username={user?.displayName}
+                className="h-10 w-10 font-bold text-white"
+              />
+            </Link>
+          </div>
         </div>
-        <div className="mx-4 flex-grow">
+        <div className="mx-4 sm:hidden">
           <input
             type="text"
-            className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
+            className="my-1 w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 font-medium text-white"
             value={searchText}
             placeholder="Search products..."
             onChange={(e) => setSearchText(e.target.value)}
           />
-        </div>
-        <div className="flex items-center justify-evenly gap-2">
-          <Link
-            className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
-            href="/cart">
-            <ProductCart />
-          </Link>
-          <Link
-            href="/signin"
-            className={`rounded-xl bg-gradient-to-r from-[#283be5] to-[#0093FF] px-8 py-2 font-bold text-white ${
-              user ? 'hidden' : ''
-            }`}>
-            Sign In
-          </Link>
-          <Link className={user ? '' : 'hidden'} href="/profile">
-            <UserProfileImage className="h-10 w-10 font-bold text-white" />
-          </Link>
         </div>
       </nav>
       {/* <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">

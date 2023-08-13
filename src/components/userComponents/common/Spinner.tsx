@@ -1,9 +1,10 @@
-import { GridLoader } from "react-spinners";
+import { PropagateLoader } from 'react-spinners';
 
 export default function Spinner() {
   return (
-    <div className='w-screen h-screen overflow-hidden flex justify-center items-center'>
-      <GridLoader color="#00C2FF" />
+    <div className="habib-spinner">
+      <PropagateLoader color="#4C7FE1" />
+      <span className="sr-only">Loading</span>
     </div>
   );
-}  
+}
