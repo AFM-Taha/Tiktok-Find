@@ -29,7 +29,16 @@ const CategoryProducts = () => {
   return (
     <div className="container mx-auto mb-28 py-20">
       <div>
-        <Breadcrumb data={categoryProductsBC} />
+        <Breadcrumb
+          data={[
+            ...categoryProductsBC,
+            {
+              id: 3,
+              name: categoryName,
+              url: '#',
+            },
+          ]}
+        />
         <div className="mx-auto grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5 lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
           {products.map((p: Product, i: number) => {
             const { _id, title, orginal_price, price, item_imgs } = p;
