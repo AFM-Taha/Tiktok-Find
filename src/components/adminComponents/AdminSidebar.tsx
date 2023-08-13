@@ -2,7 +2,12 @@ import { signOut } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaBoxOpen, FaShoppingBag, FaSignOutAlt, FaUsers } from 'react-icons/fa';
+import {
+  FaBoxOpen,
+  FaShoppingBag,
+  FaSignOutAlt,
+  FaUsers,
+} from 'react-icons/fa';
 import { GiWorld } from 'react-icons/gi';
 import { PiTiktokLogoLight } from 'react-icons/pi';
 import auth from '../../../firebase.init';
@@ -31,16 +36,14 @@ const adminMenu = [
 ];
 
 const AdminSidebar = ({ children }: any) => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    await signOut(auth)
-      .then(() => {
-        Router.push('/admin/login');
-        localStorage.removeItem('accessToken');
-        toast.success("Admin SignOut Successfully", { position: "top-left" });
-
-      })
+    await signOut(auth).then(() => {
+      Router.push('/admin/login');
+      localStorage.removeItem('accessToken');
+      toast.success('Admin SignOut Successfully', { position: 'top-left' });
+    });
   };
 
   return (
@@ -67,12 +70,16 @@ const AdminSidebar = ({ children }: any) => {
             Find
           </Link>
           <ul className="mt-8 space-y-2 font-medium">
-            {adminMenu.map(m => {
+            {adminMenu.map((m) => {
               return (
                 <li key={m.id}>
                   <Link
                     href={m.path}
-                    className={`flex hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 ${router.pathname.includes(m.path) ? 'bg-gray-700 text-gray-100' : 'text-gray-700'}`}>
+                    className={`flex items-center rounded-lg p-2 duration-200 hover:bg-gray-700 hover:text-gray-100 ${
+                      router.pathname.includes(m.path)
+                        ? 'bg-gray-700 text-gray-100'
+                        : 'text-gray-700'
+                    }`}>
                     {m.icon}
 
                     <span className="ml-3">{m.name} </span>
@@ -80,13 +87,6 @@ const AdminSidebar = ({ children }: any) => {
                 </li>
               );
             })}
-            <li className="">
-              <button onClick={handleSignOut} className={`flex w-full hover:bg-gray-700 hover:text-gray-100 duration-200 items-center rounded-lg p-2 text-gray-700`}>
-                <FaSignOutAlt className='' />
-
-                <span className="ml-3">Sign Out </span>
-              </button>
-            </li>
           </ul>
           <ul className="absolute bottom-5">
             <li>
@@ -98,6 +98,15 @@ const AdminSidebar = ({ children }: any) => {
 
                 <span className="ml-3"> Go to client site</span>
               </Link>
+            </li>
+            <li className="">
+              <button
+                onClick={handleSignOut}
+                className={`flex items-center rounded-lg p-2 text-gray-900 duration-300 hover:bg-gray-100 hover:underline dark:text-white dark:hover:bg-gray-700`}>
+                <FaSignOutAlt className="" />
+
+                <span className="ml-3">Sign Out </span>
+              </button>
             </li>
           </ul>
         </div>

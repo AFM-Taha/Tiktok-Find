@@ -34,7 +34,6 @@ const ProductTR = ({
   product: Product;
   refetch: any;
 }) => {
-  // console.log(product);
   const [editRow, setEditRow] = useState(false);
 
   const { price, title, category, item_imgs, _id, description } = product;

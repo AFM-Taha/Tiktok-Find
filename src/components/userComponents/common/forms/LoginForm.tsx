@@ -87,7 +87,6 @@ export default function LoginForm() {
   }
 
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
-    // console.log(data);
     const email = data.email;
     const password = data.password;
     await signInWithEmailAndPassword(email, password).then(() => {
