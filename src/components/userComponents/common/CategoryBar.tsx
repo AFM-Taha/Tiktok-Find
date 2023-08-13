@@ -29,7 +29,7 @@ export default function CategoryBar() {
   ];
 
   return (
-    <div className="mt-16 flex justify-center lg:mx-36">
+    <div className="mx-auto mt-16 flex max-w-[71.25rem] justify-center xl:max-w-[93.75rem] ">
       <div className="hidden md:inline-block">
         <button
           className="rounded-full bg-white bg-opacity-20 p-2 hover:bg-opacity-50"

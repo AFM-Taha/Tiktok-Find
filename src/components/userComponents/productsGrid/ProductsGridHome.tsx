@@ -30,7 +30,7 @@ export default function ProductsGridHome() {
                 <ProductsGridCard
                   basePrice={Number(product.orginal_price)}
                   currentPrice={Number(product?.price)}
-                  imgsrc={product.item_imgs[0].url}
+                  imgsrc={product.item_imgs[0]?.url}
                   alttext={product?.title}
                   title={product?.title}
                 />
