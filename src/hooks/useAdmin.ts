@@ -8,10 +8,6 @@ const UseAdmin = () => {
     const [adminLoading, setAdminLoading] = useState(true);
     const [user] = useAuthState(auth);
     const email = user?.email;
-
-    console.log("email from admin", email);
-
-
     useEffect(() => {
 
         if (email) {
@@ -19,9 +15,9 @@ const UseAdmin = () => {
                 method: 'GET'
             })
                 .then(res => res.json())
-                .then(data => {
-                    const admin = data.role === true;
-                    console.log(admin);
+                .then(() => {
+                    // const admin = data.role === true;
+                    // console.log(admin);
                     setAdmin(true);
                     setAdminLoading(false);
                 })
@@ -29,7 +25,6 @@ const UseAdmin = () => {
     }, [email]);
 
 
-    console.log("admin to admin", admin);
 
     return [admin, adminLoading];
 };

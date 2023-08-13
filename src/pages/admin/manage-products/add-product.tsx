@@ -46,11 +46,9 @@ const AddProduct = () => {
     try {
       const response = await axios.get<Single1688Product>(apiUrl);
       setProduct(response.data);
-      console.log(response);
       setLoading(false);
     } catch (error) {
       if (error instanceof AxiosError)
-        console.error('Error fetching data:', error.message);
       setLoading(false);
     }
   }
@@ -61,7 +59,6 @@ const AddProduct = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  // console.log(product);
 
   // Form hook to handle url
   const {
@@ -102,15 +99,11 @@ const AddProduct = () => {
       // toast.success(response.data);
       console.log('Response:', response.data);
     } catch (error: any) {
-      // console.error('Error submitting form:', error.message);
     }
   };
 
   if (Loading) return <Spinner />;
 
-  // const { pic_url, title, price }:  = product;
-
-  // console.log(product);
   return (
     <div className="text-gray-100">
       <h2 className="text-center text-3xl font-semibold">Manage Products</h2>

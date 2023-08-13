@@ -51,7 +51,6 @@ export default function Login() {
   }
 
   const onSubmit: SubmitHandler<Admin> = async (data) => {
-    // console.log(data);
     const email = data.email;
     const password = data.password;
     await signInWithEmailAndPassword(email, password).then(() => {
