@@ -5,6 +5,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Spinner from './Spinner';
 
 import Link from 'next/link';
+import { Product } from '@/types/products';
 
 export default function CategoryBar() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ export default function CategoryBar() {
   const products = data.data.result;
 
   const uniqueCategories: string[] = [
-    ...new Set(products.map((item) => item.category)),
+    ...new Set(products.map((item:Product) => item.category)) as any
   ];
 
   return (

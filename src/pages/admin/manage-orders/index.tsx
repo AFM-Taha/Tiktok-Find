@@ -8,26 +8,24 @@ const OrderManage = () => {
   const productGetURL = `${baseURL}/orders`;
 
   // Product fetch
-  const { data, isLoading, error, refetch } =
-    useGetData<FetchedProducts|any>(productGetURL);
+  const { data, isLoading, error, refetch } = useGetData<FetchedProducts | any>(
+    productGetURL
+  );
 
   // Error and Loading
   if (error) return;
   if (isLoading) return <Spinner />;
 
-  console.log(data);
   if (data)
     return (
       <div className="text-gray-100">
         <h2 className="mb-20 text-center text-3xl  font-semibold">
           Manage Orders
         </h2>
-        
 
         <h5 className="mt-4 text-lg ">
           {' '}
-          Total Products : 
-          {/* {data.data.totalProducts} */}
+          Total Products :{/* {data.data.totalProducts} */}
         </h5>
 
         <div className="relative  mt-2 overflow-x-auto shadow-md sm:rounded-lg">
@@ -38,12 +36,13 @@ const OrderManage = () => {
                   Order Id
                 </th>
                 <th scope="col" className="px-6 py-3">
-Payment Status
+                  Payment Status
                 </th>
                 <th scope="col" className="px-6 py-3">
-Delivery Status                </th>
-                <th scope="col" className="px-6 py-3">
                   Total Price
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Delivery Status{' '}
                 </th>
                 <th scope="col" className="px-6 py-3 text-right">
                   Action
@@ -51,13 +50,8 @@ Delivery Status                </th>
               </tr>
             </thead>
             <tbody>
-              {data?.map((o:any,i:number) => (
-                
-                <OrderTR
-                  key={i}
-                  order={o}
-                  refetch={refetch}
-                />
+              {data?.map((o: any, i: number) => (
+                <OrderTR key={i} order={o} refetch={refetch} />
               ))}
             </tbody>
           </table>

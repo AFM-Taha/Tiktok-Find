@@ -51,8 +51,7 @@ const DetailSection = ({ info }: InfoProps) => {
   for (const key in props_list) {
     const [row, col] = key.split(':').map(Number);
     const value = props_list[key];
-    console.log(row);
-
+console.log(row);
     if (value.startsWith('color:')) {
       if (!colors[col]) colors[col] = value.split(':')[1];
     } else if (value.startsWith('size:')) {
@@ -159,7 +158,6 @@ const DetailSection = ({ info }: InfoProps) => {
                   key={c}
                   onClick={() => {
                     setSelectedColor(c);
-                    console.log(c);
                   }}
                   className={`bg-${c}-600 h-6 w-6 ${
                     selectedColor === c && 'ring-4'

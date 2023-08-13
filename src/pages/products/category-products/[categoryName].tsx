@@ -32,8 +32,6 @@ const CategoryProducts = () => {
         <Breadcrumb data={categoryProductsBC} />
         <div className="mx-auto grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5 lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
           {products.map((p: Product, i: number) => {
-            console.log(p);
-
             const { _id, title, orginal_price, price, item_imgs } = p;
 
             return (

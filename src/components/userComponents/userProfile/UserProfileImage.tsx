@@ -48,7 +48,6 @@ export default function UserProfileImage({ className, username }: Props) {
       setInitials(userNameInitials(username));
     }
   }, [username]);
-  console.log(username);
   return (
     <div
       className={`flex items-center justify-center rounded-full bg-orange-500 ${className}`}>

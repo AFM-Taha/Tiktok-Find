@@ -21,7 +21,6 @@ const withAdmin = (WrappedComponent: any) => {
                 router.push({
                     pathname: '/admin/login',
                     query: { from: router.pathname },
-                    // console.log(router.pathname);
                 });
             };
         })

@@ -24,7 +24,6 @@ export default function ResetPassWord() {
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
   const onSubmit: SubmitHandler<FormDataModel> = async (data) => {
     const email = data?.email;
-    // console.log(email);
     await sendPasswordResetEmail(email);
     toast.success(`Email Sent to ${email}!`);
   };

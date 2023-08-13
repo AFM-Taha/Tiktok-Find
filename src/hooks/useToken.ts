@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 const UseToken = (user: any) => {
   // const [user] = useAuthState(auth);
   const [token, setToken] = useState('');
-  // console.log(user);
   useEffect(() => {
     const email = user?.user?.email;
     const displayName = user?.user?.displayName;
@@ -13,7 +12,6 @@ const UseToken = (user: any) => {
       email: email,
     };
 
-    // console.log(currentUser);
 
     if (email) {
       fetch(

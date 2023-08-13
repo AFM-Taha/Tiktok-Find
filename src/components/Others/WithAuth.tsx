@@ -8,7 +8,6 @@ const withAuth = (WrappedComponent: any) => {
         const [user] = useAuthState(auth);
         const router = useRouter();
 
-        // console.log(auth);
         useEffect(() => {
             const unsubscribe = () => {
                 if (!user) {
@@ -17,7 +16,6 @@ const withAuth = (WrappedComponent: any) => {
                         pathname: '/signin',
                         query: { from: router.pathname },
                     });
-                    console.log(router.pathname);
                 }
             };
 
