@@ -3,7 +3,7 @@ import { useGetData } from '@/request/getData';
 import { useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Spinner from './Spinner';
-import { Product } from '@/types/products';
+
 import Link from 'next/link';
 
 export default function CategoryBar() {
@@ -42,7 +42,7 @@ export default function CategoryBar() {
         {uniqueCategories.map((c, i) => {
           return (
             <Link
-              href={'/'}
+              href={'/products/category-products/'+c}
               key={i}
               className="rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium capitalize">
               {c}
