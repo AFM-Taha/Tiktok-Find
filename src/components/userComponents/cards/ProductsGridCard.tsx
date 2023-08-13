@@ -26,7 +26,7 @@ export default function ProductsGridCard({
           <h3
             title={title}
             className=" font-semibold underline-offset-4 group-hover:underline">
-            {title.length > 23 ? title.slice(0, 23) + '...' : title}
+            {title?.length > 23 ? title.slice(0, 23) + '...' : title}
           </h3>
         </div>
         <div className="flex gap-1">
