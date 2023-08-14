@@ -10,12 +10,12 @@ import auth from '../../../../firebase.init';
 // import { toast } from 'react-hot-toast';
 // import Router from 'next/router';
 import UserProfileImage from '../userProfile/UserProfileImage';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSearchContext } from '@/contexts/SearchContext';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
-  const [searchText, setSearchText] = useState('');
+  const { search, setSearch } = useSearchContext();
   const [user] = useAuthState(auth);
   const router = useRouter();
   const path = router.pathname;
@@ -38,9 +38,9 @@ export default function NavBar() {
               <input
                 type="text"
                 className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
-                value={searchText}
+                value={search}
                 placeholder="Search products..."
-                onChange={(e) => setSearchText(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
           ) : null}
@@ -70,9 +70,9 @@ export default function NavBar() {
             <input
               type="text"
               className="my-1 w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 font-medium text-white"
-              value={searchText}
+              value={search}
               placeholder="Search products..."
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         ) : null}
