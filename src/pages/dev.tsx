@@ -87,6 +87,9 @@ function DevCard({
 export default function DevGrid() {
   return (
     <div className="py-32">
+      <h1 className="mb-16 text-center font-mono text-7xl font-bold text-white">
+        {'<Developers/>'}
+      </h1>
       <div className="mx-4 flex flex-col items-center justify-evenly gap-4 lg:flex-row">
         {devData.map((data) => (
           <DevCard
