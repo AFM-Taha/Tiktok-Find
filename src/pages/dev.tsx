@@ -10,7 +10,9 @@ interface DevCardProps {
   linkedin: string;
   email: string;
 }
-
+// ______________________________
+// Change according to your needs
+// ------------------------------
 const devData = [
   {
     name: 'Habibur Rahman',
