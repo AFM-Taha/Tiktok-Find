@@ -1,21 +1,22 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBPtlD8Q2TzypD5y66RH4KXt7baa_e6MgY",
-    authDomain: "tiktokfind-ecommerce.firebaseapp.com",
-    projectId: "tiktokfind-ecommerce",
-    storageBucket: "tiktokfind-ecommerce.appspot.com",
-    messagingSenderId: "406011488887",
-    appId: "1:406011488887:web:c05c840f56a23a1d35f472"
+  apiKey: 'AIzaSyB7OtOS6ezu4_TFV5XKjNB24vGvkJmdvlc',
+  authDomain: 'tiktokfind-dfd92.firebaseapp.com',
+  projectId: 'tiktokfind-dfd92',
+  storageBucket: 'tiktokfind-dfd92.appspot.com',
+  messagingSenderId: '495701768786',
+  appId: '1:495701768786:web:f14193b5facce8ad1a7d8b',
+  measurementId: 'G-R4X6SRK0XK',
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export default auth; 
+export default auth;
