@@ -3,6 +3,7 @@ import VideoCard from './VideoCard';
 import { useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { baseURL } from '@/components/assets/url';
 
 type Shorts = {
   shorts_links: string[];
@@ -12,8 +13,9 @@ export default function VideoBar() {
   // fetch from next.js api route in pages/api/hello.ts
   const { data, error } = useQuery<Shorts, Error>({
     queryKey: ['videos'],
-    queryFn: () => axios.get('api/hello').then((res) => res.data),
+    queryFn: () => axios.get(`${baseURL}/videos`).then((res) => res.data),
   });
+  console.log(data);
 
   // For handling left and right scroll buttons
 

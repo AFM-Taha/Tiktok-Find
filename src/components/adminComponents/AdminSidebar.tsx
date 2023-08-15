@@ -13,6 +13,7 @@ import { PiTiktokLogoLight } from 'react-icons/pi';
 import auth from '../../../firebase.init';
 import { toast } from 'react-hot-toast';
 import Router from 'next/router';
+import { BsCameraVideo } from 'react-icons/bs';
 
 const adminMenu = [
   {
@@ -32,6 +33,12 @@ const adminMenu = [
     icon: <FaBoxOpen className="text-2xl text-gray-500" />,
     name: 'Orders',
     path: '/admin/manage-orders',
+  },
+  {
+    id: 4,
+    icon: <BsCameraVideo className="text-2xl text-gray-500" />,
+    name: 'Videos',
+    path: '/admin/manage-videos',
   },
 ];
 
