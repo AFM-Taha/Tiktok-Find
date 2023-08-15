@@ -25,6 +25,7 @@ export default function VideoCard({ shorts_link }: Props) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         title="Embedded youtube"
       />
+      ;
     </div>
   );
 }
