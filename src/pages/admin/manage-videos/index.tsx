@@ -9,13 +9,14 @@ import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+const ytUrlRegex =
+  /(?:youtube\.com\/watch\?v=|youtu.be\/|youtube\.com\/shorts\/)([\w-]{11})/;
+
 const schema = z.object({
-  url: z
-    .string()
-    .regex(/https:\/\/youtu.be\/[a-zA-Z0-9_]+/gi, 'Enter a valid link'),
+  url: z.string().regex(ytUrlRegex, 'Enter a valid youtube video/shorts URL'),
 });
 
-type UrlType = z.infer<typeof schema>;
+type FormDataModel = z.infer<typeof schema>;
 
 const User = () => {
   // const [videoUrl, setVideoUrl] = useState('');
@@ -25,9 +26,7 @@ const User = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<UrlType>({
-    resolver: zodResolver(schema),
-  });
+  } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
   const [video, setVideo] = useState<any>({});
 
   // useEffect(() => {
@@ -56,7 +55,11 @@ const User = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<UrlType> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormDataModel> = (data) => {
+    console.log(data.url);
+
+    reset();
+  };
 
   if (isLoading || dataError) return <Spinner />;
 
@@ -71,13 +74,13 @@ const User = () => {
             <input
               // value={videoUrl}
               // onChange={(e) => setVideoUrl(e.target.value)}
-
+              {...register('url', { required: true })}
               type="text"
               className="h-10 w-full rounded-xl border-2 border-blue-600 text-gray-800"
               placeholder="for example: https://youtu.be/nm_KIiBMtDs"
             />
             <button
-              onClick={adVideo}
+              // onClick={adVideo}
               type="submit"
               className="ml-1 rounded-xl border-2 border-red-800 px-8 py-1.5 font-medium text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
               Add
