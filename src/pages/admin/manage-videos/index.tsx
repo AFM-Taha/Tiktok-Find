@@ -1,4 +1,3 @@
-import withAdmin from '@/components/Others/WithAdmin';
 import VideoTR from '@/components/adminComponents/manageVideos/VideoTR';
 import { baseURL } from '@/components/assets/url';
 import Spinner from '@/components/userComponents/common/Spinner';
@@ -17,7 +16,7 @@ const schema = z.object({
 
 type FormDataModel = z.infer<typeof schema>;
 
-const User = () => {
+const VideoManage = () => {
   const {
     register,
     handleSubmit,
@@ -118,4 +117,4 @@ const User = () => {
   );
 };
 
-export default withAdmin(User);
+export default VideoManage;
