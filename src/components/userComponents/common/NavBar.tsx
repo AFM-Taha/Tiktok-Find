@@ -12,11 +12,15 @@ import auth from '../../../../firebase.init';
 import UserProfileImage from '../userProfile/UserProfileImage';
 import { useRouter } from 'next/router';
 import { useSearchContext } from '@/contexts/SearchContext';
+import { useGetData } from '@/request/getData';
+import { baseURL } from '@/components/assets/url';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
   const { search, setSearch } = useSearchContext();
   const [user] = useAuthState(auth);
+  const { data } = useGetData<any>(`${baseURL}/users/${user?.email}`);
+
   const router = useRouter();
   const path = router.pathname;
   console.log(path);
@@ -59,7 +63,7 @@ export default function NavBar() {
             </Link>
             <Link className={user ? '' : 'hidden'} href="/profile">
               <UserProfileImage
-                username={user?.displayName}
+                username={data?.displayName}
                 className="h-10 w-10 font-bold text-white"
               />
             </Link>
