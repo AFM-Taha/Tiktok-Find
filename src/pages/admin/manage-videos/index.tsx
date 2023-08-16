@@ -11,7 +11,7 @@ const User = () => {
   const [YTID, setYTID] = useState('');
 
   useEffect(() => {
-    const pattern = /\/([a-zA-Z0-9_]+)$/;
+      const pattern = /\/shorts\/([a-zA-Z0-9_-]+)/;
     const match = videoUrl.match(pattern);
     if (match) {
       setYTID(match[1]);
