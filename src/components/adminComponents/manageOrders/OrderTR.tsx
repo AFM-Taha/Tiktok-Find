@@ -9,7 +9,8 @@ import Image from 'next/image';
 const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
   const [detail, setDetail] = useState(false);
 
-  const { _id, delivery_status, payment_status, total, products } = order;
+  const { _id, delivery_status, payment_status, total, products, shipping } =
+    order;
 
   const [status, setStatus] = useState<string>(delivery_status);
 
@@ -22,6 +23,8 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
     patch(editURL, { delivery_status: e }, refetch);
   };
 
+  console.log(shipping);
+  const { address, email, name, phone, tax_exempt } = shipping;
   return (
     <>
       <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
@@ -59,8 +62,39 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
         <tr>
           <td colSpan={5}>
             <section className=" mx-2  bg-gray-100 p-10">
+              {/*  Address And Info */}
+              <div className="mb-5">
+                <div className="flex items-center gap-2">
+                  <h4>Name:</h4>
+                  <span>{name}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Email: </h4>
+                  <span> {email}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Phone: </h4>
+                  <span> {phone}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Tax Exempt: </h4>
+                  <span> {tax_exempt}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Address: </h4>
+                  <span>
+                    {' '}
+                    {address?.city}, {address?.country}, {address?.line1}
+                    {address?.line2 && ' ,' + address?.line2},{' '}
+                    {address?.postal_code}, {address?.state}
+                  </span>
+                </div>
+                <p className="mt-2"> NB. Address Formate - city, country, line1 & line2 , postal code , state.</p>
+              </div>
+
               {products.map((p: any) => {
                 const { image, name, quantity, specification, size, color } = p;
+
                 return (
                   <ul
                     className={`${
