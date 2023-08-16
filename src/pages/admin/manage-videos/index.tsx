@@ -5,7 +5,6 @@ import Spinner from '@/components/userComponents/common/Spinner';
 import { useGetData } from '@/request/getData';
 import { post } from '@/request/post';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -19,23 +18,12 @@ const schema = z.object({
 type FormDataModel = z.infer<typeof schema>;
 
 const User = () => {
-  // const [videoUrl, setVideoUrl] = useState('');
-  const [YTID, setYTID] = useState('');
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<FormDataModel>({ resolver: zodResolver(schema) });
-  const [video, setVideo] = useState<any>({});
-
-  // useEffect(() => {
-  //   const pattern = /\/([a-zA-Z0-9_]+)$/;
-  //   const match = videoUrl.match(pattern);
-  //   if (match) {
-  //     setYTID(match[1]);
-  //   }
-  // }, [videoUrl]);
 
   //Data fetch
   const apiUrl = `${baseURL}/videos`;
@@ -49,15 +37,30 @@ const User = () => {
   // Add video
   const videoAddUrl = `${baseURL}/videos`;
 
-  const adVideo = () => {
-    if (YTID.length > 2) {
-      post(videoAddUrl, { url: YTID }, refetch);
-    }
+  const addVideo = (id: string) => {
+    post(videoAddUrl, { url: id }, refetch);
   };
 
   const onSubmit: SubmitHandler<FormDataModel> = (data) => {
-    console.log(data.url);
+    function extractYouTubeVideoId(link: string): string | null {
+      const pattern1 =
+        /(?:youtube\.com\/watch\?v=|youtu.be\/|youtube\.com\/shorts\/)([\w-]{11})/;
+      const pattern2 = /shorts\/([\w-]{11})/;
 
+      const match1 = link.match(pattern1);
+      const match2 = link.match(pattern2);
+
+      if (match1) {
+        return match1[1];
+      } else if (match2) {
+        return match2[1];
+      } else {
+        return null;
+      }
+    }
+    const videoId = extractYouTubeVideoId(data.url);
+
+    if (videoId) addVideo(videoId);
     reset();
   };
 
@@ -72,15 +75,12 @@ const User = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex h-[150px] w-[600px] items-center justify-center rounded-3xl bg-gray-100 px-10 shadow-lg">
             <input
-              // value={videoUrl}
-              // onChange={(e) => setVideoUrl(e.target.value)}
               {...register('url', { required: true })}
               type="text"
               className="h-10 w-full rounded-xl border-2 border-blue-600 text-gray-800"
               placeholder="for example: https://youtu.be/nm_KIiBMtDs"
             />
             <button
-              // onClick={adVideo}
               type="submit"
               className="ml-1 rounded-xl border-2 border-red-800 px-8 py-1.5 font-medium text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
               Add
