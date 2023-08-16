@@ -5,13 +5,14 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { baseURL } from '@/components/assets/url';
 
-type Shorts = {
-  shorts_links: string[];
-};
+interface Shorts {
+  _id: string;
+  url: string;
+}
 
 export default function VideoBar() {
   // fetch from next.js api route in pages/api/hello.ts
-  const { data, error } = useQuery<Shorts, Error>({
+  const { data, error } = useQuery<Shorts[], Error>({
     queryKey: ['videos'],
     queryFn: () => axios.get(`${baseURL}/videos`).then((res) => res.data),
   });
@@ -48,8 +49,8 @@ export default function VideoBar() {
         ref={containerRef}
         className="category-scrollbar mx-4 flex gap-2 overflow-x-scroll scroll-smooth py-4 lg:gap-8">
         {/* ----------- Video Cards ----------- */}
-        {data?.shorts_links.map((link) => (
-          <VideoCard key={link} shorts_link={link} />
+        {data?.map((link) => (
+          <VideoCard key={link._id} shorts_link={link.url} />
         ))}
       </div>
       <div className="hidden md:inline-block">
