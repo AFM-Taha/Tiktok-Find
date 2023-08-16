@@ -4,58 +4,94 @@ import { baseURL } from '@/components/assets/url';
 import Spinner from '@/components/userComponents/common/Spinner';
 import { useGetData } from '@/request/getData';
 import { post } from '@/request/post';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+const schema = z.object({
+  url: z
+    .string()
+    .regex(/https:\/\/youtu.be\/[a-zA-Z0-9_]+/gi, 'Enter a valid link'),
+});
+
+type UrlType = z.infer<typeof schema>;
 
 const User = () => {
-  const [videoUrl, setVideoUrl] = useState('');
+  // const [videoUrl, setVideoUrl] = useState('');
   const [YTID, setYTID] = useState('');
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UrlType>({
+    resolver: zodResolver(schema),
+  });
+  const [video, setVideo] = useState<any>({});
 
-  useEffect(() => {
-    const pattern = /\/([a-zA-Z0-9_]+)$/;
-    const match = videoUrl.match(pattern);
-    if (match) {
-      setYTID(match[1]);
-    }
-  }, [videoUrl]);
+  // useEffect(() => {
+  //   const pattern = /\/([a-zA-Z0-9_]+)$/;
+  //   const match = videoUrl.match(pattern);
+  //   if (match) {
+  //     setYTID(match[1]);
+  //   }
+  // }, [videoUrl]);
 
   //Data fetch
   const apiUrl = `${baseURL}/videos`;
-  const { data: videos, isLoading, error, refetch } = useGetData<any>(apiUrl);
+  const {
+    data: videos,
+    isLoading,
+    error: dataError,
+    refetch,
+  } = useGetData<any>(apiUrl);
 
   // Add video
-const videoAddUrl=`${baseURL}/videos`
+  const videoAddUrl = `${baseURL}/videos`;
 
-const adVideo=()=>{
-  if (YTID.length > 2) {
-    post(videoAddUrl, {url:YTID}, refetch);
-  }
-}
+  const adVideo = () => {
+    if (YTID.length > 2) {
+      post(videoAddUrl, { url: YTID }, refetch);
+    }
+  };
 
-  if (isLoading || error) return <Spinner />;
+  const onSubmit: SubmitHandler<UrlType> = (data) => console.log(data);
+
+  if (isLoading || dataError) return <Spinner />;
 
   return (
     <div className="text-gray-100">
-      <h2 className="text-center text-3xl  font-semibold">Manage Users</h2>
+      <h2 className="text-center text-3xl  font-semibold">Manage Videos</h2>
       {/* content here */}
 
       <div className="mt-20 flex justify-center">
-        <div className="flex h-[150px] w-[600px] items-center justify-center rounded-3xl bg-gray-100 px-10 shadow-lg">
-          <input
-            onChange={(e) => setVideoUrl(e.target.value)}
-            type="text"
-            className="h-10 w-full rounded-xl border-2 border-blue-600 text-gray-800"
-            placeholder="for example: https://youtu.be/nm_KIiBMtDs"
-          />
-          <button
-            onClick={adVideo}
-            type="submit"
-            className="ml-1 rounded-xl border-2 border-red-800 px-8 py-1.5 font-medium text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
-            Add
-          </button>
-        </div>
-      </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex h-[150px] w-[600px] items-center justify-center rounded-3xl bg-gray-100 px-10 shadow-lg">
+            <input
+              // value={videoUrl}
+              // onChange={(e) => setVideoUrl(e.target.value)}
 
-      <div className="relative mt-20 overflow-x-auto w-[900px] mx-auto shadow-md sm:rounded-lg">
+              type="text"
+              className="h-10 w-full rounded-xl border-2 border-blue-600 text-gray-800"
+              placeholder="for example: https://youtu.be/nm_KIiBMtDs"
+            />
+            <button
+              onClick={adVideo}
+              type="submit"
+              className="ml-1 rounded-xl border-2 border-red-800 px-8 py-1.5 font-medium text-red-800 duration-200 hover:bg-red-800 hover:text-gray-100">
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+      {errors.url && (
+        <p className="text-center text-lg font-bold text-red-500">
+          {errors.url.message}
+        </p>
+      )}
+
+      <div className="relative mx-auto mt-20 w-[900px] overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
