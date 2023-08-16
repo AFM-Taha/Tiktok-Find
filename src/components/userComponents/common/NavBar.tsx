@@ -23,7 +23,6 @@ export default function NavBar() {
 
   const router = useRouter();
   const path = router.pathname;
-  console.log(path);
 
   return (
     <>
