@@ -7,10 +7,18 @@ import { toast } from 'react-hot-toast';
 import auth from '../../firebase.init';
 import { BiLogOut } from 'react-icons/bi';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useGetData } from '@/request/getData';
+import { baseURL } from '@/components/assets/url';
+import { patch } from '@/request/patch';
+import { FaRegEdit } from 'react-icons/fa';
 
 export default function Profile() {
   const [user, loading] = useAuthState(auth);
+
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [rename, setRename] = useState('');
+  const { data, refetch } = useGetData<any>(`${baseURL}/users/${user?.email}`);
 
   // If user is not logged in, redirect to signin page
   useEffect(() => {
@@ -24,6 +32,16 @@ export default function Profile() {
       toast.success('User SignOut Successfully', { position: 'top-center' });
     });
   };
+
+  const handleSave = () => {
+    patch(
+      `${baseURL}/users/${user?.email}`,
+      { displayName: rename },
+      refetch,
+      setIsDisabled(true)
+    );
+  };
+
   return (
     <div className="mx-auto max-w-md pt-32 text-white">
       <h1 className="mb-8 text-center text-3xl font-black md:text-7xl">
@@ -31,10 +49,41 @@ export default function Profile() {
       </h1>
       <div className="flex items-center justify-between rounded-3xl px-8 py-4">
         <UserProfileImage
-          username={user?.displayName}
+          username={data?.displayName}
           className="h-16 w-16 text-4xl font-semibold sm:h-24 sm:w-24 sm:text-5xl md:h-32 md:w-32 md:text-6xl"
         />
-        <p className="text-xl font-bold sm:text-3xl">{user?.displayName}</p>
+        <p className="text-xl font-bold sm:text-3xl">{data?.displayName}</p>
+      </div>
+      <label htmlFor="rename" className="text-lg font-medium">
+        Change username
+      </label>
+      <div className="mb-4 flex items-center justify-between">
+        <input
+          id="rename"
+          type="text"
+          className={`w-full rounded-xl py-4 text-black ${
+            isDisabled ? 'bg-gray-400 bg-opacity-80 opacity-80' : 'bg-white'
+          }`}
+          value={rename}
+          onChange={(e) => setRename(e.target.value)}
+          disabled={isDisabled}
+          placeholder={data?.displayName as string}
+        />
+        {isDisabled ? (
+          <div>
+            <FaRegEdit
+              size={24}
+              className="mx-3"
+              onClick={() => setIsDisabled(false)}
+            />
+          </div>
+        ) : (
+          <button
+            onClick={handleSave}
+            className="mx-3 rounded-xl bg-blue-600 p-4 font-bold text-white">
+            Save
+          </button>
+        )}
       </div>
       <div>
         <Link
