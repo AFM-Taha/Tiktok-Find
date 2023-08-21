@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 const PayButton = ({ checkoutItems }:any) => {
     const [user] = useAuthState(auth);
     const handleCheckout = () => {
-        axios.post(`https://tiktokfind-ecommerce-server.vercel.app/api/v1/stripe/create-checkout-session`, {
+        axios.post(`http://localhost:5000/api/v1/stripe/create-checkout-session`, {
             checkoutItems,
             user
         }).then(res => {
