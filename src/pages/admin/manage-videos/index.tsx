@@ -72,7 +72,7 @@ const VideoManage = () => {
 
       <div className="mt-20 flex justify-center">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex h-[150px] w-[600px] items-center justify-center rounded-3xl bg-gray-100 px-10 shadow-lg">
+          <div className="flex max-h-[150px] max-w-[600px] flex-col items-center justify-center gap-2 rounded-3xl bg-gray-100 px-10 py-3 shadow-lg md:flex-row">
             <input
               {...register('url', { required: true })}
               type="text"
@@ -93,7 +93,7 @@ const VideoManage = () => {
         </p>
       )}
 
-      <div className="relative mx-auto mt-20 w-[900px] overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="relative mx-auto mt-20 max-w-[900px] overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>

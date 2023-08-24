@@ -59,17 +59,34 @@ const AdminSidebar = ({ children }: any) => {
   return (
     <section className="relative">
       <div
-        className={`absolute top-0 z-10 h-screen w-3/4 bg-white duration-300 ${
+        className={`absolute top-0 z-10 h-screen w-3/4 bg-white duration-300 md:hidden ${
           openMenu ? 'left-0' : '-left-[500px]'
         } `}>
         <div className="relative">
           <span
             onClick={() => seOpenMenu(false)}
-            className="absolute right-5 top-5 rounded-full bg-red-500 px-4 py-2 text-white">
+            className="absolute right-1 top-1 rounded-full bg-red-500 px-4 py-2 text-white">
             x
           </span>
-          {/* All Container Here */}
-          
+          <ul className="space-y-2 pt-16 font-medium">
+            {adminMenu.map((m) => {
+              return (
+                <li onClick={() => seOpenMenu(false)} key={m.id}>
+                  <Link
+                    href={m.path}
+                    className={`flex items-center rounded-lg p-2 duration-200 hover:bg-gray-700 hover:text-gray-100 ${
+                      router.pathname.includes(m.path)
+                        ? 'bg-gray-700 text-gray-100'
+                        : 'text-gray-700'
+                    }`}>
+                    {m.icon}
+
+                    <span className="ml-3">{m.name} </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
 
@@ -140,7 +157,7 @@ const AdminSidebar = ({ children }: any) => {
 
       {/* Children */}
 
-      <div className="mx-5 p-4 sm:ml-64">
+      <div className="sm:ml-64 md:mx-5 md:p-4">
         <div className="p-4">{children}</div>
       </div>
     </section>
