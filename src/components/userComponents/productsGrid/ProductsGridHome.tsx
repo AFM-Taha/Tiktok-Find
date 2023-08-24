@@ -95,11 +95,13 @@ export default function ProductsGridHome() {
             </div>
           ))}
         </div>
-        <button
-          onClick={handleLoadMore}
-          className="mx-auto mt-36 block rounded-xl bg-gray-700 p-2 px-4 text-lg font-bold text-white">
-          See more
-        </button>
+        {allProducts && visibleProducts.length < allProducts?.length && (
+          <button
+            onClick={handleLoadMore}
+            className="mx-auto mt-36 block rounded-xl bg-gray-700 p-2 px-4 text-lg font-bold text-white">
+            See more
+          </button>
+        )}
       </div>
     );
   return (
