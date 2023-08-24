@@ -14,6 +14,7 @@ import auth from '../../../firebase.init';
 import { toast } from 'react-hot-toast';
 import Router from 'next/router';
 import { BsCameraVideo } from 'react-icons/bs';
+import { useState } from 'react';
 
 const adminMenu = [
   {
@@ -53,9 +54,27 @@ const AdminSidebar = ({ children }: any) => {
     });
   };
 
+  const [openMenu, seOpenMenu] = useState(false);
+
   return (
-    <>
+    <section className="relative">
+      <div
+        className={`absolute top-0 z-10 h-screen w-3/4 bg-white duration-300 ${
+          openMenu ? 'left-0' : '-left-[500px]'
+        } `}>
+        <div className="relative">
+          <span
+            onClick={() => seOpenMenu(false)}
+            className="absolute right-5 top-5 rounded-full bg-red-500 px-4 py-2 text-white">
+            x
+          </span>
+          {/* All Container Here */}
+          
+        </div>
+      </div>
+
       <button
+        onClick={() => seOpenMenu(true)}
         data-drawer-target="sidebar-multi-level-sidebar"
         data-drawer-toggle="sidebar-multi-level-sidebar"
         aria-controls="sidebar-multi-level-sidebar"
@@ -124,7 +143,7 @@ const AdminSidebar = ({ children }: any) => {
       <div className="mx-5 p-4 sm:ml-64">
         <div className="p-4">{children}</div>
       </div>
-    </>
+    </section>
   );
 };
 
