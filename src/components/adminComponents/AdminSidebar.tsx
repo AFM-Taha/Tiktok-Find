@@ -157,7 +157,7 @@ const AdminSidebar = ({ children }: any) => {
 
       {/* Children */}
 
-      <div className="sm:ml-64 md:mx-5 md:p-4">
+      <div className="sm:ml-64">
         <div className="p-4">{children}</div>
       </div>
     </section>
