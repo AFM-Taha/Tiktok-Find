@@ -4,6 +4,7 @@ import Spinner from '@/components/userComponents/common/Spinner';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
 import { Single1688Product } from '@/types/singleProduct';
+import toast from 'react-hot-toast';
 
 type UrlFormData = { url: string };
 
@@ -48,8 +49,7 @@ const AddProduct = () => {
       setProduct(response.data);
       setLoading(false);
     } catch (error) {
-      if (error instanceof AxiosError)
-      setLoading(false);
+      if (error instanceof AxiosError) setLoading(false);
     }
   }
 
@@ -74,6 +74,11 @@ const AddProduct = () => {
 
   // Function to handle product details form submission
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    if (data?.price === product?.productinfo?.price) {
+      toast.error('Price is same!');
+      return;
+    }
+
     const product_add_url =
       'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products';
     try {
@@ -96,10 +101,11 @@ const AddProduct = () => {
         category: data.category,
       });
 
-      // toast.success(response.data);
-      console.log('Response:', response.data);
-    } catch (error: any) {
-    }
+      if (response?.data?.status === 'Successful') {
+        toast?.success('Product Successfully added');
+        setProduct(null);
+      }
+    } catch (error: any) {}
   };
 
   if (Loading) return <Spinner />;
