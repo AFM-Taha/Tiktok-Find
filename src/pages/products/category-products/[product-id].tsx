@@ -9,22 +9,32 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const CategoryProducts = () => {
+  const router = useRouter();
   // Category Name
-  const { query } = useRouter();
-  const categoryName: any = query.categoryName;
+  const productID = router.query['product-id'];
+  const {
+    data: sproduct,
+    error: se,
+    isLoading: SL,
+  } = useGetData<Product>(`${baseURL}/products/${productID}`);
 
   // Product Fetch & Loading
   const url = `${baseURL}/products`;
   const { data, isLoading }: any = useGetData(url);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || SL) return <Spinner />;
   const allProducts = data.data.result;
 
   // Filtering
   const products = allProducts.filter(
     (p: Product) =>
-      p.category?.toLocaleLowerCase() === categoryName?.toLocaleLowerCase()
+      p.category?.toLocaleLowerCase() ===
+      sproduct?.category?.toLocaleLowerCase()
   );
+
+  const firstP = products.filter((p: Product) => p._id === productID);
+  const withFirstP = products.filter((p: Product) => p._id !== productID);
+  const allCProducts = [...firstP, ...withFirstP];
 
   return (
     <div className="container mx-auto mb-28 py-20">
@@ -34,7 +44,7 @@ const CategoryProducts = () => {
             ...categoryProductsBC,
             {
               id: 3,
-              name: categoryName,
+              name: 'categoryName',
               url: '#',
             },
           ]}
@@ -42,7 +52,7 @@ const CategoryProducts = () => {
         <section className="mt-8 min-h-[3000px] pb-[6.25rem]">
           <div className="py-20">
             <div className="mx-auto grid max-w-[71.25rem] grid-cols-2 gap-3 bg-transparent bg-opacity-0 px-3 md:grid-cols-3 md:gap-5 md:px-5  lg:gap-8 xl:max-w-[93.75rem] xl:grid-cols-4">
-              {products.map((p: Product) => {
+              {allCProducts.map((p: Product) => {
                 const { _id, title, orginal_price, price, item_imgs } = p;
 
                 return (

@@ -16,7 +16,6 @@ export default function VideoBar() {
     queryKey: ['videos'],
     queryFn: () => axios.get(`${baseURL}/videos`).then((res) => res.data),
   });
-  console.log(data);
 
   // For handling left and right scroll buttons
 

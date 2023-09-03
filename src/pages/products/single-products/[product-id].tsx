@@ -15,6 +15,7 @@ const SingleProduct = () => {
   const { data, error, isLoading } = useGetData<Product>(
     `${baseURL}/products/${productID}`
   );
+
   if (error)
     return (
       <div className="text-center text-red-500">{JSON.stringify(error)}</div>
@@ -57,9 +58,9 @@ const SingleProduct = () => {
                   name: data.title,
                   price: data.price,
                   sale: data.total_sold,
-                  stock: data.skus.sku.length,
-                  sku: data.skus.sku[0].sku_id,
-                  images: data.item_imgs[0].url,
+                  stock: data.skus.sku?.length,
+                  sku: data.skus.sku[0]?.sku_id,
+                  images: data.item_imgs[0]?.url,
                   // ratings: 5,
                   shipping: 55,
                   description: data.description,

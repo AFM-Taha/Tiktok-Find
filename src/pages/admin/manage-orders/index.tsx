@@ -12,7 +12,6 @@ const OrderManage = () => {
     orderGetURL
   );
 
-  console.log(data);
 
   // Error and Loading
   if (error) return;
