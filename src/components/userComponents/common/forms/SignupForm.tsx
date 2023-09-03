@@ -38,7 +38,6 @@ export default function SignupForm() {
   const [updateProfile] = useUpdateProfile(auth);
   const router = useRouter();
 
-  console.log(cuser);
   let signupError;
 
   if (cloading) {

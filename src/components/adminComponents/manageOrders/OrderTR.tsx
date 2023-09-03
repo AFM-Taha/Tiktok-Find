@@ -23,7 +23,6 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
     patch(editURL, { delivery_status: e }, refetch);
   };
 
-  console.log(shipping);
   const { address, email, name, phone, tax_exempt } = shipping;
   return (
     <>
