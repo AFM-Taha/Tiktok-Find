@@ -5,12 +5,13 @@ import { useGetData } from '@/request/getData';
 import { FetchedProducts } from '@/types/products';
 
 const OrderManage = () => {
-  const productGetURL = `${baseURL}/orders`;
+  const orderGetURL = `${baseURL}/orders`;
 
   // Product fetch
   const { data, isLoading, error, refetch } = useGetData<FetchedProducts | any>(
-    productGetURL
+    orderGetURL
   );
+
 
   // Error and Loading
   if (error) return;
@@ -23,10 +24,7 @@ const OrderManage = () => {
           Manage Orders
         </h2>
 
-        <h5 className="mt-4 text-lg ">
-          {' '}
-          Total Products :{/* {data.data.totalProducts} */}
-        </h5>
+        <h5 className="mt-4 text-lg "> Total Order : {data.length}</h5>
 
         <div className="relative  mt-2 overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">

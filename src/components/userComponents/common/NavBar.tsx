@@ -10,12 +10,19 @@ import auth from '../../../../firebase.init';
 // import { toast } from 'react-hot-toast';
 // import Router from 'next/router';
 import UserProfileImage from '../userProfile/UserProfileImage';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useSearchContext } from '@/contexts/SearchContext';
+import { useGetData } from '@/request/getData';
+import { baseURL } from '@/components/assets/url';
 
 export default function NavBar() {
   // const [isOpen, setIsOpen] = useState(false);
-  const [searchText, setSearchText] = useState('');
+  const { search, setSearch } = useSearchContext();
   const [user] = useAuthState(auth);
+  const { data } = useGetData<any>(`${baseURL}/users/${user?.email}`);
+
+  const router = useRouter();
+  const path = router.pathname;
 
   return (
     <>
@@ -29,15 +36,17 @@ export default function NavBar() {
               Find
             </Link>
           </div>
-          <div className="mx-4 hidden flex-grow sm:block">
-            <input
-              type="text"
-              className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
-              value={searchText}
-              placeholder="Search products..."
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-          </div>
+          {path === '/' ? (
+            <div className={'mx-4 hidden flex-grow sm:block'}>
+              <input
+                type="text"
+                className="w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 text-xl font-medium text-white"
+                value={search}
+                placeholder="Search products..."
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+          ) : null}
           <div className="flex items-center justify-evenly gap-2">
             <Link
               className="rounded-xl bg-[rgba(26,42,59,0.68)] p-3 backdrop-blur-[5px] backdrop-saturate-150"
@@ -53,21 +62,23 @@ export default function NavBar() {
             </Link>
             <Link className={user ? '' : 'hidden'} href="/profile">
               <UserProfileImage
-                username={user?.displayName}
+                username={data?.displayName}
                 className="h-10 w-10 font-bold text-white"
               />
             </Link>
           </div>
         </div>
-        <div className="mx-4 sm:hidden">
-          <input
-            type="text"
-            className="my-1 w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 font-medium text-white"
-            value={searchText}
-            placeholder="Search products..."
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-        </div>
+        {path === '/' ? (
+          <div className="mx-4 sm:hidden">
+            <input
+              type="text"
+              className="my-1 w-full rounded-xl bg-[rgba(26,42,59,0.68)] px-4 font-medium text-white"
+              value={search}
+              placeholder="Search products..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        ) : null}
       </nav>
       {/* <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between rounded-lg px-4 py-2">
         <div className="flex items-center gap-2">

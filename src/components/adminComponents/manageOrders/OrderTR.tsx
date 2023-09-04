@@ -2,26 +2,19 @@ import { remove } from '@/request/delete';
 import { useState } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
-import { Product } from '@/types/products';
 import { patch } from '@/request/patch';
 import { baseURL } from '@/components/assets/url';
-
+import Image from 'next/image';
 
 const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
   const [detail, setDetail] = useState(false);
 
-  const {
-    _id,
-    delivery_status,
-    payment_status,
-    total,
-    products,
-  } = order;
+  const { _id, delivery_status, payment_status, total, products, shipping } =
+    order;
 
   const [status, setStatus] = useState<string>(delivery_status);
 
-
-  // __________Order Status Change And Delete________________
+  //  __________Order Status Change And Delete_____________  //
 
   const deleteURL = `${baseURL}/orders/${_id}`;
   const editURL = `${baseURL}/orders/${_id}`;
@@ -30,12 +23,13 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
     patch(editURL, { delivery_status: e }, refetch);
   };
 
+  const { address, email, name, phone, tax_exempt } = shipping;
   return (
     <>
       <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
         <td className="px-6 py-4 ">{_id} </td>
         <td className="px-6 py-4 ">{payment_status} </td>
-        <td className="px-6 py-4">$ {total}</td>
+        <td className="px-6 py-4">$ {(total / 100).toFixed(2)}</td>
         <td className="px-6 py-4">
           <select
             onChange={(e) => handleDeliveryStatus(e.target.value)}
@@ -48,7 +42,6 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
             <option value="delivered">Delivered</option>
           </select>
         </td>
-        {/* <td className="px-6 py-4">{delivery_status}</td> */}
         <td className="px-6 py-4 text-right">
           <div className="flex items-center justify-end gap-3">
             <button
@@ -68,8 +61,87 @@ const OrderTR = ({ order, refetch }: { order: any; refetch: any }) => {
         <tr>
           <td colSpan={5}>
             <section className=" mx-2  bg-gray-100 p-10">
-              {products.map((p: Product) => {
-                return <div key={p._id}>hello</div>;
+              {/*  Address And Info */}
+              <div className="mb-5">
+                <div className="flex items-center gap-2">
+                  <h4>Name:</h4>
+                  <span>{name}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Email: </h4>
+                  <span> {email}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Phone: </h4>
+                  <span> {phone}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Tax Exempt: </h4>
+                  <span> {tax_exempt}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <h4>Address: </h4>
+                  <span>
+                    {' '}
+                    {address?.city}, {address?.country}, {address?.line1}
+                    {address?.line2 && ' ,' + address?.line2},{' '}
+                    {address?.postal_code}, {address?.state}
+                  </span>
+                </div>
+                <p className="mt-2"> NB. Address Formate - city, country, line1 & line2 , postal code , state.</p>
+              </div>
+
+              {products.map((p: any) => {
+                const { image, name, quantity, specification, size, color } = p;
+
+                return (
+                  <ul
+                    className={`${
+                      products.length > 1 ? 'mb-2' : ''
+                    } rounded-md border-2 border-dashed border-blue-600  p-4`}
+                    key={p._id}>
+                    <li className="flex w-full flex-col items-start sm:flex-row sm:items-center sm:gap-4">
+                      <div className="flex items-center gap-4">
+                        <Image
+                          width={100}
+                          height={100}
+                          src={image}
+                          alt=""
+                          className="h-16 w-16 rounded object-cover"
+                        />
+                        <div>
+                          <h3 className=" lg:text-lg xl:text-xl ">
+                            Title/Name: {name}
+                          </h3>
+                          <dl className="mt-0.5 space-y-px text-[14px] text-opacity-50">
+                            {size?.length > 1 && (
+                              <div>
+                                <dt className="inline">Size:</dt>
+                                <dd className="inline"> {size}</dd>
+                              </div>
+                            )}
+                            {color?.length > 1 && (
+                              <div>
+                                <dt className="inline">Color:</dt>
+                                <dd className="inline capitalize"> {color}</dd>
+                              </div>
+                            )}
+                            {specification?.length > 1 && (
+                              <div>
+                                <dt className="inline">Specification:</dt>
+                                <dd className="inline capitalize">
+                                  {' '}
+                                  {specification}
+                                </dd>
+                              </div>
+                            )}
+                          </dl>
+                          <p className="mt-1">Quantity: {quantity}</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                );
               })}
             </section>
           </td>
