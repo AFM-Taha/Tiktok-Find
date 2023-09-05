@@ -6,7 +6,6 @@ import { useGetData } from '@/request/getData';
 import { FetchedProducts, Product } from '@/types/products';
 import { useSearchContext } from '@/contexts/SearchContext';
 import { useEffect, useState } from 'react';
-// import { products } from '@/components/assets/productsData';
 
 export default function ProductsGridHome() {
   const [visibleProducts, setVisibleProducts] = useState<
@@ -17,7 +16,7 @@ export default function ProductsGridHome() {
     `${baseURL}/products`
   );
 
-  const batchSize = 28;
+  const batchSize = 100;
   const allProducts = data?.data.result;
 
   useEffect(() => {
