@@ -4,6 +4,7 @@ import VideoBar from '@/components/userComponents/video/VideoBar';
 import Head from 'next/head';
 
 export default function Home() {
+
   return (
     <>
       <Head>
