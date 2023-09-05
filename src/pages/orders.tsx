@@ -18,7 +18,6 @@ export default function Orders() {
 
   const orders = allOrders?.filter((o: any) => o.shipping.email === userEmail);
 
-  console.log(orders);
 
   return (
     <section className="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
