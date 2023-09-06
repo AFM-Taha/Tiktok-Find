@@ -43,9 +43,9 @@ export default function CategoryBar() {
         {uniqueCategories.map((c, i) => {
           return (
             <Link
-              href={'/products/category-products/'+c}
+              href={'/products/category-products/' + c}
               key={i}
-              className="rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium capitalize">
+              className="whitespace-nowrap rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium capitalize ">
               {c}
             </Link>
           );
