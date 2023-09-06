@@ -16,7 +16,7 @@ export default function Orders() {
 
 
   return (
-    <section className="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
+    <div className="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
       <h1 className="mb-20 text-center text-4xl font-black text-white sm:text-7xl">
          Orders history
       </h1>
@@ -49,6 +49,6 @@ export default function Orders() {
           </div>
         )}
       </table>
-    </section>
+    </div>
   );
 }
