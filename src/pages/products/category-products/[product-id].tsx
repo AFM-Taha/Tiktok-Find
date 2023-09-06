@@ -14,7 +14,6 @@ const CategoryProducts = () => {
   const productID = router.query['product-id'];
   const {
     data: sproduct,
-    error: se,
     isLoading: SL,
   } = useGetData<Product>(`${baseURL}/products/${productID}`);
 
