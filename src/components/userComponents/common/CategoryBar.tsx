@@ -39,7 +39,7 @@ export default function CategoryBar() {
       </div>
       <div
         ref={containerRef}
-        className="category-scrollbar flex gap-2 overflow-x-scroll scroll-smooth px-2 pb-2 text-center text-white md:gap-4 lg:gap-8">
+        className="category-scrollbar flex gap-2 overflow-x-scroll scroll-smooth px-2 pb-2 text-center text-white md:gap-4 ">
         {uniqueCategories.map((c, i) => {
           return (
             <Link
