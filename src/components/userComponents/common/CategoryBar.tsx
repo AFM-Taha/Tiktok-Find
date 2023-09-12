@@ -39,13 +39,13 @@ export default function CategoryBar() {
       </div>
       <div
         ref={containerRef}
-        className="category-scrollbar flex gap-2 overflow-x-scroll scroll-smooth px-2 pb-2 text-center text-white md:gap-4 lg:gap-8">
+        className="category-scrollbar flex gap-2 overflow-x-scroll scroll-smooth px-2 pb-2 text-center text-white md:gap-4 ">
         {uniqueCategories.map((c, i) => {
           return (
             <Link
-              href={'/products/category-products/'+c}
+              href={'/products/category-products/' + c}
               key={i}
-              className="rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium capitalize">
+              className="whitespace-nowrap rounded-xl bg-[rgba(26,42,59,0.68)] px-4 py-2 font-medium capitalize ">
               {c}
             </Link>
           );

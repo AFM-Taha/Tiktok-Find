@@ -1,16 +1,12 @@
 import { baseURL } from '@/components/assets/url';
-import CartList from '@/components/userComponents/Cart/CartList';
-import { RootState } from '@/redux/store';
 import { useGetData } from '@/request/getData';
 import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { BiLeftArrow } from 'react-icons/bi';
-import { useSelector } from 'react-redux';
 import auth from '../../firebase.init';
 import OrderTR from '@/components/userComponents/OrderTR';
 
 export default function Orders() {
-  const subtotal = useSelector((state: RootState) => state.carts.totalPrice);
   const [user] = useAuthState(auth);
 
   const { data: allOrders, refetch } = useGetData<any>(`${baseURL}/orders`);
