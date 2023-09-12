@@ -24,9 +24,36 @@ export default function CategoryBar() {
 
   const products = data.data.result;
 
+
   const uniqueCategories: string[] = [
     ...(new Set(products.map((item: Product) => item.category)) as any),
   ];
+
+  function mergeDuplicateCategories(categories: string[]): string[] {
+    // Create an object to store the merged categories
+    const mergedCategories: { [key: string]: boolean } = {};
+  
+    // Create an array to hold the merged category names
+    const mergedCategoryNames: string[] = [];
+  
+    // Loop through each category in the input array
+    categories.forEach((category) => {
+      // Normalize the category name by trimming and converting to lowercase
+      const normalizedCategory = category.trim().toLowerCase();
+  
+      // Check if the category name already exists in the mergedCategories object
+      if (!mergedCategories[normalizedCategory]) {
+        // If it doesn't exist, add it to the mergedCategories object and the result array
+        mergedCategories[normalizedCategory] = true;
+        mergedCategoryNames.push(category);
+      }
+    });
+  
+    return mergedCategoryNames;
+  }
+
+  const mergedCategories = mergeDuplicateCategories(uniqueCategories);
+// console.log("marged",mergedCategories);
 
   return (
     <div className="mx-auto mt-16 flex max-w-[71.25rem] justify-center xl:max-w-[93.75rem] ">
@@ -40,7 +67,7 @@ export default function CategoryBar() {
       <div
         ref={containerRef}
         className="category-scrollbar flex gap-2 overflow-x-scroll scroll-smooth px-2 pb-2 text-center text-white md:gap-4 ">
-        {uniqueCategories.map((c, i) => {
+        {mergedCategories?.map((c, i) => {
           return (
             <Link
               href={'/products/category-products/' + c}
