@@ -44,6 +44,8 @@ const DetailSection = ({ info }: InfoProps) => {
     // ratingsCount,
   } = info;
 
+  console.log(info);
+
   const colors = [];
   const sizes = [];
   const specification = [];
