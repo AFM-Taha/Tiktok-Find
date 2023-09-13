@@ -37,7 +37,7 @@ export default function SignupForm() {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile] = useUpdateProfile(auth);
   const router = useRouter();
-  console.log(cuser);
+console.log(cuser);
   let signupError;
 
   if (cloading) {
