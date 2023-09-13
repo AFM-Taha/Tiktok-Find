@@ -26,7 +26,8 @@ export default function CategoryBar() {
 
 
   const uniqueCategories: string[] = [
-    ...(new Set(products.map((item: Product) => item.category)) as any),
+
+    ...new Set(products?.map((item:Product) => item.category)) as any
   ];
 
   function mergeDuplicateCategories(categories: string[]): string[] {
