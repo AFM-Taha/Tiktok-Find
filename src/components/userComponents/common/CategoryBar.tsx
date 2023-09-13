@@ -26,6 +26,7 @@ export default function CategoryBar() {
 
 
   const uniqueCategories: string[] = [
+
     ...new Set(products?.map((item:Product) => item.category)) as any
   ];
 
