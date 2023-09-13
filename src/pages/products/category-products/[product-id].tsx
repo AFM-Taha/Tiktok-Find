@@ -12,10 +12,9 @@ const CategoryProducts = () => {
   const router = useRouter();
   // Category Name
   const productID = router.query['product-id'];
-  const {
-    data: sproduct,
-    isLoading: SL,
-  } = useGetData<Product>(`${baseURL}/products/${productID}`);
+  const { data: sproduct, isLoading: SL } = useGetData<Product>(
+    `${baseURL}/products/${productID}`
+  );
 
   // Product Fetch & Loading
   const url = `${baseURL}/products`;
@@ -43,7 +42,7 @@ const CategoryProducts = () => {
             ...categoryProductsBC,
             {
               id: 3,
-              name: 'categoryName',
+              name: sproduct?.category ?? '',
               url: '#',
             },
           ]}

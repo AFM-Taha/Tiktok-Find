@@ -17,6 +17,7 @@ type InfoProps = {
     price: string;
     stock: number;
     sale: number;
+    orginal_price:string;
     // ratings: number;
     shipping: number;
     seller: string;
@@ -38,7 +39,8 @@ const DetailSection = ({ info }: InfoProps) => {
     // ratings,
     seller,
     category,
-    sale,
+    // sale,
+    orginal_price,
     sku,
     props_list,
     // ratingsCount,
@@ -53,8 +55,10 @@ const DetailSection = ({ info }: InfoProps) => {
   for (const key in props_list) {
     const [row, col] = key.split(':').map(Number);
     const value = props_list[key];
-console.log(row);
+    console.log(row);
     if (value.startsWith('color:')) {
+      if (!colors[col]) colors[col] = value.split(':')[1];
+    } else if (value.startsWith('colour:')) {
       if (!colors[col]) colors[col] = value.split(':')[1];
     } else if (value.startsWith('size:')) {
       if (!sizes[col]) sizes[col] = value.split(':')[1];
@@ -122,15 +126,16 @@ console.log(row);
 
       <h2>
         <span className="text-xl font-semibold text-lime-500 ">
-          $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)}
+          $ {Number(price).toFixed(2)}
+          {/* $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)} */}
         </span>{' '}
         <span className="px-4 text-lg text-gray-400">
           {' '}
-          <del>$ {Number(price).toFixed(2)}</del>
+          <del>$ {Number(orginal_price).toFixed(2)}</del>
         </span>
-        <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
+        {/* <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
           -{sale}%
-        </span>
+        </span> */}
       </h2>
 
       {/*-------------------------------------------------------------------------------------- 
@@ -161,9 +166,11 @@ console.log(row);
                   onClick={() => {
                     setSelectedColor(c);
                   }}
-                  className={`bg-${c}-600 h-6 w-6 ${
-                    selectedColor === c && 'ring-4'
-                  } rounded-full ring-white`}></button>
+                  style={{ background: c }}
+                  className={`
+                   h-6 w-6 ${
+                     selectedColor === c && 'ring-4'
+                   } rounded-full ring-white`}></button>
               ))}
             </div>
           </div>
@@ -204,7 +211,6 @@ console.log(row);
                   );
                 })}
               </select>
-
             </div>
           </div>
         )}
@@ -240,7 +246,6 @@ console.log(row);
             <FaCartPlus size={20} />
             Add to Cart
           </button>
-   
         </div>
         <button
           onClick={addWishList}
