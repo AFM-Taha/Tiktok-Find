@@ -11,11 +11,10 @@ const ImageSection = ({ itemImgs }: Props) => {
   return (
     <div className="flex items-start justify-start gap-5">
       {/* Small Images */}
-      <div className="mt-10 ">
+      <div className="mt-0 ">
         {/* Check if images are more than 6 or not */}
-        {itemImgs.length > 6
-          ? itemImgs.slice(6).map((obj) => {
-              // if more than 6 images are fetched, then slice them to 6
+        {itemImgs.length > 7
+          ? itemImgs.slice(0,7).map((obj) => {
               return (
                 <div
                   className={`mb-5 cursor-pointer ${

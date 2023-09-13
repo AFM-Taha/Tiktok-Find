@@ -12,6 +12,7 @@ type FormData = {
   title: string;
   category: string;
   price: string;
+  discount_price: 'string';
   description: string;
   item_imgs: string;
   num_iid: string;
@@ -86,7 +87,7 @@ const AddProduct = () => {
         title: data.title,
         item_imgs: product?.productinfo.item_imgs,
         num_iid: product?.productinfo.num_iid,
-        price: data.price,
+        price: data.discount_price || data.price,
         pic_url: product?.productinfo.num_iid,
         orginal_price: product?.productinfo.orginal_price,
         description: data.description,
@@ -94,7 +95,7 @@ const AddProduct = () => {
         item_size: product?.productinfo.item_size,
         item_weight: product?.productinfo.item_size,
         props: product?.productinfo.props,
-        props_name: product?.productinfo.props_list,
+        props_list: product?.productinfo.props_list,
         skus: product?.productinfo.skus,
         total_sold: product?.productinfo.total_sold,
         video: product?.productinfo.video,
@@ -210,10 +211,10 @@ const AddProduct = () => {
               <div className="group relative z-0  w-1/2">
                 <input
                   defaultValue={product.productinfo.price}
+                  disabled
                   type="text"
                   id="price"
                   {...register('price', {
-                    required: 'Price is required',
                     pattern: {
                       value: /^[0-9]+(\.[0-9]{1,2})?$/,
                       message: 'Invalid price format',
@@ -229,6 +230,30 @@ const AddProduct = () => {
                 </label>
                 {errors.price && (
                   <span className="text-red-500">{errors.price.message}</span>
+                )}
+              </div>
+              <div className="group relative z-0  w-1/2">
+                <input
+                  type="text"
+                  id="discount_price"
+                  {...register('discount_price', {
+                    pattern: {
+                      value: /^[0-9]+(\.[0-9]{1,2})?$/,
+                      message: 'Invalid discount price format',
+                    },
+                  })}
+                  className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                  // placeholder="Discount Price "
+                />
+                <label
+                  htmlFor="price"
+                  className="absolute top-0 -z-10 origin-[0] -translate-y-6 scale-75 transform text-lg text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500">
+                  Discount Price
+                </label>
+                {errors.discount_price && (
+                  <span className="text-red-500">
+                    {errors.discount_price.message}
+                  </span>
                 )}
               </div>
             </div>

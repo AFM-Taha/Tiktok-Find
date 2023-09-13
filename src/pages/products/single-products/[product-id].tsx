@@ -30,12 +30,12 @@ const SingleProduct = () => {
               ...singleProductsBC,
               {
                 id: 3,
-                name: data.category ? data.category : 'Product Name',
+                name: data?.category ? data?.category : 'Product Name',
                 url: '#',
               },
               {
                 id: 4,
-                name: data.title,
+                name: data?.title.slice(0, 15) + ' ...',
                 url: '#',
               },
             ]}
@@ -44,10 +44,10 @@ const SingleProduct = () => {
             {/* left side */}
             <div className="md:w-1/2">
               {/* Img section  */}
-              <ImageSection itemImgs={data.item_imgs} />
+              <ImageSection itemImgs={data?.item_imgs} />
 
               {/* Description section */}
-              <ProductDescription description={data.description} />
+              <ProductDescription description={data?.description} />
             </div>
 
             {/* Right side or detail section */}
@@ -57,6 +57,7 @@ const SingleProduct = () => {
                   _id: data._id,
                   name: data.title,
                   price: data.price,
+                  orginal_price: data.orginal_price,
                   sale: data.total_sold,
                   stock: data.skus.sku?.length,
                   sku: data.skus.sku[0]?.sku_id,
