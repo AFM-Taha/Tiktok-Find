@@ -96,7 +96,7 @@ const AddProduct = () => {
         num_iid: product?.productinfo.num_iid,
         price: data.discount_price || data.price,
         pic_url: product?.productinfo.num_iid,
-        orginal_price: product?.productinfo.orginal_price,
+        orginal_price: data.price,
         description: data.description,
         brand: product?.productinfo.brand,
         item_size: product?.productinfo.item_size,
@@ -108,7 +108,6 @@ const AddProduct = () => {
         video: product?.productinfo.video,
         category: category,
       });
-
       if (response?.data?.status === 'Successful') {
         toast?.success('Product Successfully added');
         setProduct(null);
@@ -315,7 +314,7 @@ const AddProduct = () => {
               <div className="group relative z-0  w-1/4">
                 <input
                   defaultValue={product.productinfo.price}
-                  disabled
+                  // disabled
                   type="text"
                   id="price"
                   {...register('price', {

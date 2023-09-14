@@ -36,7 +36,7 @@ const ProductTR = ({
 }) => {
   const [editRow, setEditRow] = useState(false);
 
-  const { price, title, category, item_imgs, _id, description } = product;
+  const { price, title, category, item_imgs, _id, description, orginal_price } = product;
 
   // Delete && Edit URL
   const deleteURL = `${baseURL}/products/${_id}`;
@@ -79,7 +79,7 @@ const ProductTR = ({
           {title?.length > 30 ? title.slice(0, 30) + ' ...' : title}{' '}
         </td>
         <td className="px-6 py-4">{category ? category : 'N/A'}</td>
-        <td className="px-6 py-4">$ {price}</td>
+        <td className="px-6 py-4">$ {orginal_price}</td>
         <td className="px-6 py-4 text-right">
           <div className="flex items-center justify-end gap-3">
             <button
@@ -145,7 +145,7 @@ const ProductTR = ({
                   </div>
                   <div className="group relative z-0  w-1/2">
                     <input
-                      defaultValue={price}
+                      defaultValue={`${(price?.length > 1) ? price : orginal_price}`}
                       type="text"
                       id="price"
                       {...register('price', {
