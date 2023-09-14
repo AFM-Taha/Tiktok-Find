@@ -30,10 +30,18 @@ export default function ProductsGridCard({
           </h3>
         </div>
         <div className="flex gap-1">
-          <del className="text-neutral-500">
-            <p className="">${basePrice}</p>
-          </del>
-          <p className="font-medium">${currentPrice}</p>
+          {currentPrice ? (
+            <div className="flex gap-1">
+              <del className="text-neutral-500">
+                <p className="">${basePrice}</p>
+              </del>
+              <p className="font-medium">${currentPrice}</p>
+            </div>
+          ) : (
+            <div className="text-neutral-500">
+              <p className="">${basePrice}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

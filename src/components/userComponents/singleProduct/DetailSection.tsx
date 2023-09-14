@@ -124,19 +124,26 @@ const DetailSection = ({ info }: InfoProps) => {
         {name}
       </h1>
 
-      <h2>
-        <span className="px-4 text-lg text-gray-400">
-          {' '}
-          <del>$ {Number(orginal_price).toFixed(2)}</del>
-        </span>
-        <span className="text-xl font-semibold text-lime-500 ">
-          $ {Number(price).toFixed(2)}
-          {/* $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)} */}
-        </span>{' '}
-        {/* <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
-          -{sale}%
-        </span> */}
-      </h2>
+  {
+    price ? 
+    <h2>
+    <span className="px-4 text-lg text-gray-400">
+      {' '}
+      <del>$ {Number(orginal_price).toFixed(2)}</del>
+    </span>
+    <span className="text-xl font-semibold text-lime-500 ">
+      $ {Number(price).toFixed(2)}
+      {/* $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)} */}
+    </span>{' '}
+    {/* <span className="bg-blue-600 px-2 py-0.5 text-xs text-gray-100">
+      -{sale}%
+    </span> */}
+  </h2> : 
+      <span className="text-xl font-semibold text-lime-500 ">
+      $ {Number(orginal_price).toFixed(2)}
+      {/* $ {(Number(price) - (Number(price) * sale) / 100).toFixed(2)} */}
+    </span>
+  }
 
       {/*-------------------------------------------------------------------------------------- 
                                            Rating Section 
