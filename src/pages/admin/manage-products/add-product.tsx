@@ -5,6 +5,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
 import { Single1688Product } from '@/types/singleProduct';
 import toast from 'react-hot-toast';
+import { Product } from '@/types/products';
+import { useGetData } from '@/request/getData';
+import { baseURL } from '@/components/assets/url';
 
 type UrlFormData = { url: string };
 
@@ -30,8 +33,12 @@ type FormData = {
 
 const AddProduct = () => {
   const [Loading, setLoading] = useState(false);
-  // const [inputUrl, setInputUrl] = useState('');
+  const [newCategory, setNewCategory] = useState('on');
+  const [preCategory, setPreCategory] = useState('');
+  const [category, setCategory] = useState('');
   const [product, setProduct] = useState<Single1688Product | null>(null);
+
+  console.log(category);
 
   const makeId = (url: string) => {
     setLoading(true);
@@ -99,7 +106,7 @@ const AddProduct = () => {
         skus: product?.productinfo.skus,
         total_sold: product?.productinfo.total_sold,
         video: product?.productinfo.video,
-        category: data.category,
+        category: category,
       });
 
       if (response?.data?.status === 'Successful') {
@@ -108,6 +115,42 @@ const AddProduct = () => {
       }
     } catch (error: any) {}
   };
+
+  const url = `${baseURL}/products`;
+  const { data, isLoading }: any = useGetData(url);
+
+  if (isLoading) return <Spinner />;
+
+  const products = data.data.result;
+
+  const uniqueCategories: string[] = [
+    ...(new Set(products?.map((item: Product) => item.category)) as any),
+  ];
+
+  function mergeDuplicateCategories(categories: string[]): string[] {
+    // Create an object to store the merged categories
+    const mergedCategories: { [key: string]: boolean } = {};
+
+    // Create an array to hold the merged category names
+    const mergedCategoryNames: string[] = [];
+
+    // Loop through each category in the input array
+    categories.forEach((category) => {
+      // Normalize the category name by trimming and converting to lowercase
+      const normalizedCategory = category.trim().toLowerCase();
+
+      // Check if the category name already exists in the mergedCategories object
+      if (!mergedCategories[normalizedCategory]) {
+        // If it doesn't exist, add it to the mergedCategories object and the result array
+        mergedCategories[normalizedCategory] = true;
+        mergedCategoryNames.push(category);
+      }
+    });
+
+    return mergedCategoryNames;
+  }
+
+  const mergedCategories = mergeDuplicateCategories(uniqueCategories);
 
   if (Loading) return <Spinner />;
 
@@ -187,28 +230,89 @@ const AddProduct = () => {
               )}
             </div>
             <div className=" mt-10 gap-5 md:flex">
-              <div className="group relative z-0  w-1/2">
-                <input
-                  type="text"
-                  id="category"
-                  {...register('category', {
-                    required: 'Category Name is required',
-                  })}
-                  className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-                  placeholder=" "
-                />
-                <label
-                  htmlFor="category"
-                  className="absolute top-0 -z-10 origin-[0] -translate-y-6 scale-75 transform text-lg text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500">
-                  Category Name
-                </label>
-                {errors.category && (
-                  <span className="text-red-500">
-                    {errors.category.message}
-                  </span>
+              <div className="group relative z-0  w-1/4 text-gray-800">
+                <div>
+                  <input
+                    className=" cursor-pointer"
+                    type="radio"
+                    defaultChecked
+                    name="category"
+                    id="new_category"
+                    onChange={(e) => {
+                      setNewCategory(e.target.value);
+                      setPreCategory('off');
+                    }}
+                  />
+                  <label className="ml-2 cursor-pointer" htmlFor="new_category">
+                    New Category
+                  </label>
+                </div>
+                <div>
+                  <input
+                    className=" cursor-pointer"
+                    onChange={(e) => {
+                      setPreCategory(e.target.value);
+                      setNewCategory('off');
+                    }}
+                    type="radio"
+                    name="category"
+                    id="pre_category"
+                  />
+                  <label className="ml-2 cursor-pointer" htmlFor="pre_category">
+                    Previous Category
+                  </label>
+                </div>
+              </div>
+
+              <div className="group relative z-0  w-1/4">
+                {newCategory === 'on' && (
+                  <div>
+                    <input
+                      type="text"
+                      required
+                      id="category"
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                      placeholder=" "
+                    />
+                    <label
+                      htmlFor="category"
+                      className="absolute top-0 -z-10 origin-[0] -translate-y-6 scale-75 transform text-lg text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500">
+                      Category Name
+                    </label>
+                    {errors.category && (
+                      <span className="text-red-500">
+                        {errors.category.message}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {preCategory === 'on' && (
+                  <div className="text-gray-800">
+                    {mergedCategories.length > 0 ? (
+                      <select
+                        required
+                        onChange={(e) => setCategory(e.target.value)}>
+                        <option defaultChecked disabled value="null">
+                          {' '}
+                          Select Category
+                        </option>
+                        {mergedCategories.map((c, i) => {
+                          return (
+                            <option key={i} value={c}>
+                              {c}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    ) : (
+                      'No Category Found'
+                    )}
+                  </div>
                 )}
               </div>
-              <div className="group relative z-0  w-1/2">
+              <div className="group relative z-0  w-1/4">
                 <input
                   defaultValue={product.productinfo.price}
                   disabled
@@ -232,7 +336,7 @@ const AddProduct = () => {
                   <span className="text-red-500">{errors.price.message}</span>
                 )}
               </div>
-              <div className="group relative z-0  w-1/2">
+              <div className="group relative z-0  w-1/4">
                 <input
                   type="text"
                   id="discount_price"
