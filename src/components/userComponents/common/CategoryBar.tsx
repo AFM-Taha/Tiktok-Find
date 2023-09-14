@@ -26,7 +26,6 @@ export default function CategoryBar() {
 
 
   const uniqueCategories: string[] = [
-
     ...new Set(products?.map((item:Product) => item.category)) as any
   ];
 
@@ -54,7 +53,6 @@ export default function CategoryBar() {
   }
 
   const mergedCategories = mergeDuplicateCategories(uniqueCategories);
-// console.log("marged",mergedCategories);
 
   return (
     <div className="mx-auto mt-16 flex max-w-[71.25rem] justify-center xl:max-w-[93.75rem] ">
