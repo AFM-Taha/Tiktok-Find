@@ -82,19 +82,19 @@ const AddProduct = () => {
 
   // Function to handle product details form submission
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    if (data?.price === product?.productinfo?.price) {
-      toast.error('Price is same!');
-      return;
-    }
+    // if (data?.price === product?.productinfo?.price) {
+    //   toast.error('Price is same!');
+    //   return;
+    // }
 
     const product_add_url =
-      'https://tiktokfind-ecommerce-server.vercel.app/api/v1/products';
+    `${baseURL}/products`;
     try {
       const response = await axios.post(product_add_url, {
         title: data.title,
         item_imgs: product?.productinfo.item_imgs,
         num_iid: product?.productinfo.num_iid,
-        price: data.discount_price || data.price,
+        price: data.discount_price,
         pic_url: product?.productinfo.num_iid,
         orginal_price: data.price,
         description: data.description,

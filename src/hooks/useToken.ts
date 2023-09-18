@@ -1,3 +1,4 @@
+import { baseURL } from '@/components/assets/url';
 import { useEffect, useState } from 'react';
 
 const UseToken = (user: any) => {
@@ -15,7 +16,7 @@ const UseToken = (user: any) => {
 
     if (email) {
       fetch(
-        `https://tiktokfind-ecommerce-server.vercel.app/api/v1/users/${email}`,
+        `${baseURL}/users/${email}`,
         {
           method: 'PUT',
           headers: { 'content-type': 'application/json' },
